@@ -4,6 +4,7 @@ import android.content.Context
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
@@ -22,6 +23,18 @@ class Prefs(context: Context) {
     var dataUrl: String
         get() = sp.getString("dataUrl", "") ?: ""
         set(value) = sp.edit().putString("dataUrl", value).apply()
+
+    var chatApiKey: String
+        get() = sp.getString("chatKey", "") ?: ""
+        set(value) = sp.edit().putString("chatKey", value).apply()
+
+    var chatBaseUrl: String
+        get() = sp.getString("chatBase", "https://api.deepseek.com") ?: "https://api.deepseek.com"
+        set(value) = sp.edit().putString("chatBase", value).apply()
+
+    var chatModel: String
+        get() = sp.getString("chatModel", "deepseek-chat") ?: "deepseek-chat"
+        set(value) = sp.edit().putString("chatModel", value).apply()
 }
 
 class PaperRepository(private val context: Context) {
@@ -87,6 +100,54 @@ class PaperRepository(private val context: Context) {
                 createdAt = System.currentTimeMillis()
             )
         )
+    }
+
+    suspend fun chatHistory(id: String): List<ChatMessageEntity> = db.chatDao().listForPaper(id)
+
+    suspend fun chatCompletion(
+        system: String,
+        history: List<Pair<String, String>>,
+        question: String
+    ): String = withContext(Dispatchers.IO) {
+        val base = prefs.chatBaseUrl.trim().removeSuffix("/")
+        val model = prefs.chatModel.trim().ifBlank { "deepseek-chat" }
+        val key = prefs.chatApiKey.trim()
+        if (key.isBlank()) throw IllegalStateException("未配置聊天 API Key")
+
+        val messages = mutableListOf<JSONObject>()
+        messages.add(JSONObject().put("role", "system").put("content", system))
+        history.forEach { (role, content) ->
+            messages.add(JSONObject().put("role", role).put("content", content))
+        }
+        messages.add(JSONObject().put("role", "user").put("content", question))
+
+        val payload = JSONObject()
+            .put("model", model)
+            .put("temperature", 0.4)
+            .put("messages", JSONArray(messages))
+
+        val conn = URL("$base/chat/completions").openConnection() as HttpURLConnection
+        conn.requestMethod = "POST"
+        conn.connectTimeout = 15_000
+        conn.readTimeout = 90_000
+        conn.doOutput = true
+        conn.setRequestProperty("Content-Type", "application/json; charset=utf-8")
+        conn.setRequestProperty("Authorization", "Bearer $key")
+        conn.outputStream.use { it.write(payload.toString().toByteArray(Charsets.UTF_8)) }
+
+        val code = conn.responseCode
+        val body = (if (code in 200..299) conn.inputStream else conn.errorStream)
+            ?.bufferedReader(Charsets.UTF_8)
+            ?.use { it.readText() }
+            ?: ""
+        if (code !in 200..299) throw RuntimeException("HTTP $code: ${body.take(200)}")
+
+        JSONObject(body)
+            .getJSONArray("choices")
+            .getJSONObject(0)
+            .getJSONObject("message")
+            .getString("content")
+            .trim()
     }
 
     suspend fun clearCache() {

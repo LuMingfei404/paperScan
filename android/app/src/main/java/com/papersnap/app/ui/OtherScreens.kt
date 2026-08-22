@@ -36,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -218,7 +219,13 @@ fun BookmarksScreen(vm: AppViewModel) {
 fun SettingsScreen(vm: AppViewModel) {
     val dark by vm.darkTheme.collectAsState()
     val url by vm.dataUrl.collectAsState()
+    val chatKey by vm.chatKey.collectAsState()
+    val chatBase by vm.chatBase.collectAsState()
+    val chatModel by vm.chatModel.collectAsState()
     var urlText by remember(url) { mutableStateOf(url) }
+    var chatKeyText by remember(chatKey) { mutableStateOf(chatKey) }
+    var chatBaseText by remember(chatBase) { mutableStateOf(chatBase) }
+    var chatModelText by remember(chatModel) { mutableStateOf(chatModel) }
 
     Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         SubHeader(title = "设置", onBack = { vm.back() })
@@ -237,6 +244,43 @@ fun SettingsScreen(vm: AppViewModel) {
                     onValueChange = {
                         urlText = it
                         vm.setDataUrl(it)
+                    },
+                    modifier = Modifier.width(150.dp),
+                    singleLine = true,
+                    textStyle = androidx.compose.ui.text.TextStyle(fontSize = 11.sp)
+                )
+            }
+            SettingRow("聊天 API Key", "留空则 AI 讨论使用演示回复") {
+                OutlinedTextField(
+                    value = chatKeyText,
+                    onValueChange = {
+                        chatKeyText = it
+                        vm.setChatKey(it)
+                    },
+                    modifier = Modifier.width(150.dp),
+                    singleLine = true,
+                    textStyle = androidx.compose.ui.text.TextStyle(fontSize = 11.sp),
+                    visualTransformation = PasswordVisualTransformation()
+                )
+            }
+            SettingRow("聊天 API 地址", "OpenAI 兼容接口，默认 DeepSeek") {
+                OutlinedTextField(
+                    value = chatBaseText,
+                    onValueChange = {
+                        chatBaseText = it
+                        vm.setChatBase(it)
+                    },
+                    modifier = Modifier.width(150.dp),
+                    singleLine = true,
+                    textStyle = androidx.compose.ui.text.TextStyle(fontSize = 11.sp)
+                )
+            }
+            SettingRow("聊天模型", "如 deepseek-chat / gpt-4o-mini") {
+                OutlinedTextField(
+                    value = chatModelText,
+                    onValueChange = {
+                        chatModelText = it
+                        vm.setChatModel(it)
                     },
                     modifier = Modifier.width(150.dp),
                     singleLine = true,

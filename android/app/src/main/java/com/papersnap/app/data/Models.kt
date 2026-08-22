@@ -106,6 +106,9 @@ interface ChatDao {
     @Query("SELECT * FROM chat_messages WHERE arxivId = :id ORDER BY createdAt ASC, id ASC")
     fun messagesForPaper(id: String): Flow<List<ChatMessageEntity>>
 
+    @Query("SELECT * FROM chat_messages WHERE arxivId = :id ORDER BY createdAt ASC, id ASC")
+    suspend fun listForPaper(id: String): List<ChatMessageEntity>
+
     @Insert
     suspend fun insert(message: ChatMessageEntity)
 

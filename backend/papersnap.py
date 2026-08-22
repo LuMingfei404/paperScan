@@ -122,13 +122,14 @@ def fallback_summary(abstract: str) -> str:
     return first[:140]
 
 
-def llm_summarize(title: str, abstract: str) -> str:
-    """调用 LLM 生成一句话中文总结。"""
+def llm_process(title: str, abstract: str) -> tuple:
+    """调用 LLM 生成中文标题翻译与一句话中文总结。返回 (title_zh, summary)。"""
     prompt = (
-        "你是一名资深技术产品经理。根据下面论文的标题和摘要，用最通俗的中文写一句话总结（不超过80字）：\n"
-        "要求：像摘要一样自然通顺，一句话同时点明论文解决了什么问题、能用来开发什么应用；"
-        "禁止分条列举、禁止学术套话。\n"
-        "严格输出 JSON：{\"summary\":\"...\"}\n"
+        "你是一名资深技术产品经理。根据下面论文的标题和摘要，输出两个字段：\n"
+        "1. title_zh：论文标题的中文翻译（不通顺时意译，保留术语，不掺杂英文）。\n"
+        "2. summary：用最通俗的中文写一句话总结（不超过80字），像摘要一样自然通顺，"
+        "一句话同时点明论文解决了什么问题、能用来开发什么应用；禁止分条列举、禁止学术套话。\n"
+        "严格输出 JSON：{\"title_zh\":\"...\",\"summary\":\"...\"}\n"
         f"标题：{title}\n摘要：{abstract}"
     )
     url = LLM_BASE_URL.rstrip("/") + "/chat/completions"
@@ -152,8 +153,9 @@ def llm_summarize(title: str, abstract: str) -> str:
             if match:
                 parsed = json.loads(match.group(0))
                 summary = parsed.get("summary", "").strip()
+                title_zh = parsed.get("title_zh", "").strip()
                 if summary:
-                    return summary[:120]
+                    return title_zh[:200], summary[:120]
         except Exception as e:
             if attempt == 1:
                 print(f"    [LLM 失败] {e}")
@@ -210,12 +212,12 @@ def run() -> None:
     for i, p in enumerate(papers, 1):
         if LLM_API_KEY:
             try:
-                p["summary"] = llm_summarize(p["title"], p["abstract"])
+                p["title_zh"], p["summary"] = llm_process(p["title"], p["abstract"])
             except Exception:
                 p["summary"] = fallback_summary(p["abstract"])
         else:
             p["summary"] = fallback_summary(p["abstract"])
-        print(f"  {i}/{len(papers)} {p['arxiv_id']} | {p['summary'][:42]}")
+        print(f"  {i}/{len(papers)} {p['arxiv_id']} | {p['title_zh'][:28] or '（无翻译）'} | {p['summary'][:36]}")
 
     # 3. 输出 JSON
     payload = {

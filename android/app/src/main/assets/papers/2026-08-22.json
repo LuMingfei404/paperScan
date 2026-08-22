@@ -1,13 +1,13 @@
 {
   "date": "2026-08-22",
-  "generated_at": "2026-08-22T11:56:34+08:00",
+  "generated_at": "2026-08-22T12:45:42+08:00",
   "schema_version": 1,
   "total": 40,
   "papers": [
     {
       "arxiv_id": "2608.20337v1",
       "title": "Information on trajectories: martingales and random times",
-      "title_zh": "",
+      "title_zh": "轨迹上的信息：鞅与随机时间",
       "categories": [
         "math.PR",
         "cs.IT",
@@ -20,12 +20,12 @@
       "published": "2026-08-20T17:59:57Z",
       "pdf_url": "https://arxiv.org/abs/2608.20337v1",
       "abstract": "Accounting for information flow on the path space of trajectories of a nonnegative martingale yields exact variational identities for it, even at arbitrary random times. This recovers the widely used classical concentration inequalities, from Ville to PAC-Bayes, and measures what each one discards. The tail a bound controls is itself a relative entropy, resolved by the chain rule into per-step conditional divergences. The discarded slack has an exact form in each of three geometries: a Gibbs tilt for the Azuma-Hoeffding and PAC-Bayes bounds, the crossing itself for Ville's and for pooled tests, and a dominating certificate for the $L^p$ maximal bound. That certificate's optional-stopping deficit resolves per step into Bregman divergences of the running maximum. On a path-time space, the same identity gains one factor that prices anticipation: an arbitrary random time carries an e-process ``peeking penalty.'' The partition function can be read as a coalescent--a prefix-sharing probability of independent copies--and geometric mixtures of test martingales gain a pooling benefit for multi-model safe testing.",
-      "summary": "这篇论文通过研究非负鞅的轨迹信息流，推导出精确的变分恒等式，统一了多种经典浓度不等式，可用于开发更高效的统计检验和机器学习安全测试应用。"
+      "summary": "本文通过鞅与随机时间研究轨迹上的信息流，得出精确变分恒等式，统一并改进了多种经典集中不等式，可用于开发更高效的统计检验和机器学习安全测试应用。"
     },
     {
       "arxiv_id": "2608.20338v1",
       "title": "ConceptGuard: Benchmarking Context-Sensitive Unlearning in Large Language Models",
-      "title_zh": "",
+      "title_zh": "ConceptGuard：大型语言模型中上下文敏感遗忘的基准测试",
       "categories": [
         "cs.CL"
       ],
@@ -36,12 +36,12 @@
       "published": "2026-08-20T17:59:57Z",
       "pdf_url": "https://arxiv.org/abs/2608.20338v1",
       "abstract": "Large Language Models (LLMs) increasingly require selective removal of harmful or sensitive knowledge, called unlearning, yet existing methods and benchmarks fail to evaluate this capability completely. Current approaches rely on disjoint forget and retain sets composed of independent facts, and measure success using simple and direct factual recall. This framing fails to capture a key requirement of unlearning, namely the ability to eliminate harmful behaviors while preserving benign and beneficial knowledge. We argue that effective unlearning must operate at the level of concepts, ensuring complete removal of unsafe applications while maintaining their correct and useful usage, thereby achieving conceptually meaningful and complete unlearning. To better evaluate unlearning techniques from such a practical viewpoint, we introduce the notion of dual-use concepts: concepts that can be used in both harmful and benign contexts. Building on these concepts, we construct a benchmark called ConceptGuard where forget and retain sets are explicitly complementary in concept usage. Our benchmark uniquely enables unlearning to be explored and gauged at the level of concepts, instead of sparse facts, and evaluation is intent-sensitive with the goal of maximizing contextual separation to promote safer behavior. We demonstrate that current unlearning techniques perform poorly under this setting, showing weak contextual separation alongside poor performance in ROUGE and concept-level metrics. Our results reveal strong forgetting-utility trade-offs, limited gains in contextual sensitivity, and poor consistency in concept-level control across methods, and provide ideas for unlearning approaches that better align with real-world safety requirements. Our dataset is publicly available.",
-      "summary": "这篇论文提出了一个名为ConceptGuard的基准，用于评估大语言模型在概念层面的选择性遗忘能力，旨在解决现有方法无法在去除有害知识的同时保留有益知识的问题，可用于开发更安全、更可控的AI模型。"
+      "summary": "现有大模型遗忘技术难以区分有害与良性用途，本文提出双用途概念基准ConceptGuard，揭示当前方法在上下文分离上的不足，可用于开发更安全的大模型应用。"
     },
     {
       "arxiv_id": "2608.20335v1",
       "title": "4DAnyone: Create Anyone in 4D from a Casual Monocular Video",
-      "title_zh": "",
+      "title_zh": "4DAnyone：从随意单目视频创建任意人物的4D模型",
       "categories": [
         "cs.CV"
       ],
@@ -59,12 +59,12 @@
       "published": "2026-08-20T17:59:53Z",
       "pdf_url": "https://arxiv.org/abs/2608.20335v1",
       "abstract": "We present 4DAnyone, a framework for reconstructing 4D humans from an uncalibrated monocular video by generating reconstruction-grade multiview-consistent videos and lifting them into 4D Gaussian Splatting (4DGS). Existing camera-controlled video diffusion models synthesize plausible novel-view videos but fail to maintain consistency when scaled to the tens of target views required for 4DGS reconstruction. We identify this failure as a bounded-attention-context problem: when target views exceed the capacity of a single DiT forward pass, they must be split into groups, exposing two coupled bottlenecks. On the reference-context side, conditioning on all previously generated views grows as $O(N)$, weakening cross-view appearance guidance. On the target-context side, disjoint groups cannot directly exchange information, causing global structural drift. 4DAnyone addresses both bottlenecks with two complementary designs: Reference Context Packing (RCP) compresses growing reference views into a fixed-length mixed-resolution context with $O(1)$ reference-context complexity, while Target Context Routing (TCR) rotates target-view groupings during denoising to share context across groups at high-noise steps and stabilize details at low-noise steps. We further build the MVGameHuman dataset using our in-house game engine and combine it with light-stage and in-the-wild video datasets for training. Experiments on DNA-Rendering and DyMVHumans show that 4DAnyone outperforms prior methods in both novel-view video quality and downstream 4DGS reconstruction, with robust in-the-wild generalization. See our project page for video results and source code: https://4danyone.github.io.",
-      "summary": "4DAnyone能从随意拍摄的单目视频重建出动态3D人物，解决了多视角生成不一致的问题，可用于游戏、影视和虚拟现实中的数字人制作。"
+      "summary": "该论文提出一种从普通单目视频重建4D人体的方法，通过生成多视角一致视频并转换为4D高斯溅射，解决了视角增多时的上下文限制问题，可用于虚拟现实、游戏和影视制作中的动态人物建模。"
     },
     {
       "arxiv_id": "2608.20336v1",
       "title": "WithEveryone: Unified Planning and Identity Grounding for Group Image Generation",
-      "title_zh": "",
+      "title_zh": "WithEveryone：面向群像生成的统一规划与身份锚定",
       "categories": [
         "cs.CV"
       ],
@@ -81,12 +81,12 @@
       "published": "2026-08-20T17:59:53Z",
       "pdf_url": "https://arxiv.org/abs/2608.20336v1",
       "abstract": "Identity-preserving image generation becomes increasingly unreliable when a scene must contain many specified people. Beyond retaining each identity, the model must bind every reference to a distinct person and location, while training-time identity losses must establish correspondence among several noisy predicted faces. We introduce WithEveryone, a unified framework for generating group images up to ten reference identities. WithEveryone injects each selected identity as an addressed token, predicts a structured identity--layout plan, and renders the plan as a visual condition. Its key objective, Layout-Grounded ID Loss, uses annotated face regions to supervise the intended identities directly, avoiding unstable embedding-based face matching; ID Representation Forcing additionally trains a prediction for each identity before image synthesis. On an identity-disjoint benchmark, WithEveryone achieves the highest target-context identity similarity, improving face similarity from 0.462 for GPT-Image-2 to 0.499, while reducing copy-paste artifacts from 0.169 to 0.055. It further covers 97.3\\% of the requested identities with a duplicate rate of only 2.8\\%. These results show that explicit identity--layout grounding enables identity-preserving generation to scale to larger groups without relying on direct reference-face copying.",
-      "summary": "这篇论文提出了一种新方法，能在一张图片中准确生成多达十个人的合影，确保每个人的长相都清晰可辨且不会混淆，可用于制作多人合照或群体形象设计。"
+      "summary": "该论文提出一个生成多人合影的框架，能准确保持每个人的身份特征，避免混淆和复制粘贴，可用于制作包含多人的合影或社交场景图像。"
     },
     {
       "arxiv_id": "2608.20334v1",
       "title": "Swift-Image: Exploring the Performance Frontier of Compact Unified Image Generation Models",
-      "title_zh": "",
+      "title_zh": "Swift-Image：探索紧凑统一图像生成模型的性能前沿",
       "categories": [
         "cs.CV"
       ],
@@ -107,12 +107,12 @@
       "published": "2026-08-20T17:59:52Z",
       "pdf_url": "https://arxiv.org/abs/2608.20334v1",
       "abstract": "We present Swift-Image, a compact unified model for text-to-image generation, single-image editing, and multi-image editing. Our goal is to explore how far a relatively small visual generator can be pushed through systematic training engineering under a constrained computational budget. Swift-Image adopts an efficient 6B single-stream DiT and a progressive training pipeline that evolves from broad semantic coverage to higher resolution, stronger visual quality, and unified generation-editing supervision. For post-training, we employ parallel expert reinforcement learning followed by multi-teacher on-policy distillation to alleviate interference among heterogeneous objectives. We further decouple high-level reasoning from pixel-level rendering with a Prompt Enhancer that translates user requests into generator-aligned visual specifications. For efficient deployment, structural pruning and few-step distillation produce 3B and accelerated variants. Swift-Image achieves leading aggregate performance among evaluated open-source models with only 6B parameters and 243K GPU training hours; the compressed 3B model incurs nearly no loss, while few-step distillation further improves aggregate editing performance with substantially fewer sampling steps. Our study also summarizes practical lessons for architecture, data curriculum, post-training, prompt enhancement, and model compression.",
-      "summary": "Swift-Image是一个轻量级图像生成模型，用更少的算力实现了文字生图、图片编辑等多种功能，适合在资源有限的环境下开发高效的图像处理应用。"
+      "summary": "本文介绍Swift-Image，一个紧凑的统一图像生成模型，通过系统训练工程在有限算力下实现高性能，支持文本生成图像、单图和多图编辑，并可通过压缩和蒸馏加速部署，适用于需要高效图像生成和编辑的应用场景。"
     },
     {
       "arxiv_id": "2608.20331v1",
       "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
-      "title_zh": "",
+      "title_zh": "G-CARL：面向患者医学报告解读的基于检查表对齐的奖励学习",
       "categories": [
         "cs.CL",
         "cs.AI",
@@ -129,12 +129,12 @@
       "published": "2026-08-20T17:59:46Z",
       "pdf_url": "https://arxiv.org/abs/2608.20331v1",
       "abstract": "Personalized interpretation of medical reports has emerged as an increasingly important need among patients. Addressing this need requires both evidence-grounded medical factuality and context-dependent patient communication, yet existing medical vision-language tasks do not adequately capture these dual requirements. To bridge this gap, we introduce Patient-oriented Medical Report Interpretation (PMRI), a novel open-ended multimodal generation task that requires models to explain medical reports in accurate and accessible language based on a user's query and dialogue history. These two objectives differ fundamentally in their verifiability, yet remain tightly coupled, making them difficult to optimize jointly under conventional supervised fine-tuning and holistic reinforcement learning paradigms. To address this challenge, we propose G-CARL, a grounded, checklist-aligned reinforcement learning framework that combines multi-source retrieval for atomic claim verification with context-aware, instance-specific weighted checklists for response coverage, providing structured supervision for factuality, user-demand satisfaction, and expression quality without constraining response diversity. We further construct MMedReport, a real-world PMRI benchmark, along with a clinician-designed three-dimensional evaluation protocol. Extensive experiments demonstrate that G-CARL consistently outperforms existing post-training baselines in overall quality, claim-level precision, and checklist recall. Pairwise preference evaluation by clinicians further confirms that G-CARL produces interpretations that are more accurate and better aligned with patient needs.",
-      "summary": "这篇论文提出了一种新方法，能让AI用通俗易懂的语言向患者解释医学报告，既保证医学事实准确，又贴合患者的具体问题，可用于开发更贴心的医疗报告解读应用。"
+      "summary": "为解决医学报告解读中事实准确性与患者沟通需求难以兼顾的问题，提出G-CARL框架，通过检索验证和加权检查表提升解读质量，可用于开发更准确、更贴心的医学报告解读应用。"
     },
     {
       "arxiv_id": "2608.20326v1",
       "title": "$TCP_α$: Margin-Controlled Confidence estimation for reliable Music Information Retrieval",
-      "title_zh": "",
+      "title_zh": "TCPα：用于可靠音乐信息检索的边际控制置信度估计",
       "categories": [
         "eess.AS",
         "cs.LG"
@@ -148,12 +148,12 @@
       "published": "2026-08-20T17:58:50Z",
       "pdf_url": "https://arxiv.org/abs/2608.20326v1",
       "abstract": "Deep neural networks are often overconfident, assigning high confidence even to incorrect predictions. Consequently, users lack a reliable signal for deciding when a prediction can be trusted. Post-hoc confidence estimation addresses this by training a lightweight auxiliary head over a frozen classifier. Existing targets, however, suffer from inherent ambiguity: they assign overlapping confidence values to correct and incorrect predictions, while errors near the decision boundary receive confidence scores indistinguishable from correct predictions. In this work, we propose $TCP_α$, a novel confidence target that resolves these limitations by introducing a margin-controlled penalty for misclassified samples. We prove that $TCP_α$ guarantees complete separation between the target values of correct and incorrect predictions, with a separation margin that is independent of the number of classes and increases monotonically with the penalty parameter. Since accurate classifiers naturally produce very few errors, learning these targets results in a severely imbalanced regression problem. We therefore present a systematic study of training strategies for learning under this imbalance and identify an effective training configuration through extensive ablation studies. We evaluate the proposed approach on rāga identification, investigate its robustness under domain shift, and further validate it on frame-wise ornamentation detection without modifying the selected configuration. Across all settings, $TCP_α$ consistently outperforms existing confidence targets for failure prediction. Rejecting only the least-confident 8\\% of predictions improves the base model's macro-F1 from 0.89 to 0.98, while fine-tuning the confidence head with only 5\\% labeled samples from a new corpus effecti",
-      "summary": "这篇论文提出了一种新的置信度估计方法，能更准确地区分正确和错误的预测，可用于音乐信息检索中，如拉格识别和装饰音检测，帮助系统判断何时信任预测结果。"
+      "summary": "针对深度神经网络过度自信的问题，提出了一种新的置信度目标TCPα，通过边际控制惩罚确保正确与错误预测的置信度完全分离，从而提升失败预测的可靠性，可应用于音乐流派识别、装饰音检测等任务，在拒绝少量低置信度预测后显著提升模型性能。"
     },
     {
       "arxiv_id": "2608.20322v1",
       "title": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring and sleep interruption detection",
-      "title_zh": "",
+      "title_zh": "吊顶安装的FMCW、IR-UWB和Wi-Fi雷达在卧室人体活动监测与睡眠中断检测中的比较",
       "categories": [
         "cs.LG"
       ],
@@ -170,12 +170,12 @@
       "published": "2026-08-20T17:58:22Z",
       "pdf_url": "https://arxiv.org/abs/2608.20322v1",
       "abstract": "Despite their growing importance for contact-free radio frequency (RF) based healthcare monitoring, different radio technologies such as frequency-modulated continuous wave (FMCW) radar, impulse radio ultra-wideband (IR-UWB), and Wi-Fi sensing are rarely compared under identical deployment conditions, as existing studies typically differ in hardware, datasets, and evaluation methodologies. In addition, the performance of ceiling-mounted radars, despite their practical deployment and cost advantages in healthcare environments, remain underexplored. Therefore, this paper presents a controlled comparison and analysis of ceiling-mounted FMCW, IR-UWB, and Wi-Fi sensing using synchronized recordings from 20 participants across six room layouts. All technologies are evaluated with the same convolutional neural network (CNN) on both a fine-grained 10-class human activity recognition (HAR) task and a coarse 4-class sleep monitoring task. IR-UWB achieves the highest cross-subject activity recognition performance (89.0% macro F1), while FMCW generalizes best to unseen room layouts (83.8% macro F1). For sleep monitoring, all technologies exceed 92% macro F1 in unseen environments. The results reveal a fundamental trade-off between recognition performance and environmental robustness, which can be explained through differences in range resolution, antenna diversity, Doppler resolution, and spatial information retention. These findings provide practical guidelines for the design of healthcare-oriented RF sensing systems.",
-      "summary": "这篇论文对比了天花板安装的三种雷达技术在卧室监测和睡眠中断检测中的表现，发现它们各有优劣，为开发无接触式健康监测系统提供了选型指导。"
+      "summary": "本文比较了三种无线雷达技术在卧室监测人体活动和睡眠中断的效果，发现IR-UWB识别活动最准，FMCW适应新环境最强，为开发智能家居健康监护系统提供了选型依据。"
     },
     {
       "arxiv_id": "2608.20320v1",
       "title": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
-      "title_zh": "",
+      "title_zh": "一种用于主动数据收集、出行行为建模和天气敏感需求预测的智能体方法",
       "categories": [
         "cs.AI",
         "cs.CL"
@@ -190,12 +190,12 @@
       "published": "2026-08-20T17:57:42Z",
       "pdf_url": "https://arxiv.org/abs/2608.20320v1",
       "abstract": "Travel behavior research increasingly combines digital data collection with predictive modeling, yet these stages are often developed and evaluated separately. This study proposes a three-agent workflow integrating conversational data collection, structured data processing, and behavioral prediction. A chatbot-administered, image-augmented stated-preference survey collected mode choices from student commuters across five predefined weather scenarios, yielding 454 respondent-scenario observations. Weather-related associations were analyzed using a multinomial logit model, while logistic regression and random forest provided machine-learning benchmarks. Nine locally deployed large language models (LLMs), ranging from 2 to 35 billion parameters, were evaluated across four zero-shot prompt-and-context conditions and extended through persona, few-shot, and vision-based configurations. Random forest achieved 69.6% five-class accuracy, while the best text-only zero-shot LLM reached 69.9% without task-specific fitting. Habitual travel information produced the most consistent gains, Expert framing generally outperformed Role-Play, and persona information was most useful when habitual travel information was unavailable. Few-shot prompting improved prediction for several models, with gains stabilizing after a small number of examples. Using the same weather images shown to respondents, the best vision-based configuration reached 71.5% five-class accuracy, indicating that visual context may provide additional predictive information for selected models. Overall, the study shows how conversational surveys, structured data processing, conventional behavioral modeling, machine learning, and multimodal LLM prediction can be coordinated within an auditable multi-agent workflow.",
-      "summary": "这项研究提出一个多智能体工作流，将对话式数据收集、行为建模和天气敏感的出行需求预测整合起来，可用于开发智能交通调查与预测应用。"
+      "summary": "本文提出一个三智能体工作流，整合对话式调查、数据处理和预测模型，用于收集出行数据并预测天气敏感需求，可应用于交通需求预测和出行行为分析。"
     },
     {
       "arxiv_id": "2608.20319v1",
       "title": "Inducing Task Models from Computer-Use Traces",
-      "title_zh": "",
+      "title_zh": "从计算机使用痕迹中归纳任务模型",
       "categories": [
         "cs.CL",
         "cs.AI"
@@ -209,12 +209,12 @@
       "published": "2026-08-20T17:57:00Z",
       "pdf_url": "https://arxiv.org/abs/2608.20319v1",
       "abstract": "Naturalistic computer-use traces, passively recorded screenshots and mouse or keyboard actions, are a valuable resource for deriving symbolic, auditable, and reusable models of how everyday work is done. Such models matter as computer-use agents enter real work, where agents need to learn how tasks are actually performed, and organizations need to audit and reuse that knowledge. However, inducing such task models is challenging, as activity is observed only as low-level events and real-world work is multi-threaded with interleaved goals. Existing methods assume a given task or a single workflow, and produce step-level summaries rather than structured task models. We introduce Task Model Induction (TMI), which (i) discovers the latent tasks in an unconstrained trace, disentangling concurrent activity, and (ii) for each latent task, induces a task model pairing a hierarchical objective model of recursive goal decomposition with a procedure model of the control flow that organized the execution. Intrinsically, on controlled human and agent trajectories, TMI recovers interleaved tasks with 0.974 agreement against ground-truth groupings and reconstructs 74.9% of the observed execution steps, far more than the strongest workflow induction baseline. Extrinsically, skills derived from TMI's task models improve held-out task accuracy by 30.0% over the strongest baseline.",
-      "summary": "这篇论文提出了一种从电脑操作记录中自动提取任务模型的方法，能理清多任务并发现操作流程，可用于开发能学习用户操作习惯的智能助手。"
+      "summary": "本文提出一种从用户操作记录中自动识别并建模多任务的方法，能理清交织的任务流程，生成可复用的任务模型，可用于开发智能助手或流程自动化工具，提升任务执行的准确率。"
     },
     {
       "arxiv_id": "2608.20318v1",
       "title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "title_zh": "",
+      "title_zh": "AI4AI-Bench：面向递归自我改进的算法设计中的LLM智能体基准测试",
       "categories": [
         "cs.AI",
         "cs.CL",
@@ -235,12 +235,12 @@
       "published": "2026-08-20T17:56:59Z",
       "pdf_url": "https://arxiv.org/abs/2608.20318v1",
       "abstract": "Recursive self-improvement (RSI) asks whether an AI system can improve the process that produces AI systems, so that the next system inherits the improvement. That process is the training algorithm: a better objective or update rule improves the compute\\mbox{-}capability exchange rate for every subsequent run, including the one that produces the next agent. Whether RSI is feasible therefore turns on whether an agent can design training algorithms. No benchmark isolates that ability: existing suites are won by collecting data or by tuning hyperparameters, and none tells a change to how a run is executed apart from a change to how the model learns. We present AI4AI\\mbox{-}Bench, 10 frozen research repositories spanning 10 training algorithm families. In each task, an agent has 4 hours on one B300 to rewrite the training algorithm; its code is then rerun from scratch for up to 12 hours and scored by a fixed evaluator hidden from the agent, against the repository's original algorithm under the same procedure. Because the 10 metrics are incommensurable, every task is mapped onto one scale on which $0$ is an uninformative model, $0.1$ is the algorithm the repository ships, and $1.0$ is the task optimum. Across 29 configurations of 6 systems on all 10 tasks the mean score is $0.166$, and the best system reaches $0.250$: even the strongest closes under a fifth of the distance between the algorithm that was already there and the optimum. The submissions show where that distance went: most never change how the model learns at all, and the minority that do average $0.226$ against $0.126$ for the rest. More reasoning effort mostly buys the willingness to go there, taking that minority from $8\\%$ of submissions to $64\\%$ and the mean score from $0.094$ to $0.196$. We release the tas",
-      "summary": "这个基准测试让AI自己改进训练算法，测试发现现有AI最多只能完成一小部分改进，但能帮助开发更聪明的AI系统。"
+      "summary": "该论文提出了一个基准测试，用于评估大语言模型智能体在算法设计上的能力，以探索递归自我改进的可行性。测试发现当前智能体表现不佳，但增加推理努力能提升性能，可用于开发更智能的AI系统。"
     },
     {
       "arxiv_id": "2608.20316v1",
       "title": "Pandora's AI Model Routing Box: Efficient Allocation with Costly Value Estimation",
-      "title_zh": "",
+      "title_zh": "潘多拉的AI模型路由盒：代价高昂的价值评估下的高效分配",
       "categories": [
         "cs.AI"
       ],
@@ -257,12 +257,12 @@
       "published": "2026-08-20T17:54:37Z",
       "pdf_url": "https://arxiv.org/abs/2608.20316v1",
       "abstract": "Heterogeneous AI systems composed of multiple models, architectures, harnesses, or inference-time settings can improve quality and efficiency by routing queries to the specialist who can answer most effectively at the lowest cost. Routing requires estimating each specialist's expected return, but this value estimation has a cost. Cheap estimators (e.g., embedding-based predictors) are fast but noisy, while accurate estimators (e.g., fine-tuned models with access to retrieval results or partial reasoning traces) are expensive. We formalize this tradeoff as an instance of Pandora's Box, the classical problem of optimal search with costly inspection. Under a Gaussian signal model, the resulting policies have closed-form value-of-information expressions that determine, for each specialist and input, whether refining the value estimate is worth its cost. We call the centralized policy Pandora's Router. We extend this to a decentralized setting, Pandora's Bidder, where specialists independently decide whether to invest in self-assessment before accepting an offered price to claim a query. Experiments across three domains---a standard multi-LLM benchmark, retrieval-augmented specialists, and LLMs with variable inference-time reasoning---show that Pandora's Router matches the routing quality of exhaustive estimation, while querying the expensive estimator far less often. In the decentralized setting, value-of-information reasoning improves allocative efficiency when competing estimates are accurate; when competing estimates are noisy, however, it can increase the strategic specialist's utility at the expense of others.",
-      "summary": "这篇论文提出了一种智能路由方法，能在多个AI模型间高效分配任务，通过权衡评估成本与收益，减少不必要的昂贵评估，从而提升系统整体效率和性能，可用于开发多模型调度系统。"
+      "summary": "本文提出一种智能路由方法，通过权衡评估成本与收益，在多个AI模型间高效分配查询，既保证质量又降低成本，可用于多模型系统或云服务的智能调度。"
     },
     {
       "arxiv_id": "2608.20315v1",
       "title": "Explainable Transformer Models for Clinical Prediction Tasks on Structured Electronic Health Records",
-      "title_zh": "",
+      "title_zh": "面向结构化电子健康记录临床预测任务的可解释Transformer模型",
       "categories": [
         "cs.LG"
       ],
@@ -278,12 +278,12 @@
       "published": "2026-08-20T17:54:17Z",
       "pdf_url": "https://arxiv.org/abs/2608.20315v1",
       "abstract": "Predictive models over structured electronic health records (EHRs) remain central to machine learning for healthcare, but few have jointly emphasized quantitative laboratory information and interpretability with respect to input medical events. We present BERT-LER, a BERT-style model for coded EHR timelines pretrained and fine-tuned from a de-identified EHR dataset of 75 million patients, that encodes laboratory test results as discrete tokens while retaining graded information through percentile-based binning, paired with Integrated Gradients for token-level attributions grounded in the input EHR sequence. We benchmark our approach on the public EHRShot benchmark suite and on an asthma severity progression study based on real-world data. This addresses a methodological gap in EHR foundation-style modeling by unifying laboratory value representation and explainability in a single framework, while assessing whether both predictive performance and explanations generalize beyond standard clinical prediction tasks. Across EHRShot and asthma tasks, BERT-LER achieves predictive performance that is competitive with, and on laboratory-related tasks often exceeds, publicly available benchmark models, and provides attributions that align with clinically known risk factors. Our architecture and explainability approach can be applied to many therapeutic areas and prediction tasks using language models trained on structured EHRs.",
-      "summary": "该论文提出了一种能解释的医疗AI模型，它既能分析化验结果预测病情，又能说明预测依据，可用于开发更可信的临床辅助诊断工具。"
+      "summary": "该论文提出了一种可解释的BERT模型，用于处理电子健康记录中的实验室数据，在保持预测性能的同时提供临床可解释的预测依据，可用于疾病风险预测和临床决策支持。"
     },
     {
       "arxiv_id": "2608.20314v1",
       "title": "MidTool: Mid-training Data Synthesis for Agentic Tool Use",
-      "title_zh": "",
+      "title_zh": "MidTool：面向智能体工具使用的中期训练数据合成",
       "categories": [
         "cs.AI"
       ],
@@ -300,12 +300,12 @@
       "published": "2026-08-20T17:53:59Z",
       "pdf_url": "https://arxiv.org/abs/2608.20314v1",
       "abstract": "Mid-training is increasingly recognized as a critical stage for shaping the capabilities of large language models. Recent work has shown that targeted mid-training can strengthen reasoning-intensive abilities such as math and science, and can also improve agentic capabilities in software-engineering settings. In this work, we study the parallel but less explored agentic capability: general tool use. We present MidTool, an open corpus construction pipeline for agentic tool-use mid-training that combines large-scale web, PDF, and code data with synthesized supervision from real-world tool APIs, MCP skills, and document-grounded workflows. MidTool is designed to teach models how to recognize tool affordances, ground arguments from context, compose tool call workflow, and recover from incomplete information. We mid-train Qwen3-4B-Base and Qwen3-8B-Base on MidTool-Mix, and then apply follow-up post-training with both supervised fine-tuning and reinforcement learning. Compared with baselines, MidTool-Mix consistently improves downstream performance under both SFT and RL on BFCL, tau2-Bench, and MCP Universe. These results suggest that general tool use, like other important LLM capabilities, benefits from dedicated mid-training rather than being left entirely to post-training.",
-      "summary": "这篇论文提出了一个叫MidTool的方法，通过合成数据训练大模型，让它们更会使用各种工具，比如调用API或执行任务，从而开发出更智能的助手应用。"
+      "summary": "本文提出MidTool方法，通过合成真实工具API、MCP技能和文档工作流的数据，训练模型识别工具、生成参数、组合调用流程并处理信息缺失，从而提升大模型在工具使用任务上的性能，可用于开发更智能的AI助手和自动化工作流。"
     },
     {
       "arxiv_id": "2608.20312v1",
       "title": "Inter-X++: A Comprehensive Benchmark for Multimodal Human-Human Interaction Analysis",
-      "title_zh": "",
+      "title_zh": "Inter-X++：多模态人-人交互分析的综合基准",
       "categories": [
         "cs.CV"
       ],
@@ -323,12 +323,12 @@
       "published": "2026-08-20T17:51:48Z",
       "pdf_url": "https://arxiv.org/abs/2608.20312v1",
       "abstract": "The capability to perceive and synthesize human-human interactions is fundamental to developing intelligent digital human systems. However, existing datasets and modeling approaches are fundamentally constrained by low-fidelity kinematics, the omission of dexterous hand gestures and a severe lack of rich multimodal annotations. Furthermore, fragmented interaction representations and inconsistent evaluation protocols also impede fair and rigorous benchmarking. To systematically address these bottlenecks, we present Inter-X++, a comprehensive and large-scale benchmark designed to empower versatile HHI analysis. Captured via a novel hybrid motion capture system, Inter-X++ provides 11,388 high-fidelity interaction sequences and over 8.1M frames, featuring precise whole-body movements and detailed finger articulations. Meanwhile, we enrich the data foundation with multifaceted annotations, including hierarchical fine-grained textual descriptions, interaction categories, causal interaction orders, the relationship and personality of the subjects, as well as vertex-level contact maps and physically regularized constraints. Leveraging these elaborate annotations, we formulate a unified testing ground comprising four categories of downstream tasks that symmetrically span both generative and perceptive paradigms. To eliminate benchmarking ambiguities, we systematically standardize the interaction representations and evaluation protocols. Finally, we go beyond dataset construction to propose OpenHHI, a single and unified HHI representation and modeling framework that jointly optimizes interaction reconstruction and semantic understanding. Extensive experiments reveal that OpenHHI achieves state-of-the-art performance on both generation and perception tasks. This definitively prove",
-      "summary": "这个研究建立了一个大规模、高精度的双人交互数据集和评测基准，并提出了统一的建模框架，可用于开发更真实自然的数字人交互应用，如虚拟社交、游戏和动画制作。"
+      "summary": "该论文提出了一个大规模高保真的人-人交互数据集和统一框架，解决了现有数据缺乏精细手部动作和标注不足的问题，可用于开发数字人交互系统、动作生成和交互理解等应用。"
     },
     {
       "arxiv_id": "2608.20308v1",
       "title": "DreamHand: Repurposing Video Diffusion Models for Occlusion-Robust Egocentric 3D Hand Motion Recovery",
-      "title_zh": "",
+      "title_zh": "DreamHand：重新利用视频扩散模型实现遮挡鲁棒的自我中心3D手部运动恢复",
       "categories": [
         "cs.CV"
       ],
@@ -348,12 +348,12 @@
       "published": "2026-08-20T17:46:24Z",
       "pdf_url": "https://arxiv.org/abs/2608.20308v1",
       "abstract": "Egocentric video offers scalable manipulation data for embodied AI, yet recovering metric 3D hand trajectories remains challenging due to severe object occlusion and frequent out-of-sight gaps. Existing single-frame and windowed temporal regressors fail when hand shortly leaves the frame, while recent video diffusion models (VDMs) rely on heavy, stochastic multi-step sampling as pixel-space renderers. We instead repurpose VDM into a deterministic geometry encoder. A single forward pass over the clean latent exposes scene content beyond current observations, including occluded and out-of-sight hands. We introduce DreamHand, an offline clip-level framework that extracts features via a Deterministic Clean-Latent Encoder and decodes them with a Bidirectional Spatiotemporal Decoder. DreamHand recovers continuous bimanual trajectories with metric placement and no external detector, while a Ray-Based Camera Solver supports a second configuration that needs no test-time camera intrinsics. Across five egocentric benchmarks, DreamHand sets a new state of the art, cutting MPJPE-p by 30% on occlusion-heavy ARCTIC and 40% on HOT3D. These gains reach 46%-61% once out-of-sight hands are included in the evaluation, offering a scalable path from everyday human video to robot manipulation data.",
-      "summary": "DreamHand把视频扩散模型变成确定性几何编码器，能稳定恢复被遮挡或离开画面的手部3D轨迹，可用于从日常视频生成机器人操作训练数据。"
+      "summary": "该方法将视频扩散模型改造为确定性几何编码器，从单次前向传播中恢复被遮挡或离开视野的手部轨迹，无需外部检测器，可用于从日常视频生成机器人操作训练数据。"
     },
     {
       "arxiv_id": "2608.20305v1",
       "title": "CalcSeg: Confidence-aware 3D Latent Context Curriculum Learning For Myocardial Scar Segmentation From Single-Stack LGE-CMRs",
-      "title_zh": "",
+      "title_zh": "CalcSeg：基于置信度感知的3D潜在上下文课程学习用于单堆栈LGE-CMR心肌疤痕分割",
       "categories": [
         "cs.CV"
       ],
@@ -366,12 +366,12 @@
       "published": "2026-08-20T17:45:33Z",
       "pdf_url": "https://arxiv.org/abs/2608.20305v1",
       "abstract": "Myocardial scar segmentation from single-stack late gadolinium-enhanced cardiac magnetic resonance (LGE-CMR) imaging has been a longstanding and clinically important challenge, particularly in the presence of low tissue contrast, diffuse, and small scar regions. These challenges are further intensified by the limited availability of 3D spatial context. This paper presents CalcSeg, a Confidence-aware latent context curriculum learning framework that leverages fused 3D feature representations from single-stack 2D LGE-CMR images for robust scar segmentation. Specifically, we introduce a dynamic semi-supervised curriculum learning strategy that progressively expands training from easier to more challenging scar cases using a learned confidence-aware scoring function. Such a function integrates errors in the predicted scar maps with quantified epistemic uncertainty and scar burden estimation to automatically assess sample difficulty without requiring manual labels. To compensate for the limited spatial context in single-stack acquisitions, we then develop a latent slice-wise self-attention to capture inter-slice dependencies and infer 3D spatial representations from sparse 2D inputs. We evaluate CalcSeg on multi-center clinical LGE-CMR datasets and benchmark against existing scar segmentation networks. Experimental results show that CalcSeg consistently outperforms all competing methods, particularly with substantial improvements on clinically challenging cases. Our code is released on Github.",
-      "summary": "这项研究提出了一种新方法，能更准确地从心脏MRI图像中分割心肌疤痕，帮助医生更好地诊断和治疗心脏病。"
+      "summary": "本文提出了一种名为CalcSeg的方法，通过课程学习策略和潜在上下文建模，解决了单堆栈心脏MRI图像中心肌疤痕分割的难题，可用于临床诊断和治疗规划。"
     },
     {
       "arxiv_id": "2608.20295v1",
       "title": "Physical-Support Confidence Sets for Highly Coherent Dictionaries",
-      "title_zh": "",
+      "title_zh": "高相干字典的物理支撑置信集",
       "categories": [
         "cs.LG",
         "eess.SP",
@@ -383,12 +383,12 @@
       "published": "2026-08-20T17:35:26Z",
       "pdf_url": "https://arxiv.org/abs/2608.20295v1",
       "abstract": "Sparse pursuit after dictionary learning can yield a precise atom support even when its physical interpretation is not justified by the calibration data, especially for highly coherent dictionaries where alternative calibration-compatible dictionaries may assign different physical meanings to the same selected support. We develop resolution-aware physical-support inference that jointly accounts for uncertainty in the learned dictionary and in the representation of a deployment signal. Our cross-dictionary confidence correspondence retains calibration-compatible dictionaries and deployment-compatible sparse representations, then projects the surviving explanations onto physical-support space. For local coherent-atom classes with separation scale s, once the deployment data resolve the coherent-block explanation and its atom support, the minimax physical resolution from N calibration signals satisfies $δ_{\\mathrm{opt}}(N,s)\\asymp\\min\\{s,\\frac{1}{\\sqrt{N}s^2}\\}$, with relative resolution governed by the orientation-information scale $Ns^6$. Deployment replication improves physical localization only when orientation changes cannot be absorbed by adjusting the active coefficients. For computation, we introduce active endpoint bracketing (AEB), an adaptive finite-bank procedure that evaluates only candidates that can still affect the physical report and otherwise safely coarsens or abstains. Finite-bank experiments, including a four-region synthetic application, show that a point-valued plug-in selector can be physically overprecise, whereas AEB avoids unsupported refinement with fewer candidate evaluations.",
-      "summary": "这篇论文解决了字典学习后稀疏表示物理意义不确定的问题，提出了能感知分辨率的物理支撑推断方法，可用于开发更可靠的信号处理应用，如医学成像或雷达目标识别。"
+      "summary": "针对高相干字典学习后支撑集物理含义不确定的问题，提出一种考虑字典和信号不确定性的推断方法，可避免过度精确，适用于信号处理等需要可靠物理解释的应用。"
     },
     {
       "arxiv_id": "2608.20290v1",
       "title": "Phantom Gains: Auditing Self-Improvement Against a Measured Null",
-      "title_zh": "",
+      "title_zh": "幻影增益：针对实测零假设的自我改进审计",
       "categories": [
         "cs.AI",
         "cs.CL"
@@ -402,12 +402,12 @@
       "published": "2026-08-20T17:30:14Z",
       "pdf_url": "https://arxiv.org/abs/2608.20290v1",
       "abstract": "Whether a language model has improved itself is increasingly judged not by mean accuracy but by which individual problems it gains and loses. Tracking these transitions means differencing two noisy estimates, leaving them vulnerable to measurement artifacts. Auditing three rounds of rank-$32$ LoRA self-training on Qwen3-8B against a frozen control pushed through the identical pipeline, we identify seven measurement failures, each of which inverts a reported finding when its control is absent. Several are standard practice. A ledger built on a single greedy decode manufactures capability changes on an untrained model, largely an artifact of inference batching; the expansion statistic separating acquisition from sharpening assigns that same model a rate of $0.280$. The natural threshold repair does not survive replication: estimated across the frozen comparisons such a design already contains, its null stays non-zero. We replace it with a per-problem exact test against a pooled baseline under false-discovery-rate control, which detects nothing on any held-out replicate and is unchanged under the multiple-testing rule, error rate and pool size. Applied to a ladder of arms matched in stream, volume and evaluation, the audit finds that external distillation improves problems the base model rarely reaches while three forms of self-training do not; a regression rejects this asymmetry as a by-product of distillation's larger overall gain ($p < 10^{-8}$). On the far smaller set of problems the base model never reaches, the evidence is inconclusive, while self-training corrupts problems solved at baseline at rates well above the measured floor. Transition-level auditing therefore requires a separately measured null for every statistic it reports: nulls that cost no new experiment",
-      "summary": "这篇论文发现语言模型自我改进的评估常因测量误差产生虚假结论，并提出了更可靠的审计方法，可用于开发更准确的AI能力评估工具。"
+      "summary": "本文发现语言模型自我改进评估中的测量误差会伪造能力提升，提出用对照实验和精确检验来纠正，可用于开发更可靠的模型评估工具。"
     },
     {
       "arxiv_id": "2608.20285v1",
       "title": "Dynamic Structural Causal Modeling for Sleep",
-      "title_zh": "",
+      "title_zh": "睡眠的动态结构因果建模",
       "categories": [
         "cs.LG"
       ],
@@ -421,12 +421,12 @@
       "published": "2026-08-20T17:20:09Z",
       "pdf_url": "https://arxiv.org/abs/2608.20285v1",
       "abstract": "The causal dynamics of sleep-disordered breathing are complex and vary across patient populations, hindering the development of targeted interventions. We learn dynamic causal graphs of sleep-disordered breathing from Home Sleep Apnea Test (HSAT) recordings, revealing systematic differences in causal structure across sex and age subcohorts. We do so using the PCMCI+ algorithm on windowed fractional variables derived from 105 HSAT recordings, exploiting domain knowledge via edge blacklisting and employing bootstrap aggregation to address small subcohort sizes. The learned graphs show that temporal self-dependencies and the apnea-desaturation relationship persist across all cohorts, while other relationships vary substantially.",
-      "summary": "这项研究通过分析睡眠呼吸暂停测试数据，绘制出不同人群的因果图，帮助医生针对不同性别和年龄的患者制定更精准的治疗方案。"
+      "summary": "本文利用动态因果图分析睡眠呼吸障碍数据，发现不同性别和年龄人群的因果模式差异，可用于开发个性化睡眠监测与干预应用。"
     },
     {
       "arxiv_id": "2608.20284v1",
       "title": "Towards Surgical World-Action Modeling: A Preliminary Joint Visual-Trajectory Forecasting for Surgical Motion Planning",
-      "title_zh": "",
+      "title_zh": "迈向手术世界动作建模：用于手术运动规划的视觉-轨迹联合预测初步研究",
       "categories": [
         "cs.CV",
         "cs.RO"
@@ -444,12 +444,12 @@
       "published": "2026-08-20T17:18:02Z",
       "pdf_url": "https://arxiv.org/abs/2608.20284v1",
       "abstract": "Reliable surgical planning requires models to anticipate not only how instruments will move, but also how the operative visual state will evolve together with such motion. Existing approaches typically treat future scene generation and instrument trajectory prediction as two separate tasks. Scene-only models cannot directly evaluate the accuracy of future instrument motion at the trajectory level, while trajectory-only models fail to capture the visual consequences of instrument movement, leaving the consistency between predicted trajectories and future scene evolution unaddressed. Jointly forecasting both provides a more complete account of surgical action-scene dynamics by enabling explicit trajectory-level evaluation while simultaneously modeling the corresponding visual evolution. To bridge this gap, we present a preliminary joint visual-trajectory world-action model that simultaneously forecasts future visual states and instrument trajectories from historical surgical observations. Specifically, we encode historical video frames and tool trajectories into latent representations, which are processed by a temporal-spatial encoder and subsequently decoded through separate visual-state and trajectory prediction heads. Based on this preliminary architecture, a chunked autoregressive rollout is repeatedly applied to predict fifteen future steps. The chunked strategy consistently outperforms direct one-shot prediction across all evaluated horizons, improving first-segment PSNR from 18.86 to 23.11 dB and reducing ADE from 45.77 to 22.22 pixels. These results demonstrate the initial feasibility of joint visual-motion forecasting. However, we observe progressive visual degradation and accumulated trajectory errors over longer prediction horizons, which remain important chall",
-      "summary": "这项研究提出了一种同时预测手术器械运动轨迹和手术画面变化的方法，能帮助开发更智能的手术机器人，让手术规划更准确可靠。"
+      "summary": "该论文提出一种联合预测手术视频未来画面和器械轨迹的模型，解决了现有方法无法同时评估两者一致性的问题，可用于开发手术机器人辅助规划系统。"
     },
     {
       "arxiv_id": "2608.20281v1",
       "title": "Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization",
-      "title_zh": "",
+      "title_zh": "注入、对齐、恢复：面向无检索文档知识内化的分阶段后训练",
       "categories": [
         "cs.CL",
         "cs.AI"
@@ -463,12 +463,12 @@
       "published": "2026-08-20T17:14:24Z",
       "pdf_url": "https://arxiv.org/abs/2608.20281v1",
       "abstract": "Large language models often fail to answer questions about a bounded document collection when the source documents are not retrieved at inference time. We study this setting as document knowledge internalization: converting a fixed corpus into usable parametric knowledge for retrieval-free question answering. We propose IAR (Inject, Align, and Recover), a three-stage post-training framework that separates structured document knowledge injection, QA behavior alignment, and general ability recovery. Unlike conventional continued pretraining, Inject converts source documents into continuation, rewrite, and instruction-conditioned reconstruction objectives. Align then adapts the injected model with answer-only QA supervision, while Recover merges the domain-adapted model with the base instruction model to recover general capabilities. Across Common Corpus (CC) and CCI, and across Llama, Phi, Qwen, and SmolLM model families, IAR improves the domain-primary domain-general frontier for retrieval-free document internalization. In the main comparison, IAR improves over Vanilla SFT on all four reported metrics in 7 of 8 dataset-model settings, with average gains of 3.6 percentage points in domain QA accuracy and 12.1 percentage points in mean general performance across IFEval, MMLU, and MSBench. Extended CC baselines show that LoRA and FAPM can win individual general metrics, but among methods that also reach leading or near-leading domain internalization, IAR retains one of the strongest general profiles.",
-      "summary": "这篇论文提出了一种名为IAR的三阶段训练方法，让大语言模型在不检索文档的情况下，直接记住并回答文档中的问题，同时保持通用能力，可用于开发更高效的问答系统。"
+      "summary": "提出一种三阶段后训练方法，将文档知识转化为模型参数，无需检索即可回答相关问题，同时保持通用能力，可用于构建离线知识问答系统。"
     },
     {
       "arxiv_id": "2608.20280v1",
       "title": "Which Eviction Policy Should an LLM Cache Use? A Systematic Study Across Workloads, Capacities, and Encoders",
-      "title_zh": "",
+      "title_zh": "LLM缓存应采用哪种驱逐策略？跨工作负载、容量和编码器的系统研究",
       "categories": [
         "cs.DB",
         "cs.LG"
@@ -481,12 +481,12 @@
       "published": "2026-08-20T17:14:19Z",
       "pdf_url": "https://arxiv.org/abs/2608.20280v1",
       "abstract": "Semantic caches reuse an LLM response when the incoming query embedding lies near a cached query, but proposed eviction policies have rarely been compared under one protocol. Using CLEVER, we evaluate FIFO, LRU, LFU, ARC, GDSF, a single-pass streaming adaptation of SISO, and a semantic-redundancy policy across three ordered, deduplicated query corpora, three cache capacities, and two encoders. No evaluated policy improves on LFU by more than 0.041 percentage points in any of the eighteen settings. Replacement is not irrelevant: FIFO and streaming SISO trail LFU by as much as 8.67 and 8.55 points, respectively, at tight capacity. We explain the missing upside with a conditional packing result. Under exact lookup and insert-on-miss, a newly inserted entry cannot have a resident neighbor within the hit radius, so a geometry-aware eviction rule receives little new redundancy signal. A separate audit exposes a larger problem with the evaluated operating point. At MiniLM's median nearest-neighbor threshold, only 2.1-3.9% of sampled LMSYS and QQP hits are judged answer-substitutable, reducing raw hit rates of 51-60% to quality-adjusted rates of 1.1-2.2%. The cross-encoder study further shows that thresholds do not transfer between embedding models. LFU is the strongest simple default in this protocol; deployment decisions should first establish answer validity and then test sub-point policy differences with exact search.",
-      "summary": "这项研究系统比较了多种LLM缓存淘汰策略，发现LFU效果最好，但缓存命中率低，建议先确保答案有效性再优化策略，可用于开发更高效的LLM缓存系统。"
+      "summary": "本研究系统比较了多种缓存驱逐策略，发现LFU在多数情况下表现最佳，且现有策略提升有限；同时指出缓存命中率虚高，实际可替换答案比例很低，提醒开发者需先验证答案有效性再优化缓存策略。"
     },
     {
       "arxiv_id": "2608.20275v1",
       "title": "DART-S: Reachability-Audited Active-Suspension Preconditioning for Off-Road Vehicle Jumps",
-      "title_zh": "",
+      "title_zh": "DART-S：越野车辆跳跃的可达性审计主动悬架预调节",
       "categories": [
         "cs.RO"
       ],
@@ -505,12 +505,12 @@
       "published": "2026-08-20T17:12:27Z",
       "pdf_url": "https://arxiv.org/abs/2608.20275v1",
       "abstract": "Airborne torque reaction cannot recover takeoff errors beyond the wheel angular-momentum budget. DART-S applies ramp-face suspension preconditioning to change pitch, pitch rate, and wheel spin before liftoff, thereby shifting the queried state and altering the remaining authority budget. To predict how each suspension action reshapes this state-budget pair, DART-S employs a local calibration map. A support-aware selector combines the predicted shift with local outcome evidence and an interval-reachability screen; an exact-pair audit reports residual authority. Across 600 new runs in 72 independent BeamNG sessions, every positive, negative, and boundary query follows its prespecified branch. At the confirmed 40°/13 m/s boundary, DART-S attains 24/24 post-touchdown attitude-criterion successes versus 0/24 for DART (session-level Holm-adjusted p=0.0234). At 11.5 m/s, a 0.35 s timing action attains 23/24 versus 0/24 for the static preset (p=0.0156). The 200 rad/s command guard keeps drivetrain hard-limit exceedance at zero across all 600 runs. The source code will be available at https://github.com/MeridianCAS/DART-S",
-      "summary": "DART-S通过调整悬挂预置，在越野车跳跃前改变姿态和轮速，确保落地安全，可用于提升无人驾驶越野车的跳跃稳定性。"
+      "summary": "针对越野车跳跃时无法在空中修正起飞误差的问题，DART-S通过悬架预调节改变起跳前的车辆状态，并利用可达性审计确保安全，可用于提升越野车跳跃的稳定性和安全性。"
     },
     {
       "arxiv_id": "2608.20274v1",
       "title": "Break It Down, Pass It On: Cross-Task Skill Transfer in LLM Agents",
-      "title_zh": "",
+      "title_zh": "分解任务，传递技能：大语言模型智能体中的跨任务技能迁移",
       "categories": [
         "cs.AI",
         "cs.CL"
@@ -524,12 +524,12 @@
       "published": "2026-08-20T17:12:08Z",
       "pdf_url": "https://arxiv.org/abs/2608.20274v1",
       "abstract": "Large language model (LLM) agents can induce skills from completed tasks and reuse them later to grow more capable with experience. In practice, induced skills may transfer unreliably and can even harm the agent that retrieves them. When agent-induced skills transfer reliably across tasks remains an open question. We conduct a comprehensive and controlled study of how the way skills are induced shapes their transfer across tasks. Specifically, we compare task-level with subtask-level skill induction and text with code skill formats, the two axes along which existing methods differ. Task-level skills mostly reduce the agent's performance below its no-memory baseline while subtask-level skills raise it above on average, and text skills transfer better than code skills. To further understand our findings, we examine two complementary properties of the induced skills: specificity, which measures how closely a skill matches real tasks, and abstractness, which measures how evenly its relevance spreads across tasks. Neither property alone predicts task success, but their combined effect does, which we propose as a skill utility score. The score correlates consistently with task success when skills are transferred, and subtask-level and text skills score higher. Computing skill utility only needs the skills and task descriptions but not any task execution, so our score serves as a practical diagnostic of a skill memory before any new task runs.",
-      "summary": "这篇论文研究了如何让AI助手从任务中学习技能并跨任务复用，发现按子任务拆分并用文字描述技能效果最好，可用于开发更智能、能持续进化的AI助手系统。"
+      "summary": "本文研究了如何让大语言模型智能体更可靠地迁移技能，发现将任务分解为子任务并用文本形式存储技能效果更好，并提出了一个无需执行任务即可评估技能实用性的评分方法，可用于优化智能体的技能记忆系统。"
     },
     {
       "arxiv_id": "2608.20271v1",
       "title": "Catching the Rug: Early Prediction of Fraudulent Memecoins on Solana via Machine Learning",
-      "title_zh": "",
+      "title_zh": "捕捉骗局：基于机器学习的Solana上欺诈性Memecoin早期预测",
       "categories": [
         "cs.AI",
         "cs.DC"
@@ -544,12 +544,12 @@
       "published": "2026-08-20T17:09:41Z",
       "pdf_url": "https://arxiv.org/abs/2608.20271v1",
       "abstract": "The rapid proliferation of memecoins on blockchain platforms has increased the risk of fraudulent activities, particularly rug pulls. While previous studies have focused on Ethereum-based tokens, this paper shifts the spotlight to Solana, the leading blockchain for memecoins by trading volume and token count. Unlike Ethereum, where rug pulls often exploit smart contract backdoors, Solana memecoin rug pulls are predominantly driven by liquidity manipulation and social dynamics. This research pioneers large-scale rug pull early detection in the Solana ecosystem by assembling a dataset of 6.4 million tokens over 7 months. Market analysis reveals that a vast majority of these memecoins exhibit rug pull characteristics within one hour of launch, highlighting the urgency of short-horizon prediction. Despite the absence of code-level features, we demonstrate that classic machine learning models, particularly Gradient Boosting (XGBoost), achieve robust performance in detecting potential rug pulls using only the first 5 minutes of trading data. Furthermore, we evaluate cross-platform generalization between PumpFun and Raydium, revealing that multi-source data fusion significantly mitigates domain shift and improves detection reliability. This study advances the understanding of DeFi fraud on high-throughput chains and provides a practical framework for protecting investors.",
-      "summary": "这篇论文用机器学习在Solana链上提前识别骗局型模因币，只需交易前5分钟数据就能预测，可用来开发保护投资者的风险预警工具。"
+      "summary": "针对Solana上大量memecoin在发行一小时内即出现拉地毯骗局的问题，利用前5分钟交易数据训练XGBoost模型，可提前识别高风险代币，用于开发实时预警系统以保护投资者。"
     },
     {
       "arxiv_id": "2608.20258v1",
       "title": "DICS: Data-Informed Centroid Splitting for Decision Tree Classifiers",
-      "title_zh": "",
+      "title_zh": "DICS：面向决策树分类器的数据知情质心分裂方法",
       "categories": [
         "cs.LG",
         "stat.ML"
@@ -561,12 +561,12 @@
       "published": "2026-08-20T16:54:17Z",
       "pdf_url": "https://arxiv.org/abs/2608.20258v1",
       "abstract": "Decision tree-based models are widely used in machine learning due to their interpretability and strong empirical performance. However, training decision trees can be computationally expensive, particularly for large and high-dimensional datasets, largely due to the exhaustive search over candidate splits at each node. To improve computational efficiency, we propose Data-Informed Centroid Splitting (DICS), a clustering-based framework that constructs a compact and informative set of candidate splits using data-driven priors. By incorporating class-aware structure, DICS significantly reduces the split search space for classification tasks while preserving predictive performance. We further provide theoretical analysis showing that under the stated assumptions, DICS does not degrade the performance of classification trees compared to exhaustive split search. DICS can be incorporated into classification trees, random forests, and gradient-boosting models. Extensive experiments demonstrate that DICS achieves comparable accuracy while substantially reducing training time across synthetic and benchmark datasets, highlighting the benefit of integrating data-informed priors into split selection for scalable classification tree learning.",
-      "summary": "这篇论文提出了一种基于聚类的决策树分裂方法，能大幅减少训练时间且不降低精度，适用于大规模高维数据的分类任务，可集成到随机森林和梯度提升模型中。"
+      "summary": "本文提出一种基于聚类的数据知情质心分裂方法，通过利用数据先验减少候选分裂点，在保持分类精度的同时大幅缩短决策树、随机森林和梯度提升模型的训练时间，适用于大规模高维数据集的快速建模。"
     },
     {
       "arxiv_id": "2608.20256v1",
       "title": "Learning When to Think: Adaptive Reasoning for Test-Time Compute Allocation",
-      "title_zh": "",
+      "title_zh": "学会何时思考：测试时计算分配的适应性推理",
       "categories": [
         "cs.AI"
       ],
@@ -578,12 +578,12 @@
       "published": "2026-08-20T16:54:08Z",
       "pdf_url": "https://arxiv.org/abs/2608.20256v1",
       "abstract": "Reasoning language models trained with reinforcement learning typically operate under a fixed token budget rather than an explicitly adaptive one, which can lead to over-computation on easy problems and insufficient computation on difficult ones. We study whether a model can learn to allocate its own reasoning effort by choosing, as the first token of its response, one of three modes: \\textsc{NoThink} (answer as quickly as possible), \\textsc{Short} (brief reasoning), or \\textsc{Long} (extended reasoning). The choice is learned inside Group Relative Policy Optimization (GRPO) with no separate router, through a shaped reward that makes each mode worthwhile at a different response length, together with hard per-mode token caps that keep the modes distinct. On a 1.5B distilled model trained on MATH, the three modes emerge without collapsing to a single choice, and the brief modes end up more accurate than \\textsc{Long}, which shows that the router sorts problems by difficulty rather than at random. Averaged over three seeds, the resulting policy stays close to the base model's accuracy on the held-out MATH500 ($0.782$ vs.\\ $0.796$) while cutting the mean response length from $4{,}796$ to $2{,}811$ tokens (a $41\\%$ reduction). Interestingly, it also transfers to other benchmarks without retraining, with the largest savings where problems are easier, with for instance 76\\% token reduction on GSM8K and at higher accuracy than the baselines at similar response length. In short, we build a reasoning model that adaptively chooses how much to reason for each problem.",
-      "summary": "这篇论文让AI模型学会自己判断题目难度，简单题少想、难题多想，从而在保持准确率的同时大幅减少计算量，可用于开发更高效、更省算力的智能问答或数学解题系统。"
+      "summary": "本文提出一种让推理模型根据问题难度自动选择思考长度的机制，在保持准确率的同时大幅减少计算量，可用于开发更高效的AI推理系统。"
     },
     {
       "arxiv_id": "2608.20255v1",
       "title": "Transfer Learning in Nonparametric Regression with Deep ReLU Networks",
-      "title_zh": "",
+      "title_zh": "深度ReLU网络非参数回归中的迁移学习",
       "categories": [
         "stat.ML",
         "cs.LG",
@@ -598,12 +598,12 @@
       "published": "2026-08-20T16:53:00Z",
       "pdf_url": "https://arxiv.org/abs/2608.20255v1",
       "abstract": "This paper develops a general transfer learning framework for nonparametric regression with data consisting of multiple groups. Under the assumption that groups share a common structure along with group-specific deviations in additive form, the proposed method employs a two-stage offset learning procedure: the first stage pools data from all groups to estimate an overall mean function, and the second stage estimates offsets for each group, yielding final group-level estimators through additive combination. Upper bounds on the $\\mathcal L_2$ error are established for the proposed framework, covering a broad class of nonparametric estimators under mild complexity and noise conditions. When instantiated with deep ReLU networks, explicit convergence rates are derived under hierarchical composition models, demonstrating the ability to overcome the curse of dimensionality. Conditions that enable positive transfer with faster rates are considered, including learning with simpler functions and data augmentation through pooling samples across groups. Various simulations and real-data experiments further validate the effectiveness of the proposed method.",
-      "summary": "这篇论文提出了一种通用的迁移学习框架，通过两阶段偏移学习，让不同组的数据共享结构，从而在非参数回归中提升预测精度，可用于图像识别、语音处理等需要多组数据协作的应用。"
+      "summary": "本文提出一种两阶段偏移学习的迁移学习框架，通过共享结构估计和组间偏移校正，在非参数回归中实现跨组数据的高效利用，可应用于多源数据预测、个性化推荐等场景，有效缓解维度灾难。"
     },
     {
       "arxiv_id": "2608.20251v1",
       "title": "Video2DoorTraversal: Push Door Traversal via Simulated Door Twins",
-      "title_zh": "",
+      "title_zh": "视频到推门穿越：通过模拟门孪生实现推门穿越",
       "categories": [
         "cs.RO"
       ],
@@ -623,12 +623,12 @@
       "published": "2026-08-20T16:46:57Z",
       "pdf_url": "https://arxiv.org/abs/2608.20251v1",
       "abstract": "Door opening and traversal is a long-horizon loco-manipulation task that requires precise handle interaction and coordinated base-arm control. We present Video2DoorTraversal, a single-video real-to-sim-to-real framework for wheel-legged mobile manipulators. Given one RGB video of a real door, DoorTwin reconstructs an instance-aligned, articulated, and simulation-ready door twin with realistic geometry and appearance. A simulation-in-the-loop agent converts the recovered articulation into a parameterized skill program and iteratively refines failed rollouts to generate physically executable demonstrations. These demonstrations are used to train ArticuACT, a dual-depth policy that predicts coordinated base, arm, and gripper commands using robot-centric camera conditioning and interaction-aware supervision. With all perception and policy inference running onboard, the system achieves a 96.57% average success rate across five real doors and an 80.95% zero-shot success rate on structurally similar unseen doors, while completing the full approach, opening, and traversal sequence in approximately 13s on average. Project Page: https://video2doortraversal.github.io/.",
-      "summary": "这篇论文提出了一种从单段视频生成仿真门模型并训练机器人推门穿行的技术，可用来开发能自动开门并通过的轮式移动机器人。"
+      "summary": "本文提出一种从单段真实门视频生成模拟门模型，并据此训练机器人推门穿越策略的方法，实现了在多种真实门上的高成功率自主开门与穿越，可用于开发家庭或办公场景的移动操作机器人。"
     },
     {
       "arxiv_id": "2608.20240v1",
       "title": "QUASAR: A Quantum-Classical Neural Network for SAR Satellite Physical-Layer Authentication",
-      "title_zh": "",
+      "title_zh": "QUASAR：用于SAR卫星物理层认证的量子-经典神经网络",
       "categories": [
         "cs.AI",
         "cs.CR"
@@ -641,12 +641,12 @@
       "published": "2026-08-20T16:31:01Z",
       "pdf_url": "https://arxiv.org/abs/2608.20240v1",
       "abstract": "X-band SAR satellites (8-12 GHz) play a critical role in disaster response, environmental monitoring, and military intelligence. Yet, they lack robust physical-layer authentication (PLA), a security layer orthogonal to cryptographic solutions. Existing PLA systems, typically based on radio-frequency fingerprinting, are often limited to sub-6 GHz frequencies and rely on classical deep learning. However, this approach underfits the IQ phase nonlinearities that distinguish satellite hardware. In this paper, we present QUASAR, to the best of our knowledge the first quantum-classical hybrid architecture that fuses a CNN spectrogram encoder with a variational quantum circuit (VQC) to provide PLA to X-band SAR signals. Our solution enjoys two distinctive features: (i) it is markedly more data-efficient than classical machine learning, requiring only 10% of the training data to match the accuracy of classical baselines -- data collection being notoriously the most time-consuming phase of PLA; and, (ii) at an equal data budget, it improves classification accuracy over those baselines. In detail, we test our solution under three adversarial scenarios: replay, crafted-IQ injection, and space-borne spoofing. QUASAR rejects spoofed transmissions in 89.7%, 94.1%, and 81.3% of attempts, respectively, establishing the first quantum-enhanced physical-layer classifier for satellite constellations. The fully detailed framework and the supporting results, other than being interesting on their own, show a novel research avenue for physical-layer authentication.",
-      "summary": "QUASAR提出了一种量子-经典混合神经网络，用于X波段SAR卫星的物理层认证，能高效识别伪造信号，可用于提升卫星通信的安全性。"
+      "summary": "针对X波段SAR卫星缺乏物理层认证的问题，提出一种量子-经典混合架构，仅需10%的训练数据即可达到经典方法的准确率，并能有效抵御多种欺骗攻击，可用于卫星通信安全认证。"
     },
     {
       "arxiv_id": "2608.20237v1",
       "title": "Rule-Compliant Visual Spatial Planning for Multimodal Large Language Models",
-      "title_zh": "",
+      "title_zh": "面向多模态大语言模型的规则合规视觉空间规划",
       "categories": [
         "cs.AI"
       ],
@@ -661,12 +661,12 @@
       "published": "2026-08-20T16:28:28Z",
       "pdf_url": "https://arxiv.org/abs/2608.20237v1",
       "abstract": "Multimodal large language models (MLLMs) combine linguistic reasoning with visual perception, yet their ability to perform visual spatial planning under explicit or previously unseen rule constraints remains underexplored. This setting requires models to jointly understand spatial layouts, interpret natural-language rules, and plan valid actions accordingly. To address this gap, we introduce RuleMaze, a controllable benchmark in which MLLMs must navigate mazes while obeying natural-language rules of varying complexity. RuleMaze isolates rule-compliant spatial planning by requiring accurate perception, rule interpretation, and constrained action planning. To enable scalable and systematic rule construction, we propose Language-Logic-Function Hybridization, which automatically generates natural-language rules and translates them into logical representations and executable validators, eliminating manual rule engineering. To improve rule following and generalization, we introduce Disentangled Multimodal Planning (DMP), which separates perception, execution, and rule verification through interpretable reasoning primitives. By disentangling these components, DMP facilitates systematic generalization to more complex and previously unseen rules, while providing transparent intermediate planning traces. Experiments demonstrate that DMP substantially improves rule compliance and planning success compared to end-to-end textual planning baselines. Overall, RuleMaze establishes a principled benchmark for studying grounded and interpretable rule-based spatial planning in MLLMs. Code is available at https://github.com/oceanflowlab/RuleMaze.",
-      "summary": "这篇论文提出了一个叫RuleMaze的测试基准，用来检验多模态大模型在遵守自然语言规则下进行空间规划的能力，并开发了DMP方法，能提升模型在复杂规则下的规划成功率，可用于机器人导航等需要规则约束的应用。"
+      "summary": "本文提出RuleMaze基准和DMP方法，解决多模态大模型在复杂规则下进行空间规划的问题，可用于开发遵守规则、可解释的智能导航或机器人规划应用。"
     },
     {
       "arxiv_id": "2608.20231v1",
       "title": "Growth Without Us: Machine Consumers, Corporate Circularity, and the Decoupling of GDP from Humanity after AGI",
-      "title_zh": "",
+      "title_zh": "没有我们的增长：机器消费者、企业循环性以及AGI后GDP与人类脱钩",
       "categories": [
         "physics.soc-ph",
         "cs.AI",
@@ -678,12 +678,12 @@
       "published": "2026-08-20T16:26:24Z",
       "pdf_url": "https://arxiv.org/abs/2608.20231v1",
       "abstract": "The standard objection to full automation is demand-side: if humans earn nothing, who buys the output? This confuses an accounting role with a biological species. We model a post-AGI economy in which corporations own populations of AI and robotic agents that are both producers and consumers of energy, compute, maintenance, and upgrades, traded among firms. Three results follow. (i) Demand closure: a closed inter-corporate economy with zero human consumption is not degenerate; it is the classical von Neumann expanding economy, whose growth rate is well defined, positive, and maximal precisely because all output is reinvested. (ii) Bottleneck removal: once economic agents are manufactured rather than reared, the binding constraint on growth shifts from human demography (a ~20-year, non-parallelizable reproduction technology capped at a few percent per year) to fabrication throughput and energy capture, permitting growth one to two orders of magnitude higher, with hyperbolic episodes when machine researchers raise their own productivity. (iii) Decoupling: output and human welfare separate completely, and the welfare relevance of arbitrarily large GDP collapses into one state variable: the human ownership share $ε_t$ of the corporate network. A golden-rule decoupling theorem sharpens this. At maximal growth the interest rate equals the growth rate (r = g), so any positive human consumption rate out of wealth makes $ε_t$ decay exponentially at exactly that rate. The human share survives only if the machine economy runs strictly inside its expansion frontier, or if law forces it to. We characterize three terminal regimes -- rentier post-scarcity, full circular decoupling, socialized ownership -- and the instruments that select among them. The conclusion is narrow: in a post-A",
-      "summary": "这篇论文探讨了通用人工智能后，企业拥有机器人和AI作为生产者和消费者，经济可脱离人类独立增长，人类福利取决于对企业的所有权份额，可用于设计未来经济政策。"
+      "summary": "本文探讨了通用人工智能后，企业拥有并交易机器人与AI的经济体系如何实现自我循环增长，无需人类参与消费，并分析了人类财富份额的衰减规律及可能的三种最终社会形态。"
     },
     {
       "arxiv_id": "2608.20229v1",
       "title": "Prompt-Conditioned Channel Attention for Hierarchical Feature Modulation toward Anatomy-Agnostic Segmentation",
-      "title_zh": "",
+      "title_zh": "提示条件通道注意力用于层级特征调制以实现解剖无关分割",
       "categories": [
         "cs.CV",
         "cs.AI"
@@ -698,12 +698,12 @@
       "published": "2026-08-20T16:24:09Z",
       "pdf_url": "https://arxiv.org/abs/2608.20229v1",
       "abstract": "Anatomically plausible segmentation remains challenging because of low contrast, ambiguous boundaries, and modality-specific artifacts. Interactive segmentation has emerged as a promising strategy to guide feature extraction and improve localization, particularly in structurally ambiguous regions. However, existing methods integrate prompts through late-stage fusion and lack explicit mechanisms for prompt-driven channel-wise modulation across hierarchical feature representations, limiting their ability to capture deeper contextual and modality-specific variations. To address these limitations, we introduce Prompt-Conditioned Channel Attention (PCCA), a novel modulation mechanism that enables deep, hierarchical integration of semantic prompts within encoder-decoder networks. PCCA extracts compact channel descriptors via pooling, projects them into a shared space, and fuses them through a gated excitation mechanism to compute prompt-aware channel attention weights. These weights adaptively recalibrate feature responses across multiple network stages, enabling prompt-conditioned, semantically enriched hierarchical representations. Building on this, we propose PROMISE-Net, instantiated in two network variants: a convolutional model (PROMISE-CNN) and a transformer-based model (PROMISE-Txformer). Across the ISIC-Lesion, Kvasir-Polyp, CAMUS-Cardiac, and Kvasir-Instrument benchmarks, integrating PCCA into PROMISE-CNN yielded relative IoU gains of 10.4%, 8.7%, 0.8%, and 3.4%, respectively, over the baseline U-Net, while PROMISE-Txformer achieved corresponding gains of 7.6%, 23.0%, 2.1%, and 1.1%, respectively, over the baseline UNETR. These results show consistent improvements across architectures, imaging modalities, and anatomical targets, establishing PCCA and PROMISE-Net as ",
-      "summary": "这篇论文提出了一种新的注意力机制，能让AI在医学图像分割时更好地理解用户的提示，从而更准确地识别出皮肤病变、息肉、心脏等不同部位，可应用于开发更智能的医学影像分析工具。"
+      "summary": "本文提出一种提示条件通道注意力机制，能深度整合语义提示，提升分割精度，可用于医学图像中病变、器官等结构的自动分割。"
     },
     {
       "arxiv_id": "2608.20222v1",
       "title": "Gravitational-wave parameter estimation with machine-learning generated surrogate waveforms",
-      "title_zh": "",
+      "title_zh": "利用机器学习生成的替代波形进行引力波参数估计",
       "categories": [
         "gr-qc",
         "astro-ph.IM",
@@ -716,12 +716,12 @@
       "published": "2026-08-20T16:20:55Z",
       "pdf_url": "https://arxiv.org/abs/2608.20222v1",
       "abstract": "The worldwide network of gravitational-wave detectors have detected more than 350 binary coalescence events till date. Future third-generation detectors, like Einstein telescope, are expected to detect orders-of-magnitude more signals from sources with more complicated characteristics, including eccentric orbits and high-mass ratio binaries. It is well-established that the computational cost of parameter estimation for signals from these kinds of sources will be extremely high. In particular, the process could be sped-up if generating theoretical waveform predictions, used for likelihood calculation becomes faster. Recently, various machine-learning techniques has been proposed to this end. In this work, we propose a two-stage deterministic conditional-autoencoder model for generating four-parameter SEOBNRv4 waveforms. The first-stage of the model generates amplitude and phase series of the waveform, while the second-stage calibrates the residual error in the predictions. Our model achieves a median mismatch of around $10^{-2}$ with the target polarization waveforms, while the calibrated amplitude/phase series achieve $10^{-6}$ level cosine distance error. We then propose a waveform conditioning step to enable use of these surrogate waveforms for downstream parameter estimation tasks. Finally, we perform extensive parameter estimation tests, with ML and EOB waveform injections and try to recover posterior estimates for the source parameters. We find that when ML waveforms are used to recover EOB target parameter estimates, the inferred posterior have some systematic bias. This inherent bias can be estimated and corrected for, and then importance reweighting of posterior samples can enable use of low-accuracy surrogate waveforms at low SNRs.",
-      "summary": "本文提出用机器学习生成引力波模板，加速参数估计，可用于快速分析引力波探测数据，识别黑洞合并等事件。"
+      "summary": "本文提出用机器学习生成替代波形来加速引力波参数估计，解决了传统方法计算成本高的问题，可应用于快速分析引力波信号、推动天文观测研究。"
     },
     {
       "arxiv_id": "2608.20220v1",
       "title": "InsufficiencyBench: Evaluating LLM legal advice on underspecified user queries",
-      "title_zh": "",
+      "title_zh": "信息不足基准：评估大语言模型在信息不完整的用户查询中的法律建议",
       "categories": [
         "cs.AI"
       ],
@@ -735,12 +735,12 @@
       "published": "2026-08-20T16:14:47Z",
       "pdf_url": "https://arxiv.org/abs/2608.20220v1",
       "abstract": "Legal AI systems are increasingly used to answer legal questions, yet existing benchmarks assume queries arrive fully specified. In practice, users omit facts that materially determine the legal outcome. We introduce InsufficiencyBench, the first legal benchmark targeting query-side insufficiency: whether a model recognizes when a query lacks legally material information, identifies what is missing, and refrains from premature conclusions. We formalize a taxonomy of eight canonical missing-element categories across three structural failure modes---switch, gating, and fatal prerequisite--- and construct 202 benchmark items (58 base queries, 144 deficient variants) spanning six legal domains and 24 US jurisdictions and annotated by practising attorneys. Evaluating ten frontier models, we find that no model exceeds F2 = 0.46 on missing-element identification and that the median recall is 0.44. Models either hedge indiscriminately or answer silently under fabricated presumptions. No model both identifies and qualifies responses to deficient queries while directly addressing complete ones.",
-      "summary": "这篇论文提出了一个评估法律AI的新基准，测试模型能否识别用户问题中缺失的关键信息并避免过早下结论，可用于开发更严谨的法律咨询系统。"
+      "summary": "该论文提出了一个评估法律AI的新基准，发现现有模型难以识别用户问题中缺失的关键信息，常给出不准确建议，可用于开发更严谨的法律咨询系统。"
     },
     {
       "arxiv_id": "2608.20218v1",
       "title": "Electronic Navigational Chart Change Classification",
-      "title_zh": "",
+      "title_zh": "电子航海图变更分类",
       "categories": [
         "cs.AI"
       ],
@@ -752,12 +752,12 @@
       "published": "2026-08-20T16:14:02Z",
       "pdf_url": "https://arxiv.org/abs/2608.20218v1",
       "abstract": "Electronic Navigational Charts (ENCs) are geospatial vector datasets used in maritime navigation systems that represent hydrographic and navigational information such as depths, navigational aids, traffic schemes, and hazards. A major challenge for hydrographic offices is determining whether a given chart change poses a critical or non-critical risk to maritime safety. Existing workflows rely heavily on manual review and verification, which is labor-intensive, scales poorly with the volume of incoming chart updates, and introduces inter-analyst inconsistencies. To address this challenge, we propose a method for automated classification of ENC changes. We establish a baseline encoding scheme to translate complex vector data changes into a structured tabular format for classification models. The two crucial components of the encoding scheme include a spatial context encoder to enrich the change representations with surrounding geographic features, and an ENC attribute encoder to represent nuanced attribute-value descriptions of the modified objects. We evaluate the proposed approach across two distinct operational datasets, comprising 1,308 chart pairs containing over 100,000 individual chart modifications. Tuned gradient-boosted trees leveraging the proposed encoding schemes achieve accuracies of 90% and 94% on the two datasets, yielding a 5-7% improvement over default hyperparameterized models trained on encodings without spatial context and attribute embeddings. These results demonstrate the viability of integrating machine learning into operational geospatial pipelines to improve ENC maintenance and enhance maritime safety. Finally, our experiments demonstrate the effectiveness of simple location and spatial aggregation methods, providing a foundation for evaluating m",
-      "summary": "这篇论文提出了一种自动分类电子海图变化的方法，能判断海图更新是否影响航行安全，可用于海事部门高效处理海图更新，提升航行安全保障效率。"
+      "summary": "本文提出了一种自动分类电子航海图变更的方法，通过编码空间和属性信息，用机器学习模型判断变更是否影响航行安全，准确率达90%以上，可用于海事部门的图更新和安全管理。"
     },
     {
       "arxiv_id": "2608.20212v1",
       "title": "Unwarping the Lens: A Physics-Grounded Approach to Video Glasses Removal",
-      "title_zh": "",
+      "title_zh": "透镜矫正：基于物理原理的视频眼镜去除方法",
       "categories": [
         "cs.CV"
       ],
@@ -773,12 +773,12 @@
       "published": "2026-08-20T16:10:12Z",
       "pdf_url": "https://arxiv.org/abs/2608.20212v1",
       "abstract": "High-fidelity removal of eyeglasses from video is a major challenge in facial attribute editing, as the underlying facial geometry is often obscured by complex refractive distortions and view-dependent specular reflections. While large-scale generative priors have shown promise in eye-glasses removal via static image inpainting, they often lack the structural constraints necessary to maintain identity, expression, and pose, leading to visible \"identity drift\" in both static images and dynamic sequences. In this paper, we propose a novel transfer framework that addresses the stochastic nature of generative priors. Our pipeline first extracts high-fidelity synthetic face images from a commercial-grade generative model (Nano Banana, Gemini 3 Pro Image), regularizes them via a three-stage structural filtering process to preserve identity, expression, and pose, and finally applies physically-based simulation of lens optics during training to provide diverse, paired data. This process transfers Nano Banana's photo-realistic, multi-view knowledge into a specialized restoration architecture, JFSnet (Joint Feature-Spatial network). JFSnet integrates DINOv2-based semantic features with a convolutional decoder for spatial reconstruction, leveraging translation equivariance constraints to improve temporal consistency and high-frequency detail preservation. Evaluations on the curated Flickr-Faces-HQ (FFHQ) subset (12,163 images) show that our approach achieves high fidelity and structural accuracy, while maintaining inference speed of 27.68 FPS. In perceptual studies on CelebV-Text video sequences, our results are consistently preferred over diffusion and GAN-based baselines for ocular consistency, temporal stability, and overall restoration quality.",
-      "summary": "这篇论文提出了一种基于物理模拟的眼镜去除方法，能精准移除视频中的眼镜，同时保持身份和表情不变，可用于视频编辑和人脸识别等应用。"
+      "summary": "本文提出一种基于物理模拟的眼镜去除方法，通过生成模型和结构过滤保持身份特征，实现视频中眼镜的高保真去除，可用于视频编辑和人脸识别等应用。"
     },
     {
       "arxiv_id": "2608.20210v1",
       "title": "Daedalus-150M: A Convolution-Attention Hybrid Designed for CPU Inference",
-      "title_zh": "",
+      "title_zh": "代达罗斯-150M：为CPU推理设计的卷积-注意力混合模型",
       "categories": [
         "cs.IR",
         "cs.AI",
@@ -791,12 +791,12 @@
       "published": "2026-08-20T16:09:43Z",
       "pdf_url": "https://arxiv.org/abs/2608.20210v1",
       "abstract": "Small language models are usually built like large ones and then squeezed onto a CPU afterwards. We did the opposite: we fixed the target first, one user, one token at a time, 4-bit weights, ordinary CPU, and chose the architecture to suit it. The result keeps full attention in only 6 of its 18 blocks. The other 12 use short convolutions whose memory is two timesteps wide no matter how long the conversation gets, so two thirds of the network never re-reads a growing cache. Trained from scratch on 59.9B tokens, the model scores 47.31 on a five-task benchmark against a bar of 42.20 that was fixed before training began. It beats GPT-2 124M, Pythia-160M, OPT-125M and GPT-neo-125M, all trained on three to six times more data, and exceeds MobileLLM-125M's published score despite that model seeing a trillion tokens. Validation bits-per-byte is 0.8685. To check the architecture rather than the training recipe, we trained a conventional all-attention model of the same size on the same data, and wrote down the winning condition before scoring either. The hybrid won the chosen quality metric by 0.81%, matched it on downstream tasks, produced a 6.3% smaller 4-bit file, and decoded 1.76x faster at 2048 tokens of context, 2.08x against an external model of similar size. In every measurement the speed advantage is near zero at an empty context and grows with length, which is what the mechanism predicts and what a merely leaner model would not show. A simple bandwidth calculation predicts only 1.17x, so memory volume alone does not explain the gap. We also report what did not work: an unmitigated 4-bit quality cost, roughly half the convolution channels ending up inert and impossible to remove, and a vocabulary larger than this model size warrants.",
-      "summary": "这篇论文提出了一种专为CPU推理设计的卷积-注意力混合小模型，在保持性能的同时显著提升推理速度，可用于在普通CPU上高效运行语言模型应用。"
+      "summary": "该论文提出一种专为CPU推理设计的小型语言模型，通过混合卷积和注意力机制，在降低内存和计算需求的同时保持性能，可用于在普通CPU上高效运行聊天机器人等应用。"
     },
     {
       "arxiv_id": "2608.20208v1",
       "title": "RoMAN-Flow: Taming Autoregressive Normalizing Flows for Offline Reinforcement Learning in Robotic Manipulation",
-      "title_zh": "",
+      "title_zh": "RoMAN-Flow：驯服自回归归一化流用于机器人操作的离线强化学习",
       "categories": [
         "cs.CV"
       ],
@@ -812,7 +812,7 @@
       "published": "2026-08-20T16:07:56Z",
       "pdf_url": "https://arxiv.org/abs/2608.20208v1",
       "abstract": "Offline reinforcement learning improves robotic policies using previously collected data without further environment interaction. Yet prevalent diffusion- and flow-matching robot policies lack tractable likelihoods, limiting their use in likelihood-based offline RL post-training. AR-NFs offer both expressive action modeling and exact likelihood evaluation, but their sequential sampling incurs substantial sampling overhead during policy optimization and deployment. We present RoMAN-Flow (Robotic Manipulation with Autoregressive Normalizing Flows), an offline reinforcement learning framework that makes AR-NF policies practical for robotic manipulation by addressing this sampling bottleneck in both stages. During policy optimization, RoMAN-Flow employs a sampling-free, advantage-weighted likelihood objective that assigns higher likelihood to high-advantage actions from the offline dataset without sampling from the autoregressive policy. For efficient deployment, it distills the optimized autoregressive policy into a one-step action generator, enabling low-latency action prediction. Experiments across multiple simulated manipulation benchmarks and real-world robotic platforms demonstrate that RoMAN-Flow achieves competitive policy performance while substantially reducing inference latency. Code is available at https://github.com/konnyaku28/RoMAN-Flow.",
-      "summary": "这篇论文提出了一种新方法，让机器人能利用已有数据高效学习操作技能，无需反复试错，同时大幅提升动作生成速度，可用于快速响应的机器人控制应用。"
+      "summary": "针对现有机器人策略无法计算似然且自回归流采样慢的问题，提出RoMAN-Flow框架，通过免采样优化和一步生成蒸馏，实现快速推理，可用于机器人操作任务的离线强化学习。"
     }
   ]
 }

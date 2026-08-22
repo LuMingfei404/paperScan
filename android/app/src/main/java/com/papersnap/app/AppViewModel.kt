@@ -62,6 +62,10 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     private val _toast = MutableSharedFlow<String>()
     val toast: SharedFlow<String> = _toast
 
+    val chatKey = MutableStateFlow(repo.prefs.chatApiKey)
+    val chatBase = MutableStateFlow(repo.prefs.chatBaseUrl)
+    val chatModel = MutableStateFlow(repo.prefs.chatModel)
+
     val feed: StateFlow<List<Paper>> = _selectedDate
         .flatMapLatest { date ->
             if (date == null) flowOf(emptyList())
@@ -162,6 +166,21 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         dataUrl.value = url
     }
 
+    fun setChatKey(v: String) {
+        repo.prefs.chatApiKey = v
+        chatKey.value = v
+    }
+
+    fun setChatBase(v: String) {
+        repo.prefs.chatBaseUrl = v
+        chatBase.value = v
+    }
+
+    fun setChatModel(v: String) {
+        repo.prefs.chatModel = v
+        chatModel.value = v
+    }
+
     fun chatMessages(id: String): Flow<List<ChatMessageEntity>> = repo.chatMessages(id)
 
     fun sendChat(id: String, text: String) {
@@ -169,13 +188,35 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         if (t.isEmpty() || pendingReply.value) return
         viewModelScope.launch {
             val paper = repo.paperById(id)?.toPaper() ?: return@launch
+            val history = repo.chatHistory(id).map { it.role to it.content }.takeLast(10)
             repo.addChat(id, "user", t)
             pendingReply.value = true
-            delay(700 + Random.nextLong(0, 500))
-            repo.addChat(id, "assistant", ChatMock.reply(paper, t))
+            val reply: String
+            try {
+                reply = if (repo.prefs.chatApiKey.isBlank()) {
+                    delay(600 + Random.nextLong(0, 500))
+                    ChatMock.reply(paper, t)
+                } else {
+                    repo.chatCompletion(buildSystemPrompt(paper), history, t)
+                }
+            } catch (e: Exception) {
+                pendingReply.value = false
+                _toast.emit("AI 调用失败：${e.message ?: "网络错误"}")
+                return@launch
+            }
+            repo.addChat(id, "assistant", reply)
             pendingReply.value = false
         }
     }
+
+    private fun buildSystemPrompt(paper: Paper): String =
+        """
+你是 PaperSnap 论文快闪的 AI 助手。请用通俗的中文围绕这篇论文回答用户的问题。
+只能基于下面提供的论文信息回答，不要编造摘要中没有的内容；信息不足时明确说明。
+标题：${paper.title}
+一句话总结：${paper.summary}
+摘要：${paper.abstract}
+        """.trimIndent()
 
     fun clearCache() {
         viewModelScope.launch {
