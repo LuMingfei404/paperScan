@@ -1,4 +1,4 @@
-/* PaperSnap 论文快闪 · 交互原型逻辑 */
+/* PaperSnap 论文快闪 · 交互原型逻辑（v2：论文池 + 已读 + 浏览记录） */
 (function () {
   "use strict";
 
@@ -21,17 +21,33 @@
     date: "2026-08-22",
     index: 0,
     list: [],
+    currentId: null,
     detailId: null,
     returnView: "feed",
     categories: store.get("cats", null),
     bookmarks: store.get("bms", []),
-    hidden: store.get("hidden", []),
+    read: store.get("read", []),          // [{id, at}]
+    poolSize: Math.min(100, Math.max(1, store.get("pool", 40))),
+    timeRange: store.get("trange", 0),    // 0=不限, 1/3/7 天
     theme: store.get("theme", "dark"),
     hintSeen: store.get("hint", false)
   };
 
+  const CATEGORY_LABELS = {
+    "cs.AI": "人工智能",
+    "cs.CV": "计算机视觉",
+    "cs.CL": "自然语言处理",
+    "cs.LG": "机器学习",
+    "cs.RO": "机器人",
+    "cs.SE": "软件工程",
+    "cs.GR": "计算机图形学"
+  };
+
+  function catLabel(c) { return CATEGORY_LABELS[c] ? c + " " + CATEGORY_LABELS[c] : c; }
+
   let chatBusy = false;
   let lastNav = 0;
+  let navStack = ["feed"];
 
   /* ---------------- 通用 ---------------- */
 
@@ -50,6 +66,7 @@
 
   function paperById(id) { return PAPERS[id] || null; }
   function bookmarked(id) { return state.bookmarks.indexOf(id) >= 0; }
+  function readIds() { return new Set(state.read.map(r => r.id)); }
 
   function toggleBookmark(id) {
     const i = state.bookmarks.indexOf(id);
@@ -59,41 +76,95 @@
     return i < 0;
   }
 
+  function dateTs(dateStr) {
+    return new Date(dateStr + "T00:00:00+08:00").getTime();
+  }
+
   function hoursAgo(id) {
     const i = state.list.indexOf(id);
     return (i >= 0 ? i + 1 : 1) * 3 + "h";
   }
 
-  /* ---------------- 视图切换 ---------------- */
+  /* ---------------- 论文池 ---------------- */
 
-  function showView(name) {
-    $$(".view").forEach(v => v.classList.toggle("active", v.dataset.view === name));
-    $$(".nav-item").forEach(n => n.classList.toggle("active", n.dataset.view === name));
-    if (name === "feed") { buildList(); renderFeed(); }
-    if (name === "bookmarks") renderBookmarks();
-  }
-
-  /* ---------------- 首页卡片流 ---------------- */
-
-  function buildList() {
+  function buildPool() {
     const ids = DATES[state.date].ids;
     const cats = state.categories;
-    state.list = ids.filter(id => {
-      if (state.hidden.indexOf(id) >= 0) return false;
+    const days = state.timeRange;
+    const cutoff = days > 0 ? dateTs(state.date) - days * 86400000 : 0;
+    const read = readIds();
+    const pool = [];
+    for (const id of ids) {
+      if (pool.length >= state.poolSize) break;
       const p = PAPERS[id];
-      if (cats && cats.length) return p.categories.some(c => cats.indexOf(c) >= 0);
-      return true;
-    });
+      if (read.has(id)) continue;
+      if (cats && cats.length && !p.categories.some(c => cats.indexOf(c) >= 0)) continue;
+      if (days > 0 && new Date(p.published).getTime() < cutoff) continue;
+      pool.push(id);
+    }
+    state.list = pool;
     if (state.index > state.list.length - 1) state.index = Math.max(0, state.list.length - 1);
     if (state.index < 0) state.index = 0;
   }
 
+  function removeFromList(id) {
+    const i = state.list.indexOf(id);
+    if (i >= 0) {
+      state.list.splice(i, 1);
+      if (state.index >= state.list.length) state.index = Math.max(0, state.list.length - 1);
+    }
+  }
+
+  function markRead(id) {
+    if (readIds().has(id)) return false;
+    state.read.unshift({ id: id, at: Date.now() });
+    store.set("read", state.read);
+    return true;
+  }
+
+  /* ---------------- 视图切换 ---------------- */
+
+  function showView(name) {
+    if (name === "feed") {
+      buildPool();
+      if (state.currentId) {
+        const i = state.list.indexOf(state.currentId);
+        if (i >= 0) state.index = i;
+      }
+    }
+    activateView(name);
+    if (navStack[navStack.length - 1] !== name) {
+      navStack.push(name);
+      history.pushState({ nav: navStack.length }, "");
+    }
+  }
+
+  function activateView(name) {
+    $$(".view").forEach(v => v.classList.toggle("active", v.dataset.view === name));
+    $$(".nav-item").forEach(n => n.classList.toggle("active", n.dataset.view === name));
+    if (name === "feed") { buildPool(); renderFeed(); }
+    if (name === "bookmarks") renderBookmarks();
+    if (name === "history") renderHistory();
+  }
+
+  window.addEventListener("popstate", () => {
+    if (navStack.length > 1) {
+      navStack.pop();
+      activateView(navStack[navStack.length - 1]);
+    } else {
+      toast("已是首页（真机按返回将退出 App）");
+    }
+  });
+
+  /* ---------------- 首页卡片流 ---------------- */
+
   function cardHTML(p, isNext) {
-    const cats = p.categories.map(c => `<span class="tag">${escapeHtml(c)}</span>`).join("");
+    const cats = p.categories.map(c => `<span class="tag">${escapeHtml(catLabel(c))}</span>`).join("");
     const heart = bookmarked(p.arxiv_id) ? "♥" : "♡";
     const heartCls = bookmarked(p.arxiv_id) ? "on" : "";
     return `
       <article class="card ${isNext ? "next" : "active"}" data-id="${p.arxiv_id}">
+        <div class="swipe-hint">♥ 收藏</div>
         <div class="card-tags">
           ${cats}<span class="tag ghost">${hoursAgo(p.arxiv_id)}前</span>
           <span class="card-id">arXiv:${escapeHtml(p.arxiv_id)}</span>
@@ -113,7 +184,7 @@
       <article class="card next end-card">
         <div class="state-icon">🎉</div>
         <div class="state-title">今天看完了</div>
-        <div class="state-desc">共 ${state.list.length} 篇 · 明天见。下拉刷新可重新拉取。</div>
+        <div class="state-desc">共 ${state.list.length} 篇 · 已读论文会自动移出论文池</div>
       </article>`;
   }
 
@@ -125,22 +196,23 @@
       wrap.innerHTML = `
         <div class="state-card">
           <div class="state-icon">🗂️</div>
-          <div class="state-title">当天没有可显示的论文</div>
-          <div class="state-desc">可能是领域筛选太窄，或论文已被全部隐藏</div>
-          <button class="outline-btn" id="restoreAll" type="button">恢复全部隐藏论文</button>
+          <div class="state-title">论文池已清空</div>
+          <div class="state-desc">已读论文已自动移出。可刷新论文池，或调整筛选条件。</div>
+          <button class="outline-btn" id="refreshPool" type="button">刷新论文池</button>
+          <button class="outline-btn" id="gotoHistory" type="button">查看浏览记录</button>
         </div>`;
-      $("#restoreAll").addEventListener("click", () => {
-        state.hidden = [];
-        store.set("hidden", state.hidden);
-        buildList(); renderFeed();
-        toast("已恢复全部隐藏论文");
+      $("#refreshPool").addEventListener("click", () => {
+        buildPool(); renderFeed();
+        toast(state.list.length ? `论文池刷新：${state.list.length} 篇` : "暂无更多新论文，可调整筛选");
       });
+      $("#gotoHistory").addEventListener("click", () => showView("history"));
       counter.textContent = "0 / 0";
       return;
     }
 
     const i = state.index;
     const cur = paperById(state.list[i]);
+    state.currentId = cur ? cur.arxiv_id : state.currentId;
     const isLast = i >= state.list.length - 1;
     counter.textContent = (i + 1) + " / " + state.list.length;
     wrap.innerHTML = cardHTML(cur, false) + (isLast ? endCardHTML() : cardHTML(paperById(state.list[i + 1]), true));
@@ -180,10 +252,7 @@
   function nextCard() {
     if (Date.now() - lastNav < 260) return;
     lastNav = Date.now();
-    if (state.index >= state.list.length - 1) {
-      toast("已经是今天最后一篇 🎉");
-      return;
-    }
+    if (state.index >= state.list.length - 1) { toast("已经是今天最后一篇 🎉"); return; }
     state.index++;
     renderFeed("up");
   }
@@ -207,54 +276,66 @@
   }
 
   function doBookmark(p) {
-    const on = toggleBookmark(p.arxiv_id);
-    toast(on ? "已收藏 ♥ 灵感 +1" : "已取消收藏");
+    if (bookmarked(p.arxiv_id)) {
+      toast("已在收藏夹，点卡片 ♥ 可取消");
+    } else {
+      toggleBookmark(p.arxiv_id);
+      toast("已收藏 ♥ 灵感 +1");
+    }
     animateOut("right", () => {
       if (state.index >= state.list.length - 1) renderFeed();
       else { state.index++; renderFeed("up"); }
     });
   }
 
-  function doHide(p) {
-    state.hidden.push(p.arxiv_id);
-    store.set("hidden", state.hidden);
-    toast("已隐藏，今天不再显示");
-    animateOut("left", () => {
-      buildList();
-      renderFeed();
-    });
-  }
-
-  /* ---------------- 卡片手势 ---------------- */
+  /* ---------------- 卡片手势（优化：滑动阈值 + 速度 + 顺滑回弹） ---------------- */
 
   function bindFeedGestures() {
     const feed = $("#feed");
+    const wrap = $("#feedCards");
     let drag = null;
 
     feed.addEventListener("pointerdown", e => {
       if (e.target.closest("button")) return;
-      const active = $(".card.active", $("#feedCards"));
+      const active = $(".card.active", wrap);
       if (!active) return;
-      drag = { x: e.clientX, y: e.clientY, dx: 0, dy: 0, mode: null, active };
+      drag = {
+        x: e.clientX, y: e.clientY, dx: 0, dy: 0, mode: null,
+        active, moves: [], t0: performance.now()
+      };
       feed.setPointerCapture(e.pointerId);
       active.classList.add("dragging");
     });
 
     feed.addEventListener("pointermove", e => {
       if (!drag) return;
+      const now = performance.now();
       drag.dx = e.clientX - drag.x;
       drag.dy = e.clientY - drag.y;
-      if (!drag.mode && (Math.abs(drag.dx) > 8 || Math.abs(drag.dy) > 8)) {
+      drag.moves.push({ t: now, x: e.clientX, y: e.clientY });
+      if (drag.moves.length > 8) drag.moves.shift();
+
+      if (!drag.mode && (Math.abs(drag.dx) > 10 || Math.abs(drag.dy) > 10)) {
         drag.mode = Math.abs(drag.dx) > Math.abs(drag.dy) * 1.15 ? "h" : "v";
       }
-      const H = feed.clientHeight;
+
       const a = drag.active;
-      const next = $(".card.next", $("#feedCards"));
+      const next = $(".card.next", wrap);
+      const hint = $(".swipe-hint", a);
       if (drag.mode === "h") {
-        a.style.transform = `translateX(${drag.dx}px) rotate(${drag.dx * 0.045}deg)`;
-      } else if (drag.mode === "v") {
-        a.style.transform = `translateY(${drag.dy}px) rotate(${drag.dy * 0.02}deg)`;
+        // 只允许向右滑；左滑不动
+        const x = Math.max(0, drag.dx);
+        a.style.transform = `translateX(${x}px) rotate(${x * 0.035}deg)`;
+        if (hint) hint.classList.toggle("visible", x > 24);
+        // 右滑时隐藏背景的下一篇论文
         if (next) {
+          next.style.opacity = "0";
+          next.style.transform = "translateY(60px)";
+        }
+      } else if (drag.mode === "v") {
+        a.style.transform = `translateY(${drag.dy}px) rotate(${drag.dy * 0.015}deg)`;
+        if (next) {
+          const H = feed.clientHeight;
           const prog = Math.max(-1, Math.min(1, drag.dy / H));
           next.style.transform = `translateY(${48 + drag.dy * 0.45}px) scale(${0.96 + Math.abs(prog) * 0.04})`;
           next.style.opacity = String(0.8 + Math.abs(prog) * 0.2);
@@ -262,35 +343,54 @@
       }
     });
 
-    function finish(e) {
+    function velocity(moves, axis) {
+      const m = moves;
+      if (m.length < 2) return 0;
+      const a = m[m.length - 1];
+      const b = m[m.length - 2];
+      const dt = Math.max(1, a.t - b.t);
+      return (a[axis] - b[axis]) / dt; // px/ms
+    }
+
+    function finish() {
       if (!drag) return;
       const d = drag;
       drag = null;
       const a = d.active;
       const p = paperById(a.dataset.id);
       a.classList.remove("dragging");
-      const next = $(".card.next", $("#feedCards"));
+      const hint = $(".swipe-hint", a);
+      if (hint) hint.classList.remove("visible");
+      const next = $(".card.next", wrap);
 
-      // 轻点卡片 → 进入详情页
-      if (!d.mode && Math.abs(d.dx) < 8 && Math.abs(d.dy) < 8) {
+      // 轻点 → 进入详情（标记已读）
+      if (!d.mode && Math.abs(d.dx) < 10 && Math.abs(d.dy) < 10) {
         a.style.transform = "";
         openDetail(p.arxiv_id, "feed");
         return;
       }
 
       if (d.mode === "h") {
-        if (d.dx > 110) { doBookmark(p); return; }
-        if (d.dx < -110) { doHide(p); return; }
+        const vx = velocity(d.moves, "x");
+        if (d.dx > 120 || (d.dx > 55 && vx > 0.55)) { doBookmark(p); return; }
+        a.style.transition = "transform .3s cubic-bezier(.2,.8,.25,1)";
         a.style.transform = "";
+        if (next) { next.style.transition = "opacity .25s ease, transform .25s ease"; next.style.opacity = ""; next.style.transform = ""; }
+        setTimeout(() => { a.style.transition = ""; }, 320);
         return;
       }
+
       if (d.mode === "v") {
-        if (d.dy < -90) { nextCard(); return; }
-        if (d.dy > 90) { prevCard(); return; }
+        const vy = velocity(d.moves, "y");
+        if (d.dy < -110 || (d.dy < -55 && vy < -0.55)) { nextCard(); return; }
+        if (d.dy > 110) { prevCard(); return; }
+        a.style.transition = "transform .3s cubic-bezier(.2,.8,.25,1)";
         a.style.transform = "";
-        if (next) { next.style.transform = ""; next.style.opacity = ""; }
+        if (next) { next.style.transition = "transform .3s cubic-bezier(.2,.8,.25,1), opacity .3s ease"; next.style.transform = ""; next.style.opacity = ""; }
+        setTimeout(() => { a.style.transition = ""; if (next) next.style.transition = ""; }, 320);
         return;
       }
+
       a.style.transform = "";
     }
 
@@ -311,26 +411,7 @@
     if (e.key === "ArrowUp") { e.preventDefault(); prevCard(); }
   });
 
-  /* ---------------- 日期切换 ---------------- */
-
-  function renderDateMenu() {
-    const menu = $("#dateMenu");
-    const labels = { "2026-08-22": "今天", "2026-08-21": "昨天", "2026-08-20": "前天" };
-    menu.innerHTML = Object.keys(DATES).map(d => `
-      <button class="date-opt" data-date="${d}" type="button">
-        ${d}${labels[d] ? `<span class="tag">${labels[d]}</span>` : ""}
-      </button>`).join("");
-    $$(".date-opt", menu).forEach(b => b.addEventListener("click", () => {
-      state.date = b.dataset.date;
-      state.index = 0;
-      $("#dateBtn").innerHTML = state.date + " <i>▾</i>";
-      menu.classList.add("hidden");
-      buildList(); renderFeed();
-      toast("已切换到 " + state.date);
-    }));
-  }
-
-  /* ---------------- 领域筛选 ---------------- */
+  /* ---------------- 领域筛选页 ---------------- */
 
   let draftCats = [];
 
@@ -342,7 +423,7 @@
 
   function renderChips() {
     $("#chipGrid").innerHTML = ALL_CATEGORIES.map(c =>
-      `<button class="cat-chip ${draftCats.indexOf(c) >= 0 ? "on" : ""}" data-cat="${c}" type="button">${escapeHtml(c)}</button>`
+      `<button class="cat-chip ${draftCats.indexOf(c) >= 0 ? "on" : ""}" data-cat="${c}" type="button">${escapeHtml(catLabel(c))}</button>`
     ).join("");
     $$(".cat-chip").forEach(ch => ch.addEventListener("click", () => {
       const c = ch.dataset.cat;
@@ -357,60 +438,102 @@
     store.set("cats", state.categories);
     state.index = 0;
     toast(state.categories ? "已保存 " + state.categories.length + " 个领域" : "已保存：显示全部领域");
-    buildList(); renderFeed(); showView("feed");
+    buildPool(); renderFeed(); showView("feed");
   }
 
-  /* ---------------- 详情页 ---------------- */
+  /* ---------------- 设置页：论文类型 / 发表时间 / 数量 ---------------- */
 
-  function detailHTML(p) {
-    const cats = p.categories.map(c => `<span class="tag">${escapeHtml(c)}</span>`).join("");
-    return `
-      <div class="detail-tags">${cats}<span class="tag ghost">arXiv:${escapeHtml(p.arxiv_id)}</span></div>
-      <h1 class="detail-title">${escapeHtml(p.title_zh)}</h1>
-      <div class="detail-title-en">${escapeHtml(p.title)}</div>
-      <div class="detail-meta">${escapeHtml(p.authors.join("、"))} · ${escapeHtml(p.published.slice(0, 10))}</div>
-      <div class="detail-section">
-        <div class="blk"><div class="blk-head">📄 一句话总结</div><div class="blk-body">${escapeHtml(p.summary)}</div></div>
-      </div>
-      <div class="detail-abstract" id="abstractBox">
-        <div class="blk-head">摘要</div>
-        <div id="abstractText">${escapeHtml(p.abstract)}</div>
-        <button class="abstract-fold" id="abstractFold" type="button">展开全文</button>
-      </div>
-      <div class="detail-btns">
-        <button class="outline-btn" id="pdfBtn" type="button">查看 PDF ↗</button>
-        <button class="outline-btn" id="copyBtn" type="button">复制总结</button>
-      </div>`;
+  function renderSettingsCats() {
+    const box = $("#catChipsSettings");
+    const cats = state.categories || [];
+    box.innerHTML = ALL_CATEGORIES.map(c =>
+      `<button class="cat-chip ${cats.indexOf(c) >= 0 ? "on" : ""}" data-cat="${c}" type="button">${escapeHtml(catLabel(c))}</button>`
+    ).join("");
+    $$(".cat-chip", box).forEach(ch => ch.addEventListener("click", () => {
+      const c = ch.dataset.cat;
+      const cur = state.categories ? state.categories.slice() : [];
+      const i = cur.indexOf(c);
+      if (i >= 0) cur.splice(i, 1); else cur.push(c);
+      state.categories = cur.length ? cur : null;
+      store.set("cats", state.categories);
+      renderSettingsCats();
+      buildPool();
+      toast(state.categories ? "论文类型：" + state.categories.length + " 个" : "论文类型：全部");
+    }));
   }
+
+  const TIME_OPTIONS = [
+    { v: 0, label: "不限" },
+    { v: 30, label: "近1个月" },
+    { v: 90, label: "近3个月" },
+    { v: 180, label: "近6个月" },
+    { v: 365, label: "近1年" }
+  ];
+
+  function renderTimeRange() {
+    const box = $("#timeRangeChips");
+    box.innerHTML = TIME_OPTIONS.map(o =>
+      `<button class="chip ${state.timeRange === o.v ? "on" : ""}" data-v="${o.v}" type="button">${o.label}</button>`
+    ).join("");
+    $$(".chip", box).forEach(ch => ch.addEventListener("click", () => {
+      state.timeRange = Number(ch.dataset.v);
+      store.set("trange", state.timeRange);
+      renderTimeRange();
+      buildPool();
+      toast("发表时间：" + TIME_OPTIONS.find(o => o.v === state.timeRange).label);
+    }));
+  }
+
+  function clampPool(v) {
+    return Math.min(100, Math.max(1, Math.round(v) || 40));
+  }
+
+  function renderPoolInput() {
+    $("#poolInput").value = state.poolSize;
+  }
+
+  function setPoolSize(v) {
+    state.poolSize = clampPool(v);
+    store.set("pool", state.poolSize);
+    renderPoolInput();
+    buildPool();
+    toast("每天论文数量：" + state.poolSize + " 篇");
+  }
+
+  /* ---------------- 详情页（全屏聊天 + 论文信息浮层） ---------------- */
 
   function openDetail(id, from) {
     const p = paperById(id);
     if (!p) return;
+    markRead(id);
+    removeFromList(id);
     state.detailId = id;
     state.returnView = from || "feed";
-    $("#detailBody").innerHTML = detailHTML(p);
-
-    let folded = true;
-    const box = $("#abstractBox");
-    const text = $("#abstractText");
-    const foldBtn = $("#abstractFold");
-    text.classList.add("folded");
-    foldBtn.addEventListener("click", () => {
-      folded = !folded;
-      text.classList.toggle("folded", folded);
-      foldBtn.textContent = folded ? "展开全文" : "收起";
-    });
-
-    $("#pdfBtn").addEventListener("click", () => window.open(p.pdf_url, "_blank"));
-    $("#copyBtn").addEventListener("click", () => {
-      const s = p.summary;
-      const done = () => toast("已复制问题+应用总结");
-      if (navigator.clipboard) navigator.clipboard.writeText(s).then(done).catch(done);
-      else { const ta = document.createElement("textarea"); ta.value = s; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); done(); }
-    });
-
     renderChat();
     showView("detail");
+  }
+
+  function fillSheet(p) {
+    const body = $("#sheetBody");
+    body.innerHTML = `
+      <div class="sheet-tags">${p.categories.map(c => `<span class="tag">${escapeHtml(catLabel(c))}</span>`).join("")}
+        <span class="tag ghost">arXiv:${escapeHtml(p.arxiv_id)}</span></div>
+      <div class="sheet-title">${escapeHtml(p.title_zh)}</div>
+      <div class="sheet-title-en">${escapeHtml(p.title)}</div>
+      <div class="sheet-meta">${escapeHtml(p.authors.join("、"))} · ${escapeHtml(p.published.slice(0, 10))}</div>
+      <div class="sheet-summary">📄 ${escapeHtml(p.summary)}</div>
+      <div class="sheet-abstract"><b>摘要</b><br>${escapeHtml(p.abstract)}</div>
+      <div class="sheet-btns">
+        <button class="outline-btn" id="sheetPdf" type="button">查看原文 ↗</button>
+        <button class="outline-btn" id="sheetCopy" type="button">复制总结</button>
+      </div>`;
+    $("#sheetPdf").addEventListener("click", () => window.open(p.pdf_url, "_blank"));
+    $("#sheetCopy").addEventListener("click", () => {
+      const done = () => toast("已复制一句话总结");
+      if (navigator.clipboard) navigator.clipboard.writeText(p.summary).then(done).catch(done);
+      else { const ta = document.createElement("textarea"); ta.value = p.summary; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); done(); }
+    });
+    $("#sheetMask").classList.remove("hidden");
   }
 
   /* ---------------- AI 讨论 ---------------- */
@@ -546,6 +669,46 @@
     });
   }
 
+  /* ---------------- 浏览记录 ---------------- */
+
+  function renderHistory() {
+    const q = ($("#hsSearch").value || "").trim().toLowerCase();
+    const items = state.read.map(r => ({ r: r, p: paperById(r.id) })).filter(x => x.p);
+    const filtered = q
+      ? items.filter(x => (x.p.title_zh + x.p.title + x.p.summary).toLowerCase().indexOf(q) >= 0)
+      : items;
+    const box = $("#hsList");
+    if (!filtered.length) {
+      box.innerHTML = `<div class="empty">${state.read.length ? "没有匹配的记录" : "还没有浏览记录\n\n点击论文卡片阅读后会自动记录，并移出论文池"}</div>`;
+      return;
+    }
+    box.innerHTML = filtered.map(x => {
+      const when = new Date(x.r.at).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" });
+      return `
+      <div class="bm-card" data-id="${x.p.arxiv_id}">
+        <div class="t">${escapeHtml(x.p.title_zh)}</div>
+        <div class="s">📄 ${escapeHtml(x.p.summary)}</div>
+        <div class="bm-foot">
+          <span class="bm-cats">已读 ${when} · ${x.p.categories.map(c => escapeHtml(c)).join(" · ")}</span>
+          <button class="bm-rm hs-rm" type="button">✕ 移除</button>
+        </div>
+      </div>`;
+    }).join("");
+    $$(".bm-card", box).forEach(card => {
+      card.addEventListener("click", e => {
+        if (e.target.closest(".hs-rm")) {
+          const id = card.dataset.id;
+          state.read = state.read.filter(r => r.id !== id);
+          store.set("read", state.read);
+          renderHistory();
+          toast("已移除（该论文将回到论文池）");
+          return;
+        }
+        openDetail(card.dataset.id, "history");
+      });
+    });
+  }
+
   /* ---------------- 设置 ---------------- */
 
   function applyTheme() {
@@ -556,35 +719,50 @@
   /* ---------------- 事件绑定 ---------------- */
 
   function bindEvents() {
-    // 底部导航
     $$(".nav-item").forEach(n => n.addEventListener("click", () => showView(n.dataset.view)));
-    $("#favBtn").addEventListener("click", () => showView("bookmarks"));
     $("#filterBtn").addEventListener("click", openFilter);
     $("#refreshBtn").addEventListener("click", () => {
-      toast("已刷新，当前为最新数据");
-      renderFeed();
+      buildPool(); renderFeed();
+      toast("论文池已刷新：" + state.list.length + " 篇未读");
     });
 
-    // 日期菜单
-    $("#dateBtn").addEventListener("click", e => {
-      e.stopPropagation();
-      $("#dateMenu").classList.toggle("hidden");
-    });
-    document.addEventListener("click", () => $("#dateMenu").classList.add("hidden"));
-
-    // 筛选页
     $("#filterBack").addEventListener("click", () => showView("feed"));
     $("#filterSave").addEventListener("click", saveCats);
     $("#filterConfirm").addEventListener("click", saveCats);
 
-    // 详情页
+    // 详情页：全屏聊天 + 信息浮层
     $("#detailBack").addEventListener("click", () => showView(state.returnView));
-    $("#detailShare").addEventListener("click", () => toast("原型演示：将生成精美分享卡片"));
+    $("#detailShare").addEventListener("click", () => {
+      const p = paperById(state.detailId);
+      if (p) {
+        const done = () => toast("已复制一句话总结，可粘贴分享");
+        if (navigator.clipboard) navigator.clipboard.writeText(p.summary).then(done).catch(done);
+        else toast("分享功能在真机版可用");
+      }
+    });
+    $("#infoBtn").addEventListener("click", () => {
+      const p = paperById(state.detailId);
+      if (p) fillSheet(p);
+    });
+    $("#sheetMask").addEventListener("click", e => {
+      if (e.target === $("#sheetMask")) $("#sheetMask").classList.add("hidden");
+    });
 
     // 收藏夹
     $("#bmBack").addEventListener("click", () => showView("feed"));
     $("#bmShare").addEventListener("click", () => toast("原型演示：将分享整个收藏列表"));
     $("#bmSearch").addEventListener("input", renderBookmarks);
+
+    // 浏览记录
+    $("#hsBack").addEventListener("click", () => showView("feed"));
+    $("#hsClear").addEventListener("click", () => {
+      state.read = [];
+      store.set("read", state.read);
+      renderHistory();
+      buildPool();
+      toast("浏览记录已清空，论文将重新进入论文池");
+    });
+    $("#hsSearch").addEventListener("input", renderHistory);
 
     // 设置
     $("#stBack").addEventListener("click", () => showView("feed"));
@@ -594,12 +772,15 @@
       applyTheme();
       toast(state.theme === "dark" ? "已切换深色模式" : "已切换浅色模式");
     });
+    $("#poolMinus").addEventListener("click", () => setPoolSize(state.poolSize - 10));
+    $("#poolPlus").addEventListener("click", () => setPoolSize(state.poolSize + 10));
+    $("#poolInput").addEventListener("change", e => setPoolSize(Number(e.target.value)));
     $("#clearCacheRow").addEventListener("click", () => {
       const keys = Object.keys(localStorage).filter(k => k.indexOf("ps_chat_") === 0);
       keys.forEach(k => localStorage.removeItem(k));
-      state.hidden = [];
-      store.set("hidden", state.hidden);
-      toast("已清理对话记录与隐藏记录");
+      state.read = [];
+      store.set("read", state.read);
+      toast("已清理对话记录与浏览记录");
     });
 
     // 聊天
@@ -608,7 +789,6 @@
       if (e.key === "Enter") sendMessage($("#chatInput").value);
     });
 
-    // 欢迎浮层
     $("#hintClose").addEventListener("click", () => {
       $("#hint").classList.add("hidden");
       store.set("hint", true);
@@ -618,9 +798,19 @@
   /* ---------------- 初始化 ---------------- */
 
   function init() {
+    // 浏览记录默认保留 7 天，超期自动清理
+    const cutoff = Date.now() - 7 * 86400000;
+    const pruned = state.read.filter(r => r.at >= cutoff);
+    if (pruned.length !== state.read.length) {
+      state.read = pruned;
+      store.set("read", state.read);
+    }
+    history.replaceState({ nav: 1 }, "");
     applyTheme();
-    renderDateMenu();
-    buildList();
+    renderSettingsCats();
+    renderTimeRange();
+    renderPoolInput();
+    buildPool();
     renderFeed();
     bindFeedGestures();
     bindEvents();

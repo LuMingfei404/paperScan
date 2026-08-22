@@ -17,9 +17,9 @@
         <p>用鼠标或手指在卡片上操作：</p>
         <ul>
           <li><b>上下拖动 / 滚轮 / 方向键</b> 切换论文</li>
-          <li><b>右滑</b> 收藏（♥） · <b>左滑</b> 隐藏</li>
-          <li><b>点击卡片</b> 进入详情页，与 AI 讨论</li>
-          <li>顶部切换日期 · 底部切换 首页 / 收藏 / 设置</li>
+          <li><b>右滑</b> 收藏（背景有方向提示）</li>
+          <li><b>点击卡片</b> 进入详情页 = 标记已读并移出论文池</li>
+          <li>底部切换 首页 / 收藏 / 记录 / 设置 · 支持返回键返回上一级</li>
         </ul>
         <button id="hintClose" type="button">开始体验 →</button>
         <p class="hint-note">原型使用模拟数据与模拟 AI 回复，用于交互评审</p>
@@ -36,24 +36,21 @@
         <section class="view view-feed active" id="viewFeed" data-view="feed">
           <header class="topbar">
             <div class="brand"><span class="brand-logo">◈</span><span>PaperSnap</span></div>
-            <button class="date-btn" id="dateBtn" type="button">2026-08-22 <i>▾</i></button>
             <div class="top-actions">
               <button class="icon-btn" id="refreshBtn" type="button" title="刷新" aria-label="刷新">⟳</button>
-              <button class="icon-btn" id="filterBtn" type="button" title="领域筛选" aria-label="领域筛选">
+              <button class="icon-btn" id="filterBtn" type="button" title="按论文类型筛选" aria-label="筛选">
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16l-6 7v5l-4 2v-7z"/></svg>
               </button>
-              <button class="icon-btn" id="favBtn" type="button" title="收藏夹" aria-label="收藏夹">♥</button>
             </div>
           </header>
-          <div class="date-menu hidden" id="dateMenu"></div>
           <div class="feed" id="feed">
             <div class="feed-cards" id="feedCards"></div>
             <div class="feed-counter" id="feedCounter">1 / 8</div>
-            <div class="feed-tip">↑↓ 拖动切换 · ←→ 收藏/隐藏</div>
           </div>
           <nav class="bottom-nav">
             <button class="nav-item active" data-view="feed" type="button"><span class="nav-icon">⌂</span>首页</button>
             <button class="nav-item" data-view="bookmarks" type="button"><span class="nav-icon">★</span>收藏</button>
+            <button class="nav-item" data-view="history" type="button"><span class="nav-icon">◷</span>记录</button>
             <button class="nav-item" data-view="settings" type="button"><span class="nav-icon">⚙</span>设置</button>
           </nav>
         </section>
@@ -63,11 +60,20 @@
           <header class="subbar">
             <button class="icon-btn" id="detailBack" type="button" aria-label="返回">←</button>
             <span class="subbar-title">论文详情</span>
-            <button class="icon-btn" id="detailShare" type="button" aria-label="分享">
-              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M12 3v13"/><path d="M7 8l5-5 5 5"/></svg>
-            </button>
+            <div class="top-actions">
+              <button class="icon-btn" id="infoBtn" type="button" title="论文信息" aria-label="论文信息">📄</button>
+              <button class="icon-btn" id="detailShare" type="button" title="分享" aria-label="分享">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M12 3v13"/><path d="M7 8l5-5 5 5"/></svg>
+              </button>
+            </div>
           </header>
           <div class="detail-scroll" id="detailBody"></div>
+          <div class="sheet-mask hidden" id="sheetMask">
+            <div class="sheet" id="sheet">
+              <div class="sheet-grip"></div>
+              <div id="sheetBody"></div>
+            </div>
+          </div>
           <div class="chat" id="chatPanel">
             <div class="chat-head">💬 AI 讨论 <span class="chat-demo">演示回复</span></div>
             <div class="chat-chips" id="chatChips"></div>
@@ -106,6 +112,17 @@
           <div class="bm-list" id="bmList"></div>
         </section>
 
+        <!-- 浏览记录 -->
+        <section class="view view-history" id="viewHistory" data-view="history">
+          <header class="subbar">
+            <button class="icon-btn" id="hsBack" type="button" aria-label="返回">←</button>
+            <span class="subbar-title">浏览记录</span>
+            <button class="icon-btn" id="hsClear" type="button" aria-label="清空记录">🗑</button>
+          </header>
+          <div class="bm-search"><input id="hsSearch" type="text" placeholder="搜索标题 / 一句话总结" autocomplete="off" /></div>
+          <div class="bm-list" id="hsList"></div>
+        </section>
+
         <!-- 设置 -->
         <section class="view view-settings" id="viewSettings" data-view="settings">
           <header class="subbar">
@@ -113,6 +130,22 @@
             <span class="subbar-title">设置</span>
           </header>
           <div class="settings-body">
+            <div class="set-row">
+              <div style="flex:1"><div class="set-label">每天论文数量</div><div class="set-desc">论文池容量上限（1~100，默认 40）</div></div>
+              <div class="stepper">
+                <button class="step-btn" id="poolMinus" type="button">−</button>
+                <input class="step-input" id="poolInput" type="number" min="1" max="100" value="40" />
+                <button class="step-btn" id="poolPlus" type="button">＋</button>
+              </div>
+            </div>
+            <div class="set-row column">
+              <div><div class="set-label">论文类型（多选）</div><div class="set-desc">全不选 = 显示全部</div></div>
+              <div class="chip-grid settings-chips" id="catChipsSettings"></div>
+            </div>
+            <div class="set-row column">
+              <div><div class="set-label">发表时间</div><div class="set-desc">只显示所选日期附近发表的论文</div></div>
+              <div class="chip-row" id="timeRangeChips"></div>
+            </div>
             <div class="set-row">
               <div><div class="set-label">深色模式</div><div class="set-desc">切换界面主题</div></div>
               <label class="switch"><input type="checkbox" id="themeToggle" /><span></span></label>

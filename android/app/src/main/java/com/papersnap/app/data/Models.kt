@@ -10,6 +10,8 @@ import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.flow.Flow
 
 data class Paper(
@@ -65,6 +67,12 @@ data class ChatMessageEntity(
     val createdAt: Long = 0L
 )
 
+@Entity(tableName = "read_papers")
+data class ReadPaperEntity(
+    @PrimaryKey val arxivId: String,
+    val readAt: Long
+)
+
 @Dao
 interface PaperDao {
     @Query("SELECT * FROM papers WHERE date = :date ORDER BY fetchedAt DESC")
@@ -116,18 +124,49 @@ interface ChatDao {
     suspend fun clearAll()
 }
 
+@Dao
+interface ReadDao {
+    @Query("SELECT * FROM read_papers ORDER BY readAt DESC")
+    fun all(): Flow<List<ReadPaperEntity>>
+
+    @Query("SELECT * FROM read_papers WHERE arxivId = :id")
+    suspend fun find(id: String): ReadPaperEntity?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(entity: ReadPaperEntity)
+
+    @Query("DELETE FROM read_papers WHERE arxivId = :id")
+    suspend fun delete(id: String)
+
+    @Query("DELETE FROM read_papers WHERE readAt < :cutoff")
+    suspend fun deleteOlderThan(cutoff: Long)
+
+    @Query("DELETE FROM read_papers")
+    suspend fun clearAll()
+}
+
 @Database(
-    entities = [PaperEntity::class, ChatMessageEntity::class],
-    version = 1,
+    entities = [PaperEntity::class, ChatMessageEntity::class, ReadPaperEntity::class],
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun paperDao(): PaperDao
     abstract fun chatDao(): ChatDao
+    abstract fun readDao(): ReadDao
 
     companion object {
         @Volatile
         private var instance: AppDatabase? = null
+
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `read_papers` (" +
+                        "`arxivId` TEXT NOT NULL, `readAt` INTEGER NOT NULL, PRIMARY KEY(`arxivId`))"
+                )
+            }
+        }
 
         fun get(context: Context): AppDatabase =
             instance ?: synchronized(this) {
@@ -135,7 +174,10 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "papersnap.db"
-                ).build().also { instance = it }
+                )
+                    .addMigrations(MIGRATION_1_2)
+                    .build()
+                    .also { instance = it }
             }
     }
 }

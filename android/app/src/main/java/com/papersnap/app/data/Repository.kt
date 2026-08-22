@@ -42,6 +42,14 @@ class Prefs(context: Context) {
     var chatModel: String
         get() = sp.getString("chatModel", "deepseek-chat") ?: "deepseek-chat"
         set(value) = sp.edit().putString("chatModel", value).apply()
+
+    var poolSize: Int
+        get() = sp.getInt("pool", 40)
+        set(value) = sp.edit().putInt("pool", value.coerceIn(1, 100)).apply()
+
+    var timeRangeDays: Int
+        get() = sp.getInt("trange", 0)
+        set(value) = sp.edit().putInt("trange", value).apply()
 }
 
 class PaperRepository(private val context: Context) {
@@ -53,10 +61,11 @@ class PaperRepository(private val context: Context) {
     fun bookmarkedPapers(): Flow<List<PaperEntity>> = db.paperDao().bookmarkedPapers()
     fun allPapers(): Flow<List<PaperEntity>> = db.paperDao().allPapers()
     fun availableDates(): Flow<List<String>> = db.paperDao().availableDates()
+    fun readPapers(): Flow<List<ReadPaperEntity>> = db.readDao().all()
     fun chatMessages(id: String): Flow<List<ChatMessageEntity>> = db.chatDao().messagesForPaper(id)
 
     /** 加载最新一期：配置了数据源则拉 latest.json，否则读内置资产。 */
-    suspend fun loadLatest() {
+    suspend fun loadLatest(force: Boolean = false) {
         val url = prefs.dataUrl
         if (url.isNotBlank()) {
             val raw = withContext(Dispatchers.IO) { fetchFromNetwork(url) }
@@ -64,7 +73,7 @@ class PaperRepository(private val context: Context) {
             db.paperDao().upsertAll(papers)
         } else {
             assetDates().forEach { d ->
-                if (db.paperDao().countForDate(d) == 0) loadDate(d)
+                if (force || db.paperDao().countForDate(d) == 0) loadDate(d, force)
             }
         }
     }
@@ -110,6 +119,18 @@ class PaperRepository(private val context: Context) {
     }
 
     suspend fun chatHistory(id: String): List<ChatMessageEntity> = db.chatDao().listForPaper(id)
+
+    suspend fun markRead(id: String) {
+        db.readDao().insert(ReadPaperEntity(arxivId = id, readAt = System.currentTimeMillis()))
+    }
+
+    suspend fun removeRead(id: String) = db.readDao().delete(id)
+
+    suspend fun clearRead() = db.readDao().clearAll()
+
+    suspend fun pruneRead(days: Int) {
+        db.readDao().deleteOlderThan(System.currentTimeMillis() - days * 86_400_000L)
+    }
 
     /** 按需获取论文资料：全文（arXiv HTML → ar5iv）→ 网络检索 → 摘要兜底；全文本地缓存。 */
     suspend fun loadPaperContext(paper: PaperEntity): PaperContext = withContext(Dispatchers.IO) {
@@ -183,6 +204,7 @@ class PaperRepository(private val context: Context) {
     suspend fun clearCache() {
         db.paperDao().clearAll()
         db.chatDao().clearAll()
+        db.readDao().clearAll()
     }
 
     private fun readAsset(date: String): String =

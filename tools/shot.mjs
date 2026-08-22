@@ -21,52 +21,61 @@ await page.click("#hintClose");
 await page.waitForTimeout(500);
 await page.screenshot({ path: out + "/01-feed-dark.png" });
 
-// 进入详情页
-await page.click(".card.active");
-await page.waitForTimeout(600);
-await page.screenshot({ path: out + "/02-detail.png" });
-
-// 用建议问题发起一次 AI 讨论，等待流式回复完成
-await page.click('button.chip:has-text("我能用它做什么应用")');
-await page.waitForTimeout(2600);
-await page.screenshot({ path: out + "/03-chat.png" });
-
-// 返回首页，右滑收藏第一张卡片
-await page.click("#detailBack");
-await page.waitForTimeout(500);
+// 右滑收藏第一篇（带背景提示）
 const feed = await page.$("#feed");
 const box = await feed.boundingBox();
 const cx = box.x + box.width / 2;
 const cy = box.y + box.height / 2;
 await page.mouse.move(cx, cy);
 await page.mouse.down();
-await page.mouse.move(cx + 175, cy, { steps: 12 });
+await page.mouse.move(cx + 175, cy, { steps: 14 });
 await page.mouse.up();
 await page.waitForTimeout(800);
 
+// 点击卡片 → 全屏聊天详情页
+await page.click(".card.active");
+await page.waitForTimeout(500);
+await page.screenshot({ path: out + "/02-detail-chat.png" });
+
+// 打开论文信息浮层
+await page.click("#infoBtn");
+await page.waitForTimeout(400);
+await page.screenshot({ path: out + "/03-paper-sheet.png" });
+await page.click("#sheetMask", { position: { x: 10, y: 10 } });
+await page.waitForTimeout(300);
+
+// 发送一条建议问题
+await page.click('button.chip:has-text("我能用它做什么应用")');
+await page.waitForTimeout(2600);
+await page.screenshot({ path: out + "/04-chat.png" });
+
+// 返回首页
+await page.click("#detailBack");
+await page.waitForTimeout(500);
+
 // 打开收藏夹
-await page.click("#favBtn");
+await page.click('.nav-item[data-view="bookmarks"]');
 await page.waitForTimeout(500);
-await page.screenshot({ path: out + "/04-bookmarks.png" });
-
-// 返回，打开领域筛选
+await page.screenshot({ path: out + "/05-bookmarks.png" });
 await page.click("#bmBack");
-await page.waitForTimeout(400);
-await page.click("#filterBtn");
-await page.waitForTimeout(500);
-await page.screenshot({ path: out + "/05-filter.png" });
-await page.click("#filterBack");
-await page.waitForTimeout(400);
+await page.waitForTimeout(300);
 
-// 设置页 + 浅色模式
+// 浏览记录
+await page.click('.nav-item[data-view="history"]');
+await page.waitForTimeout(500);
+await page.screenshot({ path: out + "/06-history.png" });
+await page.click("#hsBack");
+await page.waitForTimeout(300);
+
+// 设置页
 await page.click('.nav-item[data-view="settings"]');
 await page.waitForTimeout(500);
-await page.screenshot({ path: out + "/06-settings-dark.png" });
+await page.screenshot({ path: out + "/07-settings.png" });
 await page.evaluate(() => document.querySelector("#themeToggle").click());
 await page.waitForTimeout(500);
 await page.click("#stBack");
 await page.waitForTimeout(500);
-await page.screenshot({ path: out + "/07-feed-light.png" });
+await page.screenshot({ path: out + "/08-feed-light.png" });
 
 await browser.close();
 console.log(errors.length ? "ERRORS:\n" + errors.join("\n") : "OK, screenshots saved to shots/");

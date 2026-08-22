@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,6 +18,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -49,6 +49,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -91,173 +92,175 @@ fun DetailScreen(vm: AppViewModel, paperId: String) {
     val chatKey by vm.chatKey.collectAsState()
     val context = LocalContext.current
     var input by rememberSaveable { mutableStateOf("") }
-    var expanded by rememberSaveable { mutableStateOf(false) }
+    var showSheet by rememberSaveable { mutableStateOf(false) }
 
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .imePadding()
-    ) {
-        SubHeader(
-            title = "论文详情",
-            onBack = { vm.back() },
-            action = {
-                TextButton(onClick = { shareText(context, paper.summary) }) {
-                    Text("分享", fontSize = 12.sp)
+    // 打开详情页 = 标记已读（自动移出论文池）
+    LaunchedEffect(paperId) { vm.markRead(paperId) }
+
+    Box(Modifier.fillMaxSize()) {
+        Column(
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .imePadding()
+        ) {
+            SubHeader(
+                title = "论文详情",
+                onBack = { vm.back() },
+                action = {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        TextButton(onClick = { showSheet = true }) {
+                            Text("📄", fontSize = 16.sp)
+                        }
+                        TextButton(onClick = { shareText(context, paper.summary) }) {
+                            Text("分享", fontSize = 12.sp)
+                        }
+                    }
                 }
-            }
-        )
+            )
 
-        PaperInfoSection(
-            paper = paper,
-            expanded = expanded,
-            onToggle = { expanded = !expanded },
-            context = context
-        )
+            HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f))
 
-        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f))
-
-        ChatPanel(
-            modifier = Modifier.weight(1f),
-            messages = messages,
-            pending = pending,
-            contextLoading = contextLoading,
-            modeLabel = modeLabel(chatKey, contextLoading, contextMode),
-            input = input,
-            onInputChange = { input = it },
-            onSend = { text ->
-                val t = text.trim()
-                if (t.isNotEmpty()) {
-                    vm.sendChat(paperId, t)
-                    if (text == input) input = ""
+            ChatPanel(
+                modifier = Modifier.weight(1f),
+                messages = messages,
+                pending = pending,
+                contextLoading = contextLoading,
+                modeLabel = modeLabel(chatKey, contextLoading, contextMode),
+                input = input,
+                onInputChange = { input = it },
+                onSend = { text ->
+                    val t = text.trim()
+                    if (t.isNotEmpty()) {
+                        vm.sendChat(paperId, t)
+                        if (text == input) input = ""
+                    }
                 }
-            }
-        )
+            )
+        }
+
+        if (showSheet) {
+            PaperSheet(paper = paper, onDismiss = { showSheet = false }, context = context)
+        }
     }
 }
 
 @Composable
-private fun PaperInfoSection(
-    paper: Paper,
-    expanded: Boolean,
-    onToggle: () -> Unit,
-    context: Context
-) {
-    Column(
+private fun PaperSheet(paper: Paper, onDismiss: () -> Unit, context: Context) {
+    Box(
         Modifier
-            .fillMaxWidth()
-            .animateContentSize()
-            .padding(horizontal = 16.dp, vertical = 6.dp)
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.55f))
+            .clickable(onClick = onDismiss)
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            paper.categories.take(4).forEach { cat ->
-                Surface(
-                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
-                    shape = RoundedCornerShape(6.dp)
-                ) {
-                    Text(
-                        cat,
-                        Modifier.padding(horizontal = 7.dp, vertical = 3.dp),
-                        color = MaterialTheme.colorScheme.primary,
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-                Spacer(Modifier.width(6.dp))
-            }
-            Spacer(Modifier.weight(1f))
-            Text(
-                "arXiv:${paper.arxivId}",
-                fontSize = 10.sp,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-
-        Spacer(Modifier.height(8.dp))
-        Text(
-            paper.titleZh.ifBlank { paper.title },
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.ExtraBold,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-
-        if (expanded) {
-            Spacer(Modifier.height(4.dp))
-            Text(
-                paper.title,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(Modifier.height(4.dp))
-            Text(
-                "${paper.authors.joinToString("、")} · ${paper.published.take(10)}",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(Modifier.height(8.dp))
-            Surface(
-                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Text(
-                    paper.abstract,
-                    Modifier.padding(12.dp),
-                    style = MaterialTheme.typography.bodySmall,
-                    maxLines = 6,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
-            Spacer(Modifier.height(8.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedButton(
-                    onClick = {
-                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(paper.pdfUrl)))
-                    },
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("查看 PDF ↗", fontSize = 13.sp)
-                }
-                OutlinedButton(
-                    onClick = { copyText(context, paper.summary) },
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("复制总结", fontSize = 13.sp)
-                }
-            }
-        } else {
-            Spacer(Modifier.height(8.dp))
-            Surface(
-                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Column(Modifier.padding(12.dp)) {
-                    Text(
-                        "一句话总结",
-                        color = MaterialTheme.colorScheme.primary,
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Text(paper.summary, style = MaterialTheme.typography.bodyMedium)
-                }
-            }
-        }
-
-        TextButton(
-            onClick = onToggle,
-            modifier = Modifier.align(Alignment.End)
+        Surface(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .heightIn(max = 560.dp)
+                .clickable(onClick = {}),
+            color = MaterialTheme.colorScheme.surface,
+            shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
         ) {
-            Text(
-                if (expanded) "收起 ▲" else "展开摘要/作者信息 ▼",
-                fontSize = 12.sp,
-                color = MaterialTheme.colorScheme.primary
-            )
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 18.dp, vertical = 12.dp)
+            ) {
+                Box(
+                    Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .width(40.dp)
+                        .height(4.dp)
+                        .background(MaterialTheme.colorScheme.outline, RoundedCornerShape(999.dp))
+                )
+                Spacer(Modifier.height(12.dp))
+
+                Row {
+                    paper.categories.take(4).forEach { cat ->
+                        Surface(
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
+                            shape = RoundedCornerShape(6.dp)
+                        ) {
+                            Text(
+                                catLabel(cat),
+                                Modifier.padding(horizontal = 7.dp, vertical = 3.dp),
+                                color = MaterialTheme.colorScheme.primary,
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                        Spacer(Modifier.width(6.dp))
+                    }
+                }
+
+                Spacer(Modifier.height(10.dp))
+                Text(
+                    paper.titleZh.ifBlank { paper.title },
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    lineHeight = 24.sp
+                )
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    paper.title,
+                    fontSize = 11.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Spacer(Modifier.height(6.dp))
+                Text(
+                    "${paper.authors.joinToString("、")} · ${paper.published.take(10)}",
+                    fontSize = 11.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+
+                Spacer(Modifier.height(12.dp))
+                Surface(
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(
+                        paper.summary,
+                        Modifier.padding(12.dp),
+                        fontSize = 13.sp,
+                        lineHeight = 20.sp
+                    )
+                }
+
+                Spacer(Modifier.height(12.dp))
+                Surface(
+                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(
+                        paper.abstract,
+                        Modifier.padding(12.dp),
+                        fontSize = 12.sp,
+                        lineHeight = 19.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+
+                Spacer(Modifier.height(14.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(paper.pdfUrl)))
+                        },
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("查看原文 ↗", fontSize = 13.sp)
+                    }
+                    OutlinedButton(
+                        onClick = { copyText(context, paper.summary) },
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("复制总结", fontSize = 13.sp)
+                    }
+                }
+                Spacer(Modifier.height(12.dp))
+            }
         }
     }
 }
@@ -432,7 +435,7 @@ fun SubHeader(
             textAlign = TextAlign.Center,
             modifier = Modifier.weight(1f)
         )
-        Box(Modifier.width(88.dp), contentAlignment = Alignment.CenterEnd) {
+        Box(Modifier.width(110.dp), contentAlignment = Alignment.CenterEnd) {
             action()
         }
     }

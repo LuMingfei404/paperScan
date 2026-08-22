@@ -9,7 +9,7 @@ import com.papersnap.app.data.Paper
 import com.papersnap.app.data.PaperContext
 import com.papersnap.app.data.PaperContextMode
 import com.papersnap.app.data.PaperRepository
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.papersnap.app.data.ReadPaperEntity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,8 +18,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -30,19 +28,15 @@ sealed class Screen {
     data class Detail(val id: String) : Screen()
     object Filter : Screen()
     object Bookmarks : Screen()
+    object History : Screen()
     object Settings : Screen()
 }
 
-@OptIn(ExperimentalCoroutinesApi::class)
+data class ReadEntry(val record: ReadPaperEntity, val paper: Paper)
+
 class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     private val repo = PaperRepository(app)
-
-    val dateOptions: StateFlow<List<String>> = repo.availableDates()
-        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
-
-    private val _selectedDate = MutableStateFlow<String?>(null)
-    val selectedDate: StateFlow<String?> = _selectedDate
 
     private val _screen = MutableStateFlow<Screen>(Screen.Feed)
     val screen: StateFlow<Screen> = _screen
@@ -52,6 +46,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val cats: StateFlow<Set<String>> = _cats
     val darkTheme = MutableStateFlow(repo.prefs.darkTheme)
     val dataUrl = MutableStateFlow(repo.prefs.dataUrl)
+    val timeRangeDays = MutableStateFlow(repo.prefs.timeRangeDays)
+    val poolSize = MutableStateFlow(repo.prefs.poolSize)
 
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading
@@ -73,18 +69,30 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val chatBase = MutableStateFlow(repo.prefs.chatBaseUrl)
     val chatModel = MutableStateFlow(repo.prefs.chatModel)
 
-    val feed: StateFlow<List<Paper>> = _selectedDate
-        .flatMapLatest { date ->
-            if (date == null) flowOf(emptyList())
-            else repo.papersForDate(date)
-        }
-        .combine(_cats) { list, cats ->
-            list.filter { entity ->
-                !entity.isHidden &&
-                    (cats.isEmpty() || entity.categoryList().any { it in cats })
-            }.map { it.toPaper() }
-        }
-        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+    // 首页浏览位置记忆
+    private val _feedIndex = MutableStateFlow(0)
+    val feedIndex: StateFlow<Int> = _feedIndex
+    private val _currentPaperId = MutableStateFlow<String?>(null)
+    val currentPaperId: StateFlow<String?> = _currentPaperId
+
+    // 论文池：全部论文 − 已读 − 筛选（类型/发表时间），按最新排序取前 poolSize 篇
+    val feed: StateFlow<List<Paper>> = combine(
+        repo.allPapers(),
+        repo.readPapers(),
+        _cats,
+        timeRangeDays,
+        poolSize
+    ) { papers, readList, cats, days, size ->
+        val readIds = readList.map { it.arxivId }.toSet()
+        val cutoff = if (days > 0) System.currentTimeMillis() - days * 86_400_000L else 0L
+        papers
+            .filter { it.arxivId !in readIds }
+            .filter { cats.isEmpty() || it.categoryList().any { c -> c in cats } }
+            .filter { days <= 0 || publishedMillis(it.published) >= cutoff }
+            .sortedByDescending { it.published }
+            .take(size)
+            .map { it.toPaper() }
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     val bookmarks: StateFlow<List<Paper>> = repo.bookmarkedPapers()
         .map { list -> list.map { it.toPaper() } }
@@ -94,16 +102,19 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         .map { list -> list.associate { it.arxivId to it.toPaper() } }
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
 
+    val readHistory: StateFlow<List<ReadEntry>> = combine(
+        repo.readPapers(),
+        repo.allPapers()
+    ) { readList, papers ->
+        val byId = papers.associateBy { it.arxivId }
+        readList.mapNotNull { r -> byId[r.arxivId]?.let { ReadEntry(r, it.toPaper()) } }
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
     init {
         viewModelScope.launch {
-            repo.availableDates().collect { dates ->
-                if (dates.isNotEmpty()) {
-                    val cur = _selectedDate.value
-                    if (cur == null || cur !in dates) _selectedDate.value = dates.first()
-                }
-            }
+            repo.pruneRead(7) // 浏览记录默认保留 7 天
+            load()
         }
-        load()
     }
 
     fun load(force: Boolean = false) {
@@ -111,20 +122,13 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
             _loading.value = true
             _error.value = null
             try {
-                val cur = _selectedDate.value
-                if (cur != null) repo.loadDate(cur, force) else repo.loadLatest()
+                repo.loadLatest(force)
             } catch (e: Exception) {
                 _error.value = "加载失败：${e.message ?: "数据源不可用"}"
             } finally {
                 _loading.value = false
             }
         }
-    }
-
-    fun setDate(date: String) {
-        if (date == _selectedDate.value) return
-        _selectedDate.value = date
-        load()
     }
 
     fun navigate(target: Screen) {
@@ -142,31 +146,50 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         _screen.value = backStack.removeLastOrNull() ?: Screen.Feed
     }
 
+    fun onFeedPageChanged(index: Int) {
+        _feedIndex.value = index
+        _currentPaperId.value = feed.value.getOrNull(index)?.arxivId
+    }
+
     fun toggleBookmark(id: String) {
         viewModelScope.launch {
             val on = repo.toggleBookmark(id)
-            _toast.emit(if (on) "已收藏 ♥" else "已取消收藏")
+            _toast.emit(if (on) "已收藏 ♥ 灵感 +1" else "已取消收藏")
         }
     }
 
-    fun hide(id: String) {
+    fun markRead(id: String) {
+        viewModelScope.launch { repo.markRead(id) }
+    }
+
+    fun removeRead(id: String) {
         viewModelScope.launch {
-            repo.setHidden(id, true)
-            _toast.emit("已隐藏，今天不再显示")
+            repo.removeRead(id)
+            _toast.emit("已移除（该论文将回到论文池）")
         }
     }
 
-    fun restoreHidden() {
-        val date = _selectedDate.value ?: return
+    fun clearRead() {
         viewModelScope.launch {
-            repo.restoreHidden(date)
-            _toast.emit("已恢复全部隐藏论文")
+            repo.clearRead()
+            _toast.emit("浏览记录已清空，论文将重新进入论文池")
         }
     }
 
     fun saveCats(cats: Set<String>) {
         repo.prefs.selectedCategories = cats
         _cats.value = cats
+    }
+
+    fun setTimeRange(days: Int) {
+        repo.prefs.timeRangeDays = days
+        timeRangeDays.value = days
+    }
+
+    fun setPoolSize(v: Int) {
+        val c = v.coerceIn(1, 100)
+        repo.prefs.poolSize = c
+        poolSize.value = c
     }
 
     fun setDark(dark: Boolean) {
@@ -232,6 +255,14 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    fun clearCache() {
+        viewModelScope.launch {
+            repo.clearCache()
+            _toast.emit("已清理缓存、对话与浏览记录")
+            load(force = true)
+        }
+    }
+
     private fun buildSystemPrompt(paper: Paper, context: PaperContext): String {
         val modeLabel = when (context.mode) {
             PaperContextMode.FULLTEXT -> "论文全文"
@@ -256,11 +287,6 @@ $contextBlock
         """.trimIndent()
     }
 
-    fun clearCache() {
-        viewModelScope.launch {
-            repo.clearCache()
-            _toast.emit("已清理缓存与对话记录")
-            load(force = true)
-        }
-    }
+    private fun publishedMillis(s: String): Long =
+        runCatching { java.time.OffsetDateTime.parse(s).toInstant().toEpochMilli() }.getOrDefault(0L)
 }
