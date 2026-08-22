@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,6 +31,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -56,6 +58,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.papersnap.app.AppViewModel
 import com.papersnap.app.data.ChatMessageEntity
+import com.papersnap.app.data.Paper
+import com.papersnap.app.data.PaperContextMode
 
 private val suggestedQuestions = listOf(
     "这篇论文的核心创新点是什么？",
@@ -75,15 +79,19 @@ fun DetailScreen(vm: AppViewModel, paperId: String) {
                 .background(MaterialTheme.colorScheme.background),
             contentAlignment = Alignment.Center
         ) {
-            androidx.compose.material3.CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
         }
         return
     }
+
     val messages by vm.chatMessages(paperId).collectAsState(initial = emptyList())
     val pending by vm.pendingReply.collectAsState()
+    val contextLoading by vm.contextLoading.collectAsState()
+    val contextMode by vm.paperContextMode.collectAsState()
+    val chatKey by vm.chatKey.collectAsState()
     val context = LocalContext.current
     var input by rememberSaveable { mutableStateOf("") }
-    var expanded by remember { mutableStateOf(false) }
+    var expanded by rememberSaveable { mutableStateOf(false) }
 
     Column(
         Modifier
@@ -101,97 +109,111 @@ fun DetailScreen(vm: AppViewModel, paperId: String) {
             }
         )
 
-        Column(
-            Modifier
-                .weight(0.55f)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                paper.categories.forEach { cat ->
-                    Surface(
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
-                        shape = RoundedCornerShape(6.dp)
-                    ) {
-                        Text(
-                            cat,
-                            Modifier.padding(horizontal = 7.dp, vertical = 3.dp),
-                            color = MaterialTheme.colorScheme.primary,
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    Spacer(Modifier.width(6.dp))
+        PaperInfoSection(
+            paper = paper,
+            expanded = expanded,
+            onToggle = { expanded = !expanded },
+            context = context
+        )
+
+        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f))
+
+        ChatPanel(
+            modifier = Modifier.weight(1f),
+            messages = messages,
+            pending = pending,
+            contextLoading = contextLoading,
+            modeLabel = modeLabel(chatKey, contextLoading, contextMode),
+            input = input,
+            onInputChange = { input = it },
+            onSend = { text ->
+                val t = text.trim()
+                if (t.isNotEmpty()) {
+                    vm.sendChat(paperId, t)
+                    if (text == input) input = ""
                 }
-                Spacer(Modifier.weight(1f))
-                Text(
-                    "arXiv:${paper.arxivId}",
-                    fontSize = 10.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
             }
+        )
+    }
+}
 
-            Spacer(Modifier.height(10.dp))
-            Text(
-                paper.titleZh.ifBlank { paper.title },
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.ExtraBold
-            )
-            Spacer(Modifier.height(4.dp))
-            Text(
-                paper.title,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(Modifier.height(6.dp))
-            Text(
-                "${paper.authors.joinToString("、")} · ${paper.published.take(10)}",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(Modifier.height(12.dp))
-
-            Surface(
-                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Column(Modifier.padding(12.dp)) {
+@Composable
+private fun PaperInfoSection(
+    paper: Paper,
+    expanded: Boolean,
+    onToggle: () -> Unit,
+    context: Context
+) {
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .animateContentSize()
+            .padding(horizontal = 16.dp, vertical = 6.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            paper.categories.take(4).forEach { cat ->
+                Surface(
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.14f),
+                    shape = RoundedCornerShape(6.dp)
+                ) {
                     Text(
-                        "一句话总结",
+                        cat,
+                        Modifier.padding(horizontal = 7.dp, vertical = 3.dp),
                         color = MaterialTheme.colorScheme.primary,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold
                     )
-                    Spacer(Modifier.height(4.dp))
-                    Text(paper.summary, style = MaterialTheme.typography.bodyMedium)
                 }
+                Spacer(Modifier.width(6.dp))
             }
+            Spacer(Modifier.weight(1f))
+            Text(
+                "arXiv:${paper.arxivId}",
+                fontSize = 10.sp,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
 
-            Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(8.dp))
+        Text(
+            paper.titleZh.ifBlank { paper.title },
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.ExtraBold,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+
+        if (expanded) {
+            Spacer(Modifier.height(4.dp))
+            Text(
+                paper.title,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                "${paper.authors.joinToString("、")} · ${paper.published.take(10)}",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(Modifier.height(8.dp))
             Surface(
                 color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
                 shape = RoundedCornerShape(12.dp)
             ) {
-                Column(Modifier.padding(12.dp)) {
-                    Text("摘要", fontSize = 11.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        paper.abstract,
-                        style = MaterialTheme.typography.bodySmall,
-                        maxLines = if (expanded) Int.MAX_VALUE else 4,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    TextButton(
-                        onClick = { expanded = !expanded },
-                        modifier = Modifier.padding(top = 2.dp)
-                    ) {
-                        Text(if (expanded) "收起" else "展开全文", fontSize = 12.sp, color = MaterialTheme.colorScheme.primary)
-                    }
-                }
+                Text(
+                    paper.abstract,
+                    Modifier.padding(12.dp),
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 6,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
-
-            Spacer(Modifier.height(10.dp))
+            Spacer(Modifier.height(8.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(
                     onClick = {
@@ -208,23 +230,35 @@ fun DetailScreen(vm: AppViewModel, paperId: String) {
                     Text("复制总结", fontSize = 13.sp)
                 }
             }
-        }
-
-        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f))
-        ChatPanel(
-            modifier = Modifier.weight(0.45f),
-            messages = messages,
-            pending = pending,
-            input = input,
-            onInputChange = { input = it },
-            onSend = { text ->
-                val t = text.trim()
-                if (t.isNotEmpty()) {
-                    vm.sendChat(paperId, t)
-                    if (text == input) input = ""
+        } else {
+            Spacer(Modifier.height(8.dp))
+            Surface(
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.10f),
+                shape = RoundedCornerShape(12.dp)
+            ) {
+                Column(Modifier.padding(12.dp)) {
+                    Text(
+                        "一句话总结",
+                        color = MaterialTheme.colorScheme.primary,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(paper.summary, style = MaterialTheme.typography.bodyMedium)
                 }
             }
-        )
+        }
+
+        TextButton(
+            onClick = onToggle,
+            modifier = Modifier.align(Alignment.End)
+        ) {
+            Text(
+                if (expanded) "收起 ▲" else "展开摘要/作者信息 ▼",
+                fontSize = 12.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
     }
 }
 
@@ -233,13 +267,15 @@ private fun ChatPanel(
     modifier: Modifier = Modifier,
     messages: List<ChatMessageEntity>,
     pending: Boolean,
+    contextLoading: Boolean,
+    modeLabel: String,
     input: String,
     onInputChange: (String) -> Unit,
     onSend: (String) -> Unit
 ) {
     val listState = rememberLazyListState()
 
-    LaunchedEffect(messages.size, pending) {
+    LaunchedEffect(messages.size, pending, contextLoading) {
         if (messages.isNotEmpty()) listState.scrollToItem(messages.size - 1)
     }
 
@@ -259,8 +295,8 @@ private fun ChatPanel(
                 color = MaterialTheme.colorScheme.surfaceVariant
             ) {
                 Text(
-                    "演示回复",
-                    Modifier.padding(horizontal = 7.dp, vertical = 2.dp),
+                    modeLabel,
+                    Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
                     fontSize = 9.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -321,7 +357,15 @@ private fun ChatPanel(
                     }
                 }
             }
-            if (pending) {
+            if (contextLoading) {
+                item {
+                    Text(
+                        "正在获取论文资料（首次提问会联网，请稍候）…",
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            } else if (pending) {
                 item {
                     Text(
                         "AI 正在思考…",
@@ -392,6 +436,15 @@ fun SubHeader(
             action()
         }
     }
+}
+
+private fun modeLabel(chatKey: String, loading: Boolean, mode: PaperContextMode?): String = when {
+    chatKey.isBlank() -> "演示模式"
+    loading -> "正在获取论文资料…"
+    mode == PaperContextMode.FULLTEXT -> "已加载全文"
+    mode == PaperContextMode.SEARCH -> "基于网络检索"
+    mode == PaperContextMode.ABSTRACT -> "基于摘要"
+    else -> "等待提问"
 }
 
 internal fun shareText(context: Context, text: String) {

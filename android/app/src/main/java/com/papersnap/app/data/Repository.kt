@@ -1,13 +1,20 @@
 package com.papersnap.app.data
 
 import android.content.Context
+import java.io.File
+import java.net.URLEncoder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
+import org.jsoup.Jsoup
 import java.net.HttpURLConnection
 import java.net.URL
+
+enum class PaperContextMode { FULLTEXT, SEARCH, ABSTRACT }
+
+data class PaperContext(val mode: PaperContextMode, val text: String)
 
 class Prefs(context: Context) {
     private val sp = context.applicationContext.getSharedPreferences("papersnap", Context.MODE_PRIVATE)
@@ -104,6 +111,29 @@ class PaperRepository(private val context: Context) {
 
     suspend fun chatHistory(id: String): List<ChatMessageEntity> = db.chatDao().listForPaper(id)
 
+    /** 按需获取论文资料：全文（arXiv HTML → ar5iv）→ 网络检索 → 摘要兜底；全文本地缓存。 */
+    suspend fun loadPaperContext(paper: PaperEntity): PaperContext = withContext(Dispatchers.IO) {
+        val cacheFile = File(appContext.filesDir, "fulltext/${paper.arxivId}.txt")
+        if (cacheFile.exists()) {
+            return@withContext PaperContext(PaperContextMode.FULLTEXT, cacheFile.readText())
+        }
+        val full = fetchPaperHtml(paper.arxivId)
+        if (full != null) {
+            cacheFile.parentFile?.mkdirs()
+            cacheFile.writeText(full)
+            return@withContext PaperContext(PaperContextMode.FULLTEXT, full)
+        }
+        val search = buildString {
+            append(arxivSearch(paper.title))
+            append(semanticSearch(paper.arxivId))
+        }.trim()
+        if (search.isNotBlank()) {
+            PaperContext(PaperContextMode.SEARCH, search)
+        } else {
+            PaperContext(PaperContextMode.ABSTRACT, "")
+        }
+    }
+
     suspend fun chatCompletion(
         system: String,
         history: List<Pair<String, String>>,
@@ -172,6 +202,91 @@ class PaperRepository(private val context: Context) {
         return conn.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
     }
 
+    private fun httpGet(urlString: String): String {
+        val conn = URL(urlString).openConnection() as HttpURLConnection
+        conn.connectTimeout = 20_000
+        conn.readTimeout = 60_000
+        conn.setRequestProperty(
+            "User-Agent",
+            "Mozilla/5.0 (X11; Linux x86_64) PaperSnap/0.1"
+        )
+        val code = conn.responseCode
+        val stream = if (code in 200..299) conn.inputStream else conn.errorStream
+        val body = stream?.bufferedReader(Charsets.UTF_8)?.use { it.readText() } ?: ""
+        if (code !in 200..299) throw RuntimeException("HTTP $code")
+        return body
+    }
+
+    private fun fetchPaperHtml(arxivId: String): String? {
+        val candidates = listOf(
+            "https://arxiv.org/html/$arxivId",
+            "https://ar5iv.labs.arxiv.org/html/$arxivId"
+        )
+        for (url in candidates) {
+            try {
+                val doc = Jsoup.parse(httpGet(url))
+                val main = doc.selectFirst("article, main") ?: doc.body()
+                val text = main?.text()?.replace(Regex("\\s+"), " ")?.trim() ?: ""
+                if (text.length > 800) return truncateFulltext(text)
+            } catch (_: Exception) {
+                // 尝试下一个来源
+            }
+        }
+        return null
+    }
+
+    private fun truncateFulltext(text: String): String =
+        if (text.length <= MAX_CONTEXT_CHARS) text
+        else text.take(MAX_CONTEXT_CHARS) + "\n\n[论文全文过长，已截断，仅保留前 $MAX_CONTEXT_CHARS 字符]"
+
+    private fun arxivSearch(title: String): String {
+        return try {
+            val query = URLEncoder.encode("ti:${title.take(80)}", "UTF-8")
+            val xml = httpGet("https://export.arxiv.org/api/query?search_query=$query&max_results=3")
+            val sb = StringBuilder()
+            val entryRe = Regex("<entry>.*?</entry>", RegexOption.DOT_MATCHES_ALL)
+            entryRe.findAll(xml).forEachIndexed { i, m ->
+                val e = m.value
+                val t = Regex("<title>(.*?)</title>", RegexOption.DOT_MATCHES_ALL)
+                    .find(e)?.groupValues?.get(1)?.trim().orEmpty()
+                val s = Regex("<summary>(.*?)</summary>", RegexOption.DOT_MATCHES_ALL)
+                    .find(e)?.groupValues?.get(1)?.replace(Regex("\\s+"), " ")?.trim().orEmpty()
+                if (t.isNotEmpty()) {
+                    sb.append("arXiv 相关论文${i + 1}：《$t》\n摘要：$s\n\n")
+                }
+            }
+            sb.toString()
+        } catch (_: Exception) {
+            ""
+        }
+    }
+
+    private fun semanticSearch(arxivId: String): String {
+        return try {
+            val url = "https://api.semanticscholar.org/graph/v1/paper/arXiv:$arxivId" +
+                "?fields=title,abstract,venue,year,url,openAccessPdf,citationCount"
+            val json = httpGet(url)
+            val o = JSONObject(json)
+            val sb = StringBuilder()
+            sb.append("Semantic Scholar 收录信息：\n")
+            sb.append("标题：${o.optString("title")}\n")
+            val abs = o.optString("abstract", "")
+            if (abs.isNotBlank()) sb.append("摘要：${abs.take(2000)}\n")
+            val venue = o.optString("venue", "")
+            if (venue.isNotBlank()) sb.append("发表：$venue ${o.optString("year")}\n")
+            sb.append("引用数：${o.optInt("citationCount", 0)}\n")
+            o.optJSONObject("openAccessPdf")?.let { pdf ->
+                val pdfUrl = pdf.optString("url", "")
+                if (pdfUrl.isNotBlank()) sb.append("开放获取 PDF：$pdfUrl\n")
+            }
+            val page = o.optString("url", "")
+            if (page.isNotBlank()) sb.append("详情页：$page\n")
+            sb.toString()
+        } catch (_: Exception) {
+            ""
+        }
+    }
+
     private fun dateFileUrl(latestUrl: String, date: String): String {
         val base = latestUrl.substringBeforeLast('/', latestUrl).removeSuffix("/")
         return "$base/$date.json"
@@ -203,5 +318,9 @@ class PaperRepository(private val context: Context) {
             )
         }
         return date to papers
+    }
+
+    companion object {
+        private const val MAX_CONTEXT_CHARS = 40_000
     }
 }

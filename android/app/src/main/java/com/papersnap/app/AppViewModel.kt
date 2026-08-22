@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.papersnap.app.data.ChatMessageEntity
 import com.papersnap.app.data.ChatMock
 import com.papersnap.app.data.Paper
+import com.papersnap.app.data.PaperContext
+import com.papersnap.app.data.PaperContextMode
 import com.papersnap.app.data.PaperRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -58,6 +60,11 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val error: StateFlow<String?> = _error
 
     val pendingReply = MutableStateFlow(false)
+    val contextLoading = MutableStateFlow(false)
+    val paperContextMode = MutableStateFlow<PaperContextMode?>(null)
+
+    private var currentDetailId: String? = null
+    private val contextByPaper = mutableMapOf<String, PaperContext>()
 
     private val _toast = MutableSharedFlow<String>()
     val toast: SharedFlow<String> = _toast
@@ -123,6 +130,12 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun navigate(target: Screen) {
         backStack.addLast(_screen.value)
         _screen.value = target
+        if (target is Screen.Detail) {
+            currentDetailId = target.id
+            paperContextMode.value = null
+        } else {
+            currentDetailId = null
+        }
     }
 
     fun back() {
@@ -185,22 +198,32 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     fun sendChat(id: String, text: String) {
         val t = text.trim()
-        if (t.isEmpty() || pendingReply.value) return
+        if (t.isEmpty() || pendingReply.value || contextLoading.value) return
         viewModelScope.launch {
-            val paper = repo.paperById(id)?.toPaper() ?: return@launch
+            val paperEntity = repo.paperById(id) ?: return@launch
+            val paper = paperEntity.toPaper()
             val history = repo.chatHistory(id).map { it.role to it.content }.takeLast(10)
             repo.addChat(id, "user", t)
             pendingReply.value = true
             val reply: String
             try {
+                val context = contextByPaper[id] ?: run {
+                    contextLoading.value = true
+                    val ctx = repo.loadPaperContext(paperEntity)
+                    contextByPaper[id] = ctx
+                    if (currentDetailId == id) paperContextMode.value = ctx.mode
+                    contextLoading.value = false
+                    ctx
+                }
                 reply = if (repo.prefs.chatApiKey.isBlank()) {
                     delay(600 + Random.nextLong(0, 500))
                     ChatMock.reply(paper, t)
                 } else {
-                    repo.chatCompletion(buildSystemPrompt(paper), history, t)
+                    repo.chatCompletion(buildSystemPrompt(paper, context), history, t)
                 }
             } catch (e: Exception) {
                 pendingReply.value = false
+                contextLoading.value = false
                 _toast.emit("AI 调用失败：${e.message ?: "网络错误"}")
                 return@launch
             }
@@ -209,14 +232,29 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    private fun buildSystemPrompt(paper: Paper): String =
-        """
+    private fun buildSystemPrompt(paper: Paper, context: PaperContext): String {
+        val modeLabel = when (context.mode) {
+            PaperContextMode.FULLTEXT -> "论文全文"
+            PaperContextMode.SEARCH -> "网络检索资料"
+            PaperContextMode.ABSTRACT -> "论文摘要"
+        }
+        val contextBlock = if (context.text.isNotBlank()) {
+            "\n--- 论文资料（$modeLabel）开始 ---\n${context.text}\n--- 论文资料结束 ---"
+        } else {
+            ""
+        }
+        return """
 你是 PaperSnap 论文快闪的 AI 助手。请用通俗的中文围绕这篇论文回答用户的问题。
 只能基于下面提供的论文信息回答，不要编造摘要中没有的内容；信息不足时明确说明。
+当前依据：$modeLabel
+
 标题：${paper.title}
+中文标题：${paper.titleZh.ifBlank { "（暂无翻译）" }}
 一句话总结：${paper.summary}
 摘要：${paper.abstract}
+$contextBlock
         """.trimIndent()
+    }
 
     fun clearCache() {
         viewModelScope.launch {
