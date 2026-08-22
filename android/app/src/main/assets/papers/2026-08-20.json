@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-20",
+  "generated_at": "2026-08-20T08:00:00+08:00",
+  "schema_version": 1,
+  "total": 2,
+  "papers": [
+    {
+      "arxiv_id": "2608.1009",
+      "title": "CtrlDiff: Training-Free Controllable Editing for Diffusion Image Generators",
+      "title_zh": "CtrlDiff：扩散图像生成器的免训练可控编辑",
+      "categories": ["cs.CV", "cs.GR"],
+      "authors": ["Rui Chen", "Nina Kovacs"],
+      "published": "2026-08-19T15:22:00Z",
+      "pdf_url": "https://arxiv.org/abs/2608.1009",
+      "abstract": "We introduce a training-free attention reweighting mechanism that gives fine-grained control over layout, style, and subject identity in existing diffusion models. The method requires no fine-tuning or extra modules, works with any prompt-only API, and reduces editing artifacts by 43% on user studies.",
+      "summary": "用免训练的重加权机制让现有扩散模型可精确控制布局与风格，可做成高级修图或设计素材批量风格化工具。"
+    },
+    {
+      "arxiv_id": "2608.1010",
+      "title": "Few-shot Medical Image Segmentation via Anatomical Prototype Memory",
+      "title_zh": "基于解剖原型记忆的医学影像小样本分割",
+      "categories": ["cs.CV"],
+      "authors": ["Fatima Al-Sayed", "Peter Novak"],
+      "published": "2026-08-19T17:48:00Z",
+      "pdf_url": "https://arxiv.org/abs/2608.1010",
+      "abstract": "We develop a few-shot segmentation framework with a prototypical memory bank that encodes anatomical priors, enabling accurate organ and lesion segmentation from only 5 annotated examples. Validation on CT and MRI datasets shows Dice improvements of 9-14 points over meta-learning baselines, with strong robustness to domain shift across scanners.",
+      "summary": "用解剖原型记忆让仅 5 张标注就能训练医学影像分割模型，适合影像科辅助标注与基层筛查设备。"
+    }
+  ]
+}

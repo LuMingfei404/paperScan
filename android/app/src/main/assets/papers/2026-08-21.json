@@ -1,0 +1,52 @@
+{
+  "date": "2026-08-21",
+  "generated_at": "2026-08-21T08:00:00+08:00",
+  "schema_version": 1,
+  "total": 4,
+  "papers": [
+    {
+      "arxiv_id": "2608.1006",
+      "title": "RepoRAG: Retrieval-Augmented Generation over Whole Code Repositories",
+      "title_zh": "RepoRAG：面向整个代码仓库的检索增强生成",
+      "categories": ["cs.SE", "cs.AI"],
+      "authors": ["David Kim", "Anna Petrov"],
+      "published": "2026-08-20T16:40:00Z",
+      "pdf_url": "https://arxiv.org/abs/2608.1006",
+      "abstract": "We build a repository-level retrieval framework that combines symbol graphs with semantic chunking, improving answer accuracy on codebase questions from 61% to 87% over naive RAG. The system handles cross-file dependencies and stale-documentation drift in large monorepos.",
+      "summary": "把符号图与语义切块结合，让代码问答在跨文件的仓库级问题上准确率从 61% 提升到 87%，适合做团队代码助手。"
+    },
+    {
+      "arxiv_id": "2608.1007",
+      "title": "DeXtreme: Dexterous Hand Grasping via Contrastive Tactile Representation Learning",
+      "title_zh": "DeXtreme：基于对比触觉表征学习的灵巧手抓取策略",
+      "categories": ["cs.RO", "cs.AI"],
+      "authors": ["Tomás Herrera", "Wei Lu"],
+      "published": "2026-08-20T18:55:00Z",
+      "pdf_url": "https://arxiv.org/abs/2608.1007",
+      "abstract": "We train dexterous grasping policies with a contrastive representation that aligns visual, proprioceptive, and tactile signals, enabling sim-to-real transfer on a low-cost 16-DOF hand. The policy generalizes to novel objects with 31% higher success than vision-only baselines and adapts in under 30 minutes of real-world fine-tuning.",
+      "summary": "用对比触觉表征让低成本灵巧手在陌生物体上的抓取成功率提升 31%，可用于机器人捡货与仿生假肢控制。"
+    },
+    {
+      "arxiv_id": "2608.1008",
+      "title": "SparseQ: Sub-4-Bit LLM Quantization with Adaptive Outlier Routing",
+      "title_zh": "SparseQ：自适应离群路由的亚 4-bit 大模型量化",
+      "categories": ["cs.LG", "cs.AI"],
+      "authors": ["Elena Rossi", "Karan Shah"],
+      "published": "2026-08-20T20:30:00Z",
+      "pdf_url": "https://arxiv.org/abs/2608.1008",
+      "abstract": "We propose a quantization scheme that routes weight outliers to a small dense sub-network, achieving 3.2-bit effective precision with under 1% perplexity degradation on 7B models. Our method cuts memory footprint by 3.4x and doubles token throughput on mobile NPUs without retraining.",
+      "summary": "把大模型量化到 3.2bit 仍能保持精度，内存减少 3.4 倍，手机端离线助手与本地翻译工具可以直接受益。"
+    },
+    {
+      "arxiv_id": "2608.1009",
+      "title": "CtrlDiff: Training-Free Controllable Editing for Diffusion Image Generators",
+      "title_zh": "CtrlDiff：扩散图像生成器的免训练可控编辑",
+      "categories": ["cs.CV", "cs.GR"],
+      "authors": ["Rui Chen", "Nina Kovacs"],
+      "published": "2026-08-19T15:22:00Z",
+      "pdf_url": "https://arxiv.org/abs/2608.1009",
+      "abstract": "We introduce a training-free attention reweighting mechanism that gives fine-grained control over layout, style, and subject identity in existing diffusion models. The method requires no fine-tuning or extra modules, works with any prompt-only API, and reduces editing artifacts by 43% on user studies.",
+      "summary": "用免训练的重加权机制让现有扩散模型可精确控制布局与风格，可做成高级修图或设计素材批量风格化工具。"
+    }
+  ]
+}

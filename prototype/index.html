@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>PaperSnap 论文快闪 · 交互原型</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stage">
+
+    <div class="hint" id="hint">
+      <div class="hint-card">
+        <div class="hint-logo">◈ PaperSnap</div>
+        <h1>交互原型 · 欢迎体验</h1>
+        <p>用鼠标或手指在卡片上操作：</p>
+        <ul>
+          <li><b>上下拖动 / 滚轮 / 方向键</b> 切换论文</li>
+          <li><b>右滑</b> 收藏（♥） · <b>左滑</b> 隐藏</li>
+          <li><b>点击卡片</b> 进入详情页，与 AI 讨论</li>
+          <li>顶部切换日期 · 底部切换 首页 / 收藏 / 设置</li>
+        </ul>
+        <button id="hintClose" type="button">开始体验 →</button>
+        <p class="hint-note">原型使用模拟数据与模拟 AI 回复，用于交互评审</p>
+      </div>
+    </div>
+
+    <div class="phone" id="phone" data-theme="dark">
+      <div class="screen" id="screen">
+
+        <!-- 状态栏（模拟） -->
+        <div class="statusbar" aria-hidden="true"><span>9:41</span><span>5G ▮▮▮ 🔋</span></div>
+
+        <!-- 首页：每日速递流 -->
+        <section class="view view-feed active" id="viewFeed" data-view="feed">
+          <header class="topbar">
+            <div class="brand"><span class="brand-logo">◈</span><span>PaperSnap</span></div>
+            <button class="date-btn" id="dateBtn" type="button">2026-08-22 <i>▾</i></button>
+            <div class="top-actions">
+              <button class="icon-btn" id="refreshBtn" type="button" title="刷新" aria-label="刷新">⟳</button>
+              <button class="icon-btn" id="filterBtn" type="button" title="领域筛选" aria-label="领域筛选">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16l-6 7v5l-4 2v-7z"/></svg>
+              </button>
+              <button class="icon-btn" id="favBtn" type="button" title="收藏夹" aria-label="收藏夹">♥</button>
+            </div>
+          </header>
+          <div class="date-menu hidden" id="dateMenu"></div>
+          <div class="feed" id="feed">
+            <div class="feed-cards" id="feedCards"></div>
+            <div class="feed-counter" id="feedCounter">1 / 8</div>
+            <div class="feed-tip">↑↓ 拖动切换 · ←→ 收藏/隐藏</div>
+          </div>
+          <nav class="bottom-nav">
+            <button class="nav-item active" data-view="feed" type="button"><span class="nav-icon">⌂</span>首页</button>
+            <button class="nav-item" data-view="bookmarks" type="button"><span class="nav-icon">★</span>收藏</button>
+            <button class="nav-item" data-view="settings" type="button"><span class="nav-icon">⚙</span>设置</button>
+          </nav>
+        </section>
+
+        <!-- 详情页 + AI 讨论 -->
+        <section class="view view-detail" id="viewDetail" data-view="detail">
+          <header class="subbar">
+            <button class="icon-btn" id="detailBack" type="button" aria-label="返回">←</button>
+            <span class="subbar-title">论文详情</span>
+            <button class="icon-btn" id="detailShare" type="button" aria-label="分享">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M12 3v13"/><path d="M7 8l5-5 5 5"/></svg>
+            </button>
+          </header>
+          <div class="detail-scroll" id="detailBody"></div>
+          <div class="chat" id="chatPanel">
+            <div class="chat-head">💬 AI 讨论 <span class="chat-demo">演示回复</span></div>
+            <div class="chat-chips" id="chatChips"></div>
+            <div class="chat-msgs" id="chatMsgs"></div>
+            <div class="chat-input">
+              <input id="chatInput" type="text" placeholder="向 AI 追问这篇论文…" autocomplete="off" />
+              <button id="chatSend" type="button" aria-label="发送">➤</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 领域筛选 -->
+        <section class="view view-filter" id="viewFilter" data-view="filter">
+          <header class="subbar">
+            <button class="icon-btn" id="filterBack" type="button" aria-label="返回">←</button>
+            <span class="subbar-title">关注领域</span>
+            <button class="icon-btn" id="filterSave" type="button" aria-label="保存">✓</button>
+          </header>
+          <div class="filter-body">
+            <p class="filter-note">勾选要关注的领域（全不选 = 全部显示）</p>
+            <div class="chip-grid" id="chipGrid"></div>
+            <button class="primary-btn" id="filterConfirm" type="button">确认选择</button>
+          </div>
+        </section>
+
+        <!-- 收藏夹 -->
+        <section class="view view-bookmarks" id="viewBookmarks" data-view="bookmarks">
+          <header class="subbar">
+            <button class="icon-btn" id="bmBack" type="button" aria-label="返回">←</button>
+            <span class="subbar-title">我的灵感库</span>
+            <button class="icon-btn" id="bmShare" type="button" aria-label="分享收藏">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><path d="M12 3v13"/><path d="M7 8l5-5 5 5"/></svg>
+            </button>
+          </header>
+          <div class="bm-search"><input id="bmSearch" type="text" placeholder="搜索标题 / 问题 / 应用" autocomplete="off" /></div>
+          <div class="bm-list" id="bmList"></div>
+        </section>
+
+        <!-- 设置 -->
+        <section class="view view-settings" id="viewSettings" data-view="settings">
+          <header class="subbar">
+            <button class="icon-btn" id="stBack" type="button" aria-label="返回">←</button>
+            <span class="subbar-title">设置</span>
+          </header>
+          <div class="settings-body">
+            <div class="set-row">
+              <div><div class="set-label">深色模式</div><div class="set-desc">切换界面主题</div></div>
+              <label class="switch"><input type="checkbox" id="themeToggle" /><span></span></label>
+            </div>
+            <div class="set-row">
+              <div><div class="set-label">数据源地址</div><div class="set-desc mono" id="dataUrl">https://papersnap.example.com/latest.json</div></div>
+            </div>
+            <div class="set-row clickable" id="clearCacheRow">
+              <div><div class="set-label">清理缓存</div><div class="set-desc">清除本地缓存的论文与对话</div></div>
+            </div>
+            <div class="set-row">
+              <div><div class="set-label">当前版本</div><div class="set-desc">v0.1.0 · 交互原型</div></div>
+            </div>
+            <div class="set-row">
+              <div><div class="set-label">关于</div><div class="set-desc">PaperSnap 论文快闪 · 自用版</div></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
