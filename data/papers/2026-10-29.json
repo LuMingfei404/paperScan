@@ -1,0 +1,841 @@
+{
+  "date": "2026-10-29",
+  "generated_at": "2026-10-29T11:15:56+08:00",
+  "schema_version": 1,
+  "total": 40,
+  "papers": [
+    {
+      "arxiv_id": "2610.37668v1",
+      "title": "Honeycomb-Surfels: Compact Hexagonal Primitives for Efficient Scene Rendering and Reconstruction",
+      "title_zh": "蜂窝面元：用于高效场景渲染与重建的紧凑六边形图元",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "authors": [
+        "Prakhar Kaushik",
+        "Soumava Paul",
+        "Alan Yuille"
+      ],
+      "published": "2026-10-27T17:59:59Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37668v1",
+      "abstract": "Novel view synthesis and 3D reconstruction have advanced rapidly with radiance fields and splatting, yet their memory and computational demands limit their use in resource-constrained settings. We introduce Hexels: novel planar hexagonal surface elements with a first-order spatial color field for efficient 3D scene and 2D image representation. Hexels exploit locally planar regions with smoothly varying appearance using fewer, larger primitives. Their hexagonal support provides an area- and boundary-efficient domain, while the local color field captures appearance variation within each primitive. Across 34 scenes, Hexels improve PSNR over memory-matched 2DGS by 4.53-7.38 dB across datasets while requiring lower training VRAM. We further ablate Hexels by showing that per primitive, Hexels outperform 2DGS by upto 4.74 dB while using lower training VRAM and having 2.31 times faster FPS. Even in unconstrained settings, Hexels offers complementary quality-memory trade-offs. For efficient 3D surface reconstruction, Hexels reduce error by 28.9% compared with memory-matched 2DGS across 15 DTU scans. On 6 Tanks and Temples surface scenes, Hexels achieves the highest mean F1 among compared methods (34.38%, versus 31.72% for 2DGS). We further also show that Hexels, as a general primitive, improves 2D image representation over Image-GS. Hexels push the Pareto frontier on the quality-efficiency trade-off of surface-aligned primitives.",
+      "summary": "提出一种六边形平面图元，用更少更大的元素高效表示三维场景和二维图像，可在低显存设备上实现更高质量的渲染与重建。"
+    },
+    {
+      "arxiv_id": "2610.37666v1",
+      "title": "ThinkWorld: World Imagination Reinforces Chain-of-Dynamics Reasoning",
+      "title_zh": "ThinkWorld：世界想象强化动态链推理",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "authors": [
+        "Chaehyun Kim",
+        "Chi-Pin Huang",
+        "Jisoo Kim",
+        "Min-Hung Chen",
+        "Yu-Chiang Frank Wang",
+        "Seungryong Kim",
+        "Fu-En Yang"
+      ],
+      "published": "2026-10-27T17:59:52Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37666v1",
+      "abstract": "Vision-Language-Action (VLA) models have made substantial progress in robotic manipulation, but their generalization remains constrained by the diversity and coverage of action-labeled robot demonstrations. Human videos provide much broader behavioral and environmental experience, while learning from them faces a fundamental trade-off between scalable data and explicit action grounding. We introduce ThinkWorld, a VLA learning framework that grounds action reasoning in world dynamics and strengthens it through reinforcement learning with world imagination. ThinkWorld represents each action thought as a Chain-of-Dynamics (CoD), a sequence of discrete motion tokens that captures the intermediate dynamics connecting the current world to a future state and serves as a common action representation across embodiments. We first initialize CoD with action-labeled demonstrations, then predict the future induced by each CoD and reinforce those whose predictions better match the observed outcome. This enables videos without action annotations to provide direct supervision from observed state transitions, allowing human and robot experience to refine the same reasoning space. Experiments in simulation and on real robots demonstrate effective human-to-robot transfer and strong generalization to unseen tasks and environments.",
+      "summary": "提出ThinkWorld框架，把动作推理表示为动态链并借助世界想象强化学习，让无动作标注的人类视频也能训练机器人，从而提升机器人在新任务和新环境中的泛化能力。"
+    },
+    {
+      "arxiv_id": "2610.37663v1",
+      "title": "An EVM-Cosmos Bridge for Atomic, Semantic-Preserving Transfer of Environmental Tokens",
+      "title_zh": "面向环境代币原子化语义保真转移的EVM-Cosmos跨链桥",
+      "categories": [
+        "cs.SE"
+      ],
+      "authors": [
+        "Sebastian Pandolfi",
+        "Guzmán Llambías",
+        "Laura González"
+      ],
+      "published": "2026-10-27T17:59:30Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37663v1",
+      "abstract": "Transferring semantically typed tokens between heterogeneous blockchains (e.g. EVM and Cosmos ecosystems) raises two problems: semantic mixing, the loss of a token's domainspecific meaning in transit (e.g., CO2 removals issued under different methodologies), and atomicity despite divergent consensus and timing assumptions. We propose a bridge that addresses both. A deterministic indicator identity derived from cryptographic commitments, mirrored in class registries on both chains and checked at mint time, preventing semantic mixing by construction. For atomicity, we extend hash time-locked contracts (HTLCs) from two-party exchange to single-owner transfer with an automatic callback that burns the source escrow after a destination claim, and a protocol-minimum bounty that makes the fallback burn incentive-compatible even against adversarial senders. We machine-check the protocol's invariants with TLC (supply conservation fails without the rational-monitor assumption and holds with it) and validate a bidirectional prototype on Polygon and Neutron mainnets over Axelar GMP: fully automatic transfers with a median end-to-end latency of 97 s over 50 Polygon to Neutron transfers across 7 days (all completed by the on-chain automatic callback) and 93 s in the reverse direction, and semantic-validation overhead below 0.4% of messaging cost. We also document the integration failure modes of Cosmos originated messaging, whose dominant operational risk proves to be relay eligibility rather than latency.",
+      "summary": "提出一种跨链桥，解决环境代币在EVM与Cosmos间转移时语义丢失和原子性问题，可用于开发自动完成、低延迟的碳资产跨链转移应用。"
+    },
+    {
+      "arxiv_id": "2610.37662v1",
+      "title": "Can Discrete Tokens Serve as Semantically Lossless Representations of Visual Signals?",
+      "title_zh": "离散Token能否作为视觉信号的语义无损表示？",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Jialv Zou",
+        "Xiaotong Li",
+        "Zhengrong Yue",
+        "Xu Huang",
+        "Yaxin Luo",
+        "Wenhao Yan",
+        "Haodong Li",
+        "Wenyu Liu",
+        "Xinggang Wang"
+      ],
+      "published": "2026-10-27T17:59:22Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37662v1",
+      "abstract": "Discrete visual tokens represent vision in a discrete form analogous to language, offering a native interface for multimodal modeling under a shared next-token prediction objective. However, quantization error is widely assumed to cause unavoidable semantic loss, fundamentally limiting the semantic fidelity of discrete visual tokens and positioning continuous visual representations as an intrinsic upper bound. Using multimodal understanding as a proxy for semantic fidelity, we revisit this assumption and find quantization error unreliable, as discrete representations with substantially larger errors can achieve better understanding. Instead, the effective bit budget of discrete indices emerges as a key determinant of downstream performance. However, existing quantizers eventually saturate as additional codebooks contribute progressively less semantic information. As one approach to alleviating this saturation, we introduce Factorized Vector Quantization, which quantizes complementary, fixed-dimensional views of the visual feature with symmetric parallel codebooks. It continues to improve at larger bit budgets, ultimately matching continuous visual representations in multimodal understanding. Trained on industrial-scale multimodal data, our model achieves state-of-the-art performance among discrete-representation models, outperforming UniAR and Emu3-Chat by 22.8% and 59.2%, respectively, on a nine-metric average. To our knowledge, it is also the first discrete-representation model competitive with strong continuous-representation models such as Qwen3-VL, including on fine-grained OCR tasks. We further identify the key principles and a practical recipe enabling this competitiveness. These results and insights support the potential of discrete visual representations to und",
+      "summary": "论文发现离散视觉Token的量化误差并非语义损失的关键，提出因子化向量量化方法，让离散表示在多模态理解上追平连续表示，可用于开发高效的多模态大模型。"
+    },
+    {
+      "arxiv_id": "2610.37658v1",
+      "title": "When Should We Intervene at Test Time?",
+      "title_zh": "我们何时应在测试时进行干预？",
+      "categories": [
+        "cs.LG"
+      ],
+      "authors": [
+        "Jiahao Zhang",
+        "Xinling Wen",
+        "Liangliang Li",
+        "Yu Chen"
+      ],
+      "published": "2026-10-27T17:58:53Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37658v1",
+      "abstract": "Test-time adaptation helps a deployed model respond to changing inputs, but the same intervention can rescue one batch and damage the next. Updating normalization statistics, for example, can improve corrupted images yet fail when a batch contains mostly one class. Average accuracy hides these failures and cannot tell a model when to use an intervention. Target labels can guide this decision, but they are scarce and some choices are already clear. We introduce PORTAL, a controller that chooses when to deploy an intervention, which inputs to label, and when to stop querying. Each available prediction rule is a candidate, and its predictions are fixed before current feedback arrives. Every acquired label therefore evaluates all candidates on the same input. PORTAL combines these shared comparisons and directs queries toward candidates that can still overtake the current leader. It stops when the remaining labels cannot change the choice or when the possible accuracy gain no longer justifies another query. Our analysis links the required feedback to accuracy gaps and shared mistakes, explaining why some choices need much less evidence. Experiments show that this control turns an intervention that loses accuracy overall into a useful choice on selected batches. It prevents severe failures caused by changes in arrival order and preserves gains across complete corruption streams. When a fixed rule already works well, PORTAL uses little feedback to retain its performance. Periodic label checks reveal when past evidence needs refreshing and help the controller recover as conditions change. The acquired labels also train stronger candidates for future batches, and selection brings nearly all of their accuracy gains into deployment. The same feedback therefore improves both the c",
+      "summary": "提出一种控制器，决定何时对模型测试时干预、标注哪些输入及何时停止查询，把原本整体掉点的干预变成在选定批次上有效的选择，可用于开发自适应部署系统。"
+    },
+    {
+      "arxiv_id": "2610.37657v1",
+      "title": "Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness",
+      "title_zh": "安全注意力头：学习式注意力门控提升提示注入鲁棒性",
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "cs.CR"
+      ],
+      "authors": [
+        "Igor Shilov",
+        "Xiaoxue Yang",
+        "Alexander Panfilov",
+        "Evgenii Kortukov",
+        "Matthieu Meeus",
+        "Peter Romov",
+        "Wojciech Samek",
+        "Jonas Geiping",
+        "Yves-Alexandre de Montjoye"
+      ],
+      "published": "2026-10-27T17:58:52Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37657v1",
+      "abstract": "We introduce Heads of Security (HoS), a prompt injection defense that enforces instruction-data separation via a small set of learned per-head attention gates. HoS learns how each head should redistribute attention between trusted and untrusted tokens, enabling models to reason over untrusted content without following injected instructions. We evaluate HoS on Llama-3.3-70B-Instruct and GPT-OSS-20B. We compare it against SecAlign++, a state-of-the-art finetuning-based defense, and ASIDE, a defense that, like ours, builds instruction-data separation into the model architecture. We show that HoS offers greater robustness to adaptive attacks, better performance on standard utility benchmarks, and matches top performance on standard agentic prompt injection benchmarks. More specifically, the black-box RL-Hammer attack reaches 97% ASR against GPT-OSS-20B and 85% against SecAlign, but only 10% against HoS. Claudini, a state-of-the-art white-box attack, strengthened against HoS through autoresearch, requires 3 times more FLOPs to reach the same ASR on HoS as it does on GPT-OSS-20B or SecAlign. HoS preserves base-model utility across standard multiple-choice benchmarks and prompting setups, whereas SecAlign and ASIDE degrade in few-shot settings. On agentic benchmarks with static attacks, HoS and SecAlign perform similarly and substantially improve the security-utility trade-off over the base model. ASIDE struggles with tool use, achieving only 10% utility. These results show that prompt injection robustness can be achieved and improved through targeted attention interventions.",
+      "summary": "提出一种通过学习少量注意力门控来隔离指令与数据的方法，让模型能阅读不可信内容而不听从其中指令，可用于开发更抗提示注入攻击且不损失实用性的AI应用。"
+    },
+    {
+      "arxiv_id": "2610.37656v1",
+      "title": "Attention as Lattice Gauge Theory: Relations Interact Only Through Wilson Loops",
+      "title_zh": "注意力即格点规范理论：关系仅通过威尔逊环相互作用",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "physics.comp-ph"
+      ],
+      "authors": [
+        "Aakash Sarkar",
+        "Ananya Mukherjee",
+        "Motoshige Sato"
+      ],
+      "published": "2026-10-27T17:58:48Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37656v1",
+      "abstract": "Relations compose through the entity they share - Alice is Bob's mother and Bob is Carol's father, so Alice is Carol's grandmother - and the order matters, since a father's mother is not a mother's father; verifying a composed relation means closing the loop. We show that if each entity's coordinate frame may be rotated independently (per-entity frame freedom), three things follow. In the pure-gauge sector, relations that share no cycle cannot interact at all. The only gauge-invariant score of a triangle is a class function of its holonomy $H = T_{ij} T_{jk} T_{ki}$ - a Wilson loop. And the only equivariant update of an edge is $U = Ψ(H)\\, T_{ij}$ with $Ψ$ conjugation-equivariant. Edge attention by Wilson loops is therefore not one design among many but the unique form the symmetry permits. Three communities hold pieces of this form: the commuting-operator embeddings of knowledge graphs are its abelian (commuting) sector; AlphaFold's triangle update and the Edge Transformer have its shape - an edge updated through the third vertex - without its constraints; and lattice QCD builds it equivariantly on lattices. We instantiate the equivariant sub-family on general relational graphs as holonomy attention. With no training and composition alone, it infers unobserved $S_4$ relations on sparse graphs at 0.88 with a fifth of the edges corrupted, at or slightly below specialist synchronization algorithms, where every commutative architecture is capped at 0.083; its holonomy score flags corrupted triangles at AUC 0.99 where commuting scores are capped at 0.76 by a second selection rule, and it separates clusters without labels.",
+      "summary": "论文证明关系组合的注意力更新在对称性约束下唯一地表现为威尔逊环形式，并据此开发出无需训练即可推断缺失关系、检测错误三角和聚类节点的全息注意力方法。"
+    },
+    {
+      "arxiv_id": "2610.37655v1",
+      "title": "KPPax: preprocess differentiable kinetic ODE for machine learning in atmospheric chemistry",
+      "title_zh": "KPPax：面向大气化学机器学习的预处理可微分动力学常微分方程",
+      "categories": [
+        "cs.AI"
+      ],
+      "authors": [
+        "Wenqing Peng",
+        "Michael Boy",
+        "Zhi-Song Liu"
+      ],
+      "published": "2026-10-27T17:58:40Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37655v1",
+      "abstract": "Atmospheric chemical mechanisms are commonly distributed in the language of the Kinetic PreProcessor (KPP), which generates efficient Fortran or C code but does not fit into the differentiable programming frameworks in which machine-learning models are developed. We present KPPax, a kinetic preprocessor that generates differentiable, just-in-time compiled, and vectorisable chemistry code in JAX from mechanisms written in the KPP language. KPPax evaluates the rate law with sparse operations in log space, which keeps it differentiable, and integrates the stiff system with the implicit solvers and the forward- and reverse-mode adjoints of the \\texttt{diffrax} library, so that exact sensitivities are obtained without hand-derived adjoint code. We demonstrate two applications with the POLLU benchmark mechanism. In the first, the Fisher information matrix computed from an automatically differentiated Jacobian predicts, before any fit, which of the 25 rate coefficients a flow-tube-like design can identify, and noisy synthetic estimation confirms the predicted uncertainties of the nine identifiable rate coefficients to within about 30\\% while revealing clusters of fast reactions of which only ratios are constrained. In the second, a neural-network correction of an emission inventory is trained offline on per-scenario 4D-Var retrievals and then fine-tuned online through the chemical model, which reduces the error of the biogenic correction by a factor of 2.4--5 and recovers information on low-temperature emissions that the individual retrievals lose. KPPax makes KPP mechanisms directly usable for parameter estimation and hybrid physics--machine-learning modelling.",
+      "summary": "把大气化学机理自动转成可微的JAX代码，让速率参数可辨识性分析和神经网络排放订正能直接在化学模型中训练。"
+    },
+    {
+      "arxiv_id": "2610.37652v1",
+      "title": "Pushing Dexterity and Safety for In-Hand Object Pose Reaching That Works Remarkably Well",
+      "title_zh": "实现卓越效果的手内物体位姿到达：兼顾灵巧性与安全性",
+      "categories": [
+        "cs.RO",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "authors": [
+        "Ian Chuang",
+        "Hiya Shah",
+        "Vamsi Chilamkur",
+        "Iman Soltani",
+        "Claire Tomlin"
+      ],
+      "published": "2026-10-27T17:58:20Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37652v1",
+      "abstract": "Dexterous manipulation with multi-fingered hands is the next frontier of robotics, yet learned hand skills remain limited to simple grasps or basic repeated motions, such as rotating an object. As robots attempt more demanding in-hand maneuvers, safety, such as not dropping the object, becomes critical, yet it is rarely measured. We study in-hand object pose reaching, a task that demands diverse and difficult grasps: moving an object to almost any position and orientation within reach of the fingers, at any wrist orientation, through long sequences of consecutive goals. We present a recipe for training such policies for a LEAP hand in simulation without human data, built on a range of insights, from diverse resets and goals via generated grasp datasets to an adaptive friction curriculum. With careful system identification, the policies transfer zero-shot to the real hand, using either motion capture or a single wrist-mounted depth camera, and prove remarkably capable and robust. On top of the task policy, we add a learned residual safety filter with adjustable conservativeness, letting us tune the balance between performance and safety and greatly reduce object drops. In 13.3 hours of real-robot evaluation over 4,800 unseen goals across 4 objects and diverse wrist orientations, the state-based policy reaches 95.2% of goals within 2 cm and 0.4 rad, and the filter cuts its drops by 75% while still reaching 91.5% of goals. The policies can also spin a lightbulb held in an arbitrary pose, reach out-of-distribution goals, withstand fast arm motion and perturbations, and, needing only a wrist camera, serve as portable skills such as screwing in a lightbulb. We release the full recipe as a platform for studying performance, reliability, and safety in high-dimensional dexterous",
+      "summary": "提出一套无需人工数据的训练方案，让多指机械手能把物体灵巧移动到任意位置和姿态，并加装可调安全过滤器大幅减少掉落，可用于拧灯泡等灵巧操作应用。"
+    },
+    {
+      "arxiv_id": "2610.37651v1",
+      "title": "GEPA-Curator: Curated Learning for Self Improving Agents",
+      "title_zh": "GEPA-Curator：面向自我改进智能体的精选学习",
+      "categories": [
+        "cs.CL"
+      ],
+      "authors": [
+        "Zack Yu",
+        "Nicholas Lee",
+        "Minjae Lee",
+        "Lakshya Agarwal",
+        "Luca Manolache",
+        "Wonjun Kang",
+        "Matei Zaharia",
+        "Michael W. Mahoney",
+        "Kurt Keutzer",
+        "Sehoon Kim",
+        "Amir Gholami"
+      ],
+      "published": "2026-10-27T17:58:11Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37651v1",
+      "abstract": "Large Language Models (LLMs) are increasingly used in multi-turn agentic workloads that require sustained interaction with complex environments. Existing reflective prompt optimizers such as GEPA learn from failed rollouts, but agentic failures can also come from prompt weaknesses, harness limitations, stochastic execution, or noisy judges. We argue that such failures may not provide useful learning signal, and may even be harmful; and thus it is essential to curate which tasks are provided to the prompt optimizer for better performance. We introduce GEPA-Curator, a framework that augments the prompt optimizer to select which agent experiences should shape prompt optimization. In particular, GEPA-Curator consists of two components: task curation, which filters out tasks that are likely to provide noisy or unreliable learning signals, and prior success retrieval, which selectively retrieves past successful trajectories for a task and provides them as additional context to the prompt optimizer. We evaluate GEPA-Curator on GoBrowse, ALFWorld, AppWorld, and $τ$-bench, using both Gemini 3.1 Pro and Claude Opus 5 as optimizer models. GEPA-Curator matches or exceeds the mean performance of both baselines, with gains of up to 20.7% over GEPA and 21.2% over ACE.",
+      "summary": "提出一种筛选智能体经验的方法，过滤掉噪声任务并复用成功轨迹，让提示词优化器学得更准，可用于开发能自我改进的多轮智能体应用。"
+    },
+    {
+      "arxiv_id": "2610.37649v1",
+      "title": "Can LLMs Uncover Hidden Physical Laws through Free Exploration?",
+      "title_zh": "大语言模型能否通过自由探索发现隐藏的物理定律？",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "authors": [
+        "Zhen Yang",
+        "Wen Wang",
+        "Xander Xu",
+        "Ying-Cong Chen"
+      ],
+      "published": "2026-10-27T17:57:00Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37649v1",
+      "abstract": "Scientific discovery often begins with an unexpected observation that prompts a new research question. In a world with altered physical laws, can large language models (LLMs) notice unexpected behavior, such as heavier objects falling more slowly, and discover the law through experiments without being told what to investigate? To evaluate this ability, we introduce LongChang, an automated framework that creates simulated worlds with altered physics, where one or more laws differ from ordinary physics. The evaluated LLMs act as explorers, manipulating objects and building tools to investigate their own questions without research tasks or hints about these laws. Separate LLM agents generate and review scenes, review tool designs, and evaluate reports for correctness and experimental support using the altered physical laws and exploration records. These records guide scene evolution for further exploration, allowing the full cycle to run without human intervention. Among 12 LLMs, GPT-6-Astra achieves a discovery rate of 16.7%, while the other 11 score 0%. The exploration records reveal uninvestigated anomalies and only partial identification of the altered physical laws.",
+      "summary": "论文构建了物理规律被篡改的模拟世界，让大模型像探险家一样自由操作物体、自己找异常，看它能否发现隐藏的物理定律，可用于开发自动科学发现系统。"
+    },
+    {
+      "arxiv_id": "2610.37648v1",
+      "title": "Scaling Laws for Tool-Use Agents via Controllable Environment Synthesis",
+      "title_zh": "通过可控环境合成实现工具使用智能体的缩放定律",
+      "categories": [
+        "cs.LG"
+      ],
+      "authors": [
+        "Andrew Szot",
+        "Samira Abnar",
+        "Omar Attia",
+        "Abbas Kazerouni",
+        "Michael Kirchhof",
+        "Cheng-Yu Hsieh",
+        "Raviteja Vemulapalli",
+        "Alexander Toshev"
+      ],
+      "published": "2026-10-27T17:56:46Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37648v1",
+      "abstract": "We explore how to build performant large language model (LLM) tool-use agents that complete complex, multi-step tasks. Specifically, we study how data composition in synthetically generated tool-use environments affects the training of such agents. To do so, we propose the SynthAPI pipeline, which explicitly controls the diversity of generated environments along the axes of tools, tasks, and the databases on which the tools operate. By systematically varying SynthAPI's generation controls in 458,752 tasks across 849 trained models of four different sizes, we derive a scaling law that predicts downstream tool-use agent generalization based on the scale and composition of the synthesized environments. These predictable relationships reveal several lessons for scaling tool-use agent data. As data budgets grow, scaling tool and database diversity becomes more effective than increasing the number of tasks, and increasing data complexity yields larger gains. Scaling according to these findings yields agents that outperform models trained on data from prior work in large-scale tool-use agent and synthetic environment generation across four evaluation benchmarks.",
+      "summary": "提出SynthAPI方法可控生成多样化的工具使用环境，并总结出缩放定律来预测智能体泛化能力，可用于开发能完成复杂多步任务的LLM工具调用应用。"
+    },
+    {
+      "arxiv_id": "2610.37647v1",
+      "title": "MuonGS: Pretraining LLMs with Relaxed Weight-Norm Control",
+      "title_zh": "MuonGS：以松弛权重范数控制预训练大语言模型",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "math.OC"
+      ],
+      "authors": [
+        "Athanasios Glentis",
+        "Dawei Li",
+        "Mingyi Hong"
+      ],
+      "published": "2026-10-27T17:56:40Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37647v1",
+      "abstract": "Weight decay and explicit weight-norm constraints improve optimizer performance in language model pretraining, yet a unified understanding of why such control helps and how much is needed remains incomplete. We analyze norm control in Muon over the entire training trajectory using the \\emph{accumulated effective learning rate}, $C_T=\\sum_{t<T}η_t/\\|W_t\\|_F$, where $η_t$ is the nominal learning rate and $η_t/\\|W_t\\|_F$ is the effective learning rate relative to the weight norm. For bounded update directions, accumulation over any training interval bounds relative weight displacement. We show that vanilla Muon can accumulate only logarithmically, potentially limiting exploration and helping explain its slower empirical progress, whereas MuonW and MuonH guarantee at least linear accumulation under the stated conditions. Going beyond bounded-norm control, we show that sufficiently slow norm growth guarantees faster accumulation than the logarithmic worst case, opening up less restrictive optimizer designs. Based on this insight, we propose MuonGS, which uses Gram--Schmidt (GS) projection to remove the radial component of each Muon update without fixing the weight norm. With bounded update directions and a constant nominal learning rate, we prove that the weight norm grows at most proportionally to $\\sqrt{t}$ after $t$ steps. Consequently, MuonGS guarantees $C_T=Ω(\\sqrt{T})$, with accumulation sustained even in later training. Further, for smooth scale-invariant objectives we establish its $O(T^{-1/2})$ stationarity guarantee. In pretraining experiments with 160M- and 400M-parameter dense models as well as a 135M active- and 1B total- parameter MoE model, MuonGS achieves lower validation perplexity than MuonH at long training horizons. In particular, for the dense model it a",
+      "summary": "论文揭示了Muon优化器权重范数累积不足的问题，提出用Gram-Schmidt投影放松范数约束的MuonGS方法，可开发出训练更充分、困惑度更低的大模型预训练优化器。"
+    },
+    {
+      "arxiv_id": "2610.37645v1",
+      "title": "Multi-State Linear Attention with Generalized Second-Order Routing",
+      "title_zh": "多状态线性注意力与广义二阶路由",
+      "categories": [
+        "cs.CL"
+      ],
+      "authors": [
+        "Hee Seung Hwang",
+        "Sanghyuk Chun",
+        "Xindi Wu",
+        "Olga Russakovsky",
+        "Zhiwei Deng"
+      ],
+      "published": "2026-10-27T17:55:49Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37645v1",
+      "abstract": "Self-attention plays a key role in long-sequence modeling, but its quadratic time complexity fundamentally limits the scaling of Large Language Models. Recently, Multi-State Linear Attention (MSLA) mechanisms have been proposed to make sequence modeling more efficient by splitting the context into segments and compressing each in its own memory state. MSLA aggregates the information extracted from each memory state using only the mean alignment between a query and each segment's keys, ignoring how the alignment is distributed within the segment. In order to model the relevance of a segment to a query more comprehensively and incorporate the variance of the alignment in the aggregation, we propose MERLIN (MomEnt Routing for multi-state LINear attention), a method that tracks the first and second moments of each segment's keys. Using the moments of keys, a query can recover both the mean and the variance of its alignment with each segment to perform a more content-aware aggregation of per-state readouts. Experiments on multi-state variants of Gated DeltaNet-1.3B and Mamba-2-780M show that MERLIN consistently outperforms existing aggregation methods on various long-context tasks. In particular, MERLIN outperforms baselines on RULER needle-in-a-haystack and long-context QA (+8.3% for Gated DeltaNet-1.3B and +7.0% for Mamba-2-780M) and diverse subtasks in LongBench (+13.5% and +12.0%). It even outperforms baselines that consume 4x more memory. MERLIN provides a simple and general routing mechanism for improving long-context capabilities of MSLA models.",
+      "summary": "提出MERLIN方法，通过同时利用每段键的均值和方差来更精准地聚合记忆状态，让长文本模型在同等显存下更准地处理超长上下文任务。"
+    },
+    {
+      "arxiv_id": "2610.37642v1",
+      "title": "Metacognitive Decoding: Efficient Inference for Diffusion Language Agents",
+      "title_zh": "元认知解码：扩散语言智能体的高效推理",
+      "categories": [
+        "cs.CL"
+      ],
+      "authors": [
+        "Mingyu Zhao",
+        "Shuhang Lin",
+        "Ligong Han",
+        "Xiaojing Yu",
+        "Zhenting Wang",
+        "Yifei Pang",
+        "Yang Zhou",
+        "Dimitris N. Metaxas"
+      ],
+      "published": "2026-10-27T17:55:24Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37642v1",
+      "abstract": "Diffusion language models offer a promising path to efficient agents through parallel token generation. However, efficient interaction requires adapting both where computation is spent and how much text is generated. We introduce a metacognitive controller that guides diffusion generation according to the needs of the current response and the agent's interaction with the environment. It learns when to finalize tokens and how far generation should extend, reducing overall computation within responses. Our controller, a lightweight plug-in for the diffusion backbone, is trained on agent trajectories to balance correctness and generation cost. This approach connects the agent's generation process to the interaction the agent serves. Experiments across five benchmarks demonstrate that our approach reduces inference FLOPs by 20.6% on average compared with the most efficient baseline, while maintaining competitive task accuracy. Ablation studies further validate the effectiveness of our approach.",
+      "summary": "提出一种元认知控制器，让扩散语言模型按需决定何时定稿和生成多长文本，在保持任务准确率的同时平均减少约两成推理算力，可用于开发更省算力的智能体应用。"
+    },
+    {
+      "arxiv_id": "2610.37633v1",
+      "title": "Repurposing Video Diffusion Transformers for Cross-View Temporal Object Correspondence",
+      "title_zh": "复用视频扩散Transformer实现跨视角时序物体对应",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Siyoon Jin",
+        "Dahyun Chung",
+        "Honggyu An",
+        "Sangbeom Lim",
+        "Wonjin Nam",
+        "Jaewoo Jung",
+        "WonJun Moon",
+        "Seungryong Kim"
+      ],
+      "published": "2026-10-27T17:53:34Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37633v1",
+      "abstract": "Cross-view object correspondence identifies the same object across views. However, existing methods often rely on frame-wise matching or sequential tracking, which can propagate correspondence errors under appearance changes or occlusions. Therefore, we introduce cross-view temporal object correspondence, which requires preserving object identity across both views and time from a query mask. To address this, we propose XTrack, a unified framework which repurposes a pretrained video DiT with semantic and spatiotemporal priors for RGB-to-mask latent transport, jointly modeling cross-view matching and temporal tracking. However, naive video DiTs do not guarantee accurate cross-view grounding and often attend to semantically similar yet incorrect objects across views. Thus, we introduce focal cross-view attention alignment, hard negative conditioning, and local context crop strategies to ensure reliable grounding. Finally, beyond these architectural enhancements, we also tackle the lack of dense annotation by introducing a pseudo-label curation pipeline that converts sparse Ego-Exo4D annotations into dense supervision to enable effective video-level training. Our results demonstrate the effectiveness of XTrack as a unified framework, ensuring robust temporal consistency and identity preservation.",
+      "summary": "提出XTrack框架，复用预训练视频扩散Transformer统一建模跨视角匹配与时间跟踪，解决物体在遮挡和外观变化下身份保持难的问题，可用于机器人操作与多视角视频理解应用。"
+    },
+    {
+      "arxiv_id": "2610.37631v1",
+      "title": "What Improves During Pretraining? Tracking Knowledge Acquisition with Point-in-Time Models",
+      "title_zh": "预训练过程中什么在提升？用时间点模型追踪知识获取",
+      "categories": [
+        "cs.AI"
+      ],
+      "authors": [
+        "Chang Su",
+        "Bin Wu",
+        "Emine Yilmaz",
+        "Yao Lu"
+      ],
+      "published": "2026-10-27T17:52:38Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37631v1",
+      "abstract": "Language models pretrained on web corpora collected over multiple years learn both general and domain-specific knowledge. How these different kinds of knowledge are learned as pretraining progresses remains unclear. Recent point-in-time models trained on web snapshots from different years provide a way to probe how knowledge prevalence varies over time. Using these models, we propose a temporal variability score (TVS), defined as the coefficient of variation of an item's negative log-likelihood across models. A higher score suggests that the knowledge may be less consistently represented across years of web text. We evaluate six benchmarks covering diverse topics using six models from multiple open-source model families. We find that low- and high-TVS items are learned similarly early in training, but high-TVS items improve faster later on. At the end of the pretraining run, high-TVS items outperform low-TVS items in 34 of 36 model-benchmark settings, with an average advantage of 7.3 points of chance-normalized accuracy. This pattern is most robust on knowledge-intensive tasks, even when comparing items of similar difficulty. Our findings reveal differences in how knowledge is learned over the course of pretraining, with temporal variability providing a diagnostic of these learning dynamics beyond aggregate benchmark scores.",
+      "summary": "论文提出用时间变异性分数追踪语言模型预训练中知识获取的差异，发现高时间变异性知识后期提升更快，可用于开发更精细的预训练诊断工具。"
+    },
+    {
+      "arxiv_id": "2610.37626v1",
+      "title": "Know, then Draw: A New Learning Paradigm for Visual Generation",
+      "title_zh": "先知晓，再绘制：视觉生成的新学习范式",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Yucheng Mao",
+        "Chongjian Ge",
+        "Zhuowen Tu",
+        "Hao Tan",
+        "Hanwen Jiang"
+      ],
+      "published": "2026-10-27T17:50:20Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37626v1",
+      "abstract": "Visual generation requires both high-level semantic knowledge and fine-grained pixel details. We propose a learning paradigm that assigns these roles to autoregressive pretraining for knowledge acquisition and diffusion post-training for high-fidelity rendering. Within this framework, we study the objective, representation, and scaling of knowledge acquisition and rendering. Controlled comparisons identify autoregression as the stronger pretraining objective for downstream rendering, improving both learning efficiency and final generation quality. We further find that AR-only generation quality does not necessarily correlate with final performance; semantic quality matters more. This motivates a purely semantic tokenizer trained with language supervision alone, without an image decoder or reconstruction loss. We establish compute-optimal scaling laws for knowledge acquisition and rendering, and find that autoregressive pretraining lowers the fitted asymptotic rendering loss compared with pixel diffusion models trained from scratch. Guided by the laws, we train a 3B-parameter text-to-image model with only 6,600 H100 GPU-hours, achieving 86 on GenEval and 87 on DPG-Bench and validating the proposed paradigm at scale.",
+      "summary": "提出先自回归预训练学语义知识、再扩散后训练做高保真渲染的新范式，据此高效训练出低成本高质量文生图模型。"
+    },
+    {
+      "arxiv_id": "2610.37624v1",
+      "title": "Rare, Relevant, and Still Wrong: How Memory Fails LLM Group Decisions",
+      "title_zh": "稀有、相关却仍然错误：记忆如何导致大语言模型群体决策失败",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.MA",
+        "cs.SI"
+      ],
+      "authors": [
+        "Anouar Imel",
+        "Imad Charradi",
+        "Abderrahman Sghir",
+        "Khalil El Khammar"
+      ],
+      "published": "2026-10-27T17:49:39Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37624v1",
+      "abstract": "When an LLM group's discussion is compressed into a short memory for a final decision maker, what should the memory keep? Two natural heuristics keep the rarest claims or the claims relevant to the decision criteria. On hidden-profile tasks both look attractive, because how widely a fact is held is confounded with whether it helps. We introduce CrossProfile, a diagnostic benchmark of 60 templates with automatically verified answer keys, in which the ownership of supporting, decoy, and irrelevant facts is crossed while their text is held fixed (480 tasks). Across Qwen2.5-7B, Llama-3.1-8B, and two DeepSeek models, both heuristics fail in predictable places. Selecting by relevance readmits decoys, because decoys are on topic: even a perfect relevance filter loses 23 to 31 points to rarest-first selection in the classic hidden-profile configuration. Rarest-first selection is no better than random selection on average and wins only where the rare facts happen to be the useful ones. In both cases accuracy follows the balance of evidence the memory keeps, not the policy that kept it. The decision model adds a third failure, a form of social proof: it gives extra weight to facts attributed to many agents. Removing the attribution tags, or reassigning them at random with line order fixed, raises accuracy in the classic configuration by 13 to 24 points. In natural discussions the evidence is lost before any memory acts: the complete transcript yields lower accuracy than no notes at all.",
+      "summary": "论文发现按稀有或相关挑选群体讨论记忆都会出错，并揭示决策模型偏爱多人支持的信息，据此可开发更可靠的多智能体决策记忆系统。"
+    },
+    {
+      "arxiv_id": "2610.37619v1",
+      "title": "Perceiving and Predicting Dynamic Sports: Spatiotemporal Intelligence in Vision Models for Egocentric Tennis Video",
+      "title_zh": "感知与预测动态体育：第一人称网球视频视觉模型中的时空智能",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "authors": [
+        "Tudor Braicu",
+        "Joseph DelPreto",
+        "Jared Boyer",
+        "Mónika Farsang",
+        "Maximilian Stölzle",
+        "Tim Niklas Seyde",
+        "Daniela Rus"
+      ],
+      "published": "2026-10-27T17:47:14Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37619v1",
+      "abstract": "Agile robots require spatiotemporal intelligence to interpret scenes, reason about interactions, and anticipate future events. Yet it remains unclear how well foundation vision models support these capabilities, particularly from a moving egocentric camera, which is a natural view for robots. To investigate this, we collect an annotated tennis dataset and train a suite of vision models on spatiotemporal tasks. Our dataset contains egocentric video synchronized with five allocentric videos, estimated global positions, labeled contact times, and annotated stroke types. We then evaluate seven prediction tasks from egocentric images: 2D ego player and 3D ball localization, future player and ball trajectories, forehand or backhand stroke anticipation, time to the next ego player ball contact, and 3D ball position at that contact. We compare image encoders, video encoders, and vision-language models with jointly trained prediction heads. The best performing models achieve mean current-frame localization errors of 0.14 m for the ego player and 0.54 m for the ball, future forecasting errors of 0.34 m for the ego player and 0.91 m for the ball over 1.1 s, and a mean contact-time prediction error of 0.14 s. Auxiliary depth information substantially improves 3D ball localization, suggesting that inferring metric depth remains a challenge. Longer image histories do not improve ball forecasting, indicating that representations exploit scene context rather than rely solely on inter-frame motion. Finally, we propose a conditional diffusion model to generate whole-body kinematic tennis motion from vision encoder predictions on egocentric video at real-time rates, adapting movements as predictions are refined. These results move towards a deeper understanding of how foundation vision mo",
+      "summary": "论文构建第一人称网球视频数据集并评测多种视觉模型，实现对球员与球的位置、轨迹和击球时机的预测，可用于开发能实时预判并生成全身动作的敏捷机器人。"
+    },
+    {
+      "arxiv_id": "2610.37613v1",
+      "title": "VideoLVR: Latent Visual Reasoning over Grounded Video Evidence",
+      "title_zh": "VideoLVR：基于视频证据的潜在视觉推理",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "authors": [
+        "Shilong Li",
+        "Xingyuan Bu",
+        "Hao Shi",
+        "Yun Xing",
+        "Weixin Feng",
+        "Qiangpeng Yang",
+        "Shilei Wen"
+      ],
+      "published": "2026-10-27T17:41:56Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37613v1",
+      "abstract": "Chain-of-thought reasoning has substantially advanced video understanding in multimodal large language models (MLLMs). However, language-based reasoning traces do not provide a reliable mechanism for models to revisit relevant visual evidence, leading to visual forgetting and impairing their ability to reason over video content. Existing approaches maintain visual grounding during reasoning in two main ways: they either refer to evidence using textual coordinates, which specify symbolic locations rather than the visual content itself, or reinsert cropped regions or frames into the multimodal context, preserving visual details at the cost of substantial context expansion. To address these limitations, we introduce VideoLVR, which constructs latent visual evidence from local regions at relevant video moments, thereby providing visual support for intermediate reasoning steps. To supervise latent visual evidence generation, we introduce a visual token prediction objective that formulates visual token reconstruction as prediction over a vocabulary derived from the input video, thereby unifying visual evidence reconstruction and text generation within the same token prediction framework. This shared prediction framework enables MLLMs to reason over interleaved text tokens and latent visual states while integrating evidence from different moments. We further extend VideoLVR to reinforcement learning by treating sampled visual tokens as actions alongside text tokens and jointly optimizing the policy using final-answer rewards. By efficiently revisiting task-relevant visual information during reasoning, VideoLVR improves video understanding without substantially expanding the multimodal context. Experiments on multiple video benchmarks demonstrate its effectiveness, especially o",
+      "summary": "提出一种让多模态大模型在推理时用潜在视觉标记回看视频关键片段的方法，避免遗忘画面，可用于开发更准的视频问答与理解应用。"
+    },
+    {
+      "arxiv_id": "2610.37609v1",
+      "title": "EnvSched: Environment-Aware Scheduling for Rollout-Efficient Agent Reinforcement Learning",
+      "title_zh": "EnvSched：面向高效 rollout 智能体强化学习的环境感知调度",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "authors": [
+        "Sihan Yang",
+        "Weichen Bai",
+        "Ruichuan An",
+        "Yiming Cheng",
+        "Zhiyuan Feng",
+        "Tianyi Jiang",
+        "Renye Yan",
+        "Ning Ding",
+        "Yifan Zhang",
+        "Renrui Zhang",
+        "Yehui Tang",
+        "Wentao Zhang"
+      ],
+      "published": "2026-10-27T17:38:52Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37609v1",
+      "abstract": "As executable environments for language agents scale, generating and verifying their rollouts becomes increasingly expensive. Under finite rollout budgets, this raises an important question: can data management at the environment level make agentic reinforcement learning (RL) more efficient by organizing, evaluating, and scheduling task instances together with the environments that determine their tools, states, transitions, and verification? To address this question, we introduce EnvSched (Environment-aware Scheduling), an online scheduler that learns from rollout history. EnvSched assigns scheduling value through two complementary modeling choices: exploitation prioritizes tasks likely to provide informative reward differences, while coverage spreads each batch across underobserved environments and interaction patterns. EnvSched organizes environment--task pairs as nodes in a dual-relation graph, with within-environment edges capturing task semantics and shared tool, state, and verifier structure, and cross-environment edges capturing abstract execution and reward topology. By propagating historical rollout statistics along both edge types, it predicts within-task reward variance. These predictions guide a scheduler that allocates each batch to tasks with high predicted reward variance and underobserved environments and tasks. Environment quotas and a similarity penalty further limit concentration and redundancy, yielding informative and diverse batches without additional pilot rollouts. In RL on Qwen3-8B, EnvSched achieves an average score of 48.81 across BFCL-v3, tau-Bench, and ACEBench-Agent after 40 training steps, exceeding the highest score attained by random task selection after 120 steps. It also improves downstream performance across model sizes at the same t",
+      "summary": "提出一种利用历史 rollout 数据预测任务奖励方差并调度环境与任务的方法，让智能体强化学习用更少训练步数获得更高分数，可用于开发更省算力的智能体训练系统。"
+    },
+    {
+      "arxiv_id": "2610.37605v1",
+      "title": "Beyond Answer Changes: Matched Same-Class Controls for Local Audio Evidence",
+      "title_zh": "超越答案变化：面向局部音频证据的同类别匹配对照",
+      "categories": [
+        "cs.SD",
+        "cs.AI"
+      ],
+      "authors": [
+        "Yunuo Wang",
+        "Maoyuan Chen",
+        "Yuanjin Huang",
+        "Xing Liu"
+      ],
+      "published": "2026-10-27T17:36:06Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37605v1",
+      "abstract": "For audio-language models, an answer change after a local sound-event edit can reflect a response to the event's class, sensitivity to waveform rewriting, or both. We compare matched same-class and different-class replacements of a queried event. Both use the same interval, level estimate, donor fitting, and crossfade, while the same-class replacement preserves the correct answer. Across 600 synthetic soundscapes and three models from two architecture families, different-class replacements produce 49.7 to 60.9 percentage points more answer changes than same-class replacements. Same-class accuracy remains within 5.2 percentage points of original accuracy. Among trials with correct original and same-class answers, soundscape-weighted selective accuracy for the inserted class is 73.7 to 81.9%, averaging eligible trials within each soundscape and then weighting eligible soundscapes equally. This protocol tests how model answers respond to local changes in event class.",
+      "summary": "提出一种同类别匹配对照方法，能区分音频模型答案变化是源于声音事件类别还是波形改写，可用于开发更可靠的音频问答与评测系统。"
+    },
+    {
+      "arxiv_id": "2610.37602v1",
+      "title": "RESPLE2: Inertial-Informed Recursive Non-Uniform Spline Estimation for Multi-Sensor Odometry with Global Refinement",
+      "title_zh": "RESPLE2：面向多传感器里程计全局优化的惯性引导递归非均匀样条估计",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Ziyu Cao",
+        "William Talbot",
+        "Song Li",
+        "Pakpong Chirarattananon",
+        "Fredrik Gustafsson",
+        "Marco Hutter",
+        "Kailai Li"
+      ],
+      "published": "2026-10-27T17:33:19Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37602v1",
+      "abstract": "We present RESPLE2, a recursive multi-sensor state estimation framework using non-uniform B-splines for 6-DoF motion representation. By exploiting the knot-clamping boundary property, we propose a theoretically grounded mechanism for exact control-point prediction directly informed by inertial kinematics along the trajectory, with knot placement adapted to motion and measurement availability. Within an iterated extended Kalman filter, we perform this prediction using a subset of inertial measurements. A subsequent reset step preserves trajectory consistency as the knots extend. The update step further incorporates heterogeneous sensor measurements at their native timestamps through continuous-time observation models, supporting flexible combinations of LiDARs, cameras, inertial measurement units, and leg kinematics. We further develop a lightweight global optimization module that directly refines non-uniform B-spline control points by incorporating loop-closure constraints derived from LiDAR-visual cues. We conduct extensive evaluations on public and experimental datasets across handheld, tracked, legged, and hybrid aerial-legged platforms, covering highly dynamic maneuvers with extreme accelerations. Compared with state-of-the-art multi-sensor odometry systems, RESPLE2 achieves competitive or superior estimation accuracy and robustness in the corresponding sensor configurations, particularly under aggressive motion, while maintaining real-time operation. We publicly release our code and experimental datasets at https://github.com/ASIG-X/RESPLE2.",
+      "summary": "提出一种用惯性信息预测样条控制点的多传感器里程计方法，可融合激光、相机和腿部数据，在剧烈运动下实现实时高精度定位并支持全局优化。"
+    },
+    {
+      "arxiv_id": "2610.37599v1",
+      "title": "MoI-Bench: A Benchmark for Image Generation and Editing on Mobile Devices",
+      "title_zh": "MoI-Bench：移动设备上图像生成与编辑的基准测试",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "authors": [
+        "Kailai Feng",
+        "Haoxiang Rao",
+        "Yuxiang Wei",
+        "Bo Chen",
+        "Junsong Li",
+        "Yang Pan",
+        "Chengkun Cai",
+        "Jagmohan Chauhan"
+      ],
+      "published": "2026-10-27T17:31:40Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37599v1",
+      "abstract": "Developing on-device image models requires considering practical user needs, task types and device resource constraints. However, existing benchmarks provide limited guidance on identifying capability gaps between on-device models and server-side models. We introduce MoI-Bench, a benchmark grounded in mobile user needs, comprising 64 subtasks and 1150 samples. It defines 16 operations, such as removal and replacement, and eight visual target categories covering content such as portraits and text. These form two orthogonal axes whose applicable combinations define specific tasks, such as removing facial makeup. To better guide model improvement, we further propose MoI-Eval, which introduces task-specific criteria covering instruction following, visual quality and detail preservation. We further construct sample-level evaluation questions and aggregate their scores into overall quality and capability profiles along the operation, target and criteria axes. We evaluate representative on-device and server-side models and measure mobile deployment costs. Results show that this decoupled Operation x Target design provides finer-grained guidance for improving compact models. For example, it highlights the need to prioritize specific capability gaps (e.g., text-replacement) over broad application-level goals (e.g., improving text editing). Unlike conventional benchmarks that rank models using a single score, we introduce a two-dimensional Quality-Deployability capability map to assess models for practical mobile use. The map shows that current on-device models can achieve efficient generation or editing but expanding their task coverage deserves greater attention than further improving deployment efficiency. Further progress requires improving editing quality, particularly ident",
+      "summary": "针对手机端图像模型缺乏实用评测标准的问题，提出按操作与目标组合细分任务的基准，可用来开发更贴合移动用户需求的图像生成与编辑应用。"
+    },
+    {
+      "arxiv_id": "2610.37598v1",
+      "title": "GAS-PFN: Graph-Aware Spatiotemporal Prior-Data Fitted Networks for Zero-Shot Traffic Forecasting",
+      "title_zh": "图感知时空先验数据拟合网络用于零样本交通预测",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.NE"
+      ],
+      "authors": [
+        "Joseph Natter",
+        "Long Vu",
+        "Yifan Zhang",
+        "Bobin Deng",
+        "Kun Suo",
+        "Rui Wu"
+      ],
+      "published": "2026-10-27T17:31:26Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37598v1",
+      "abstract": "Traffic forecasting requires modeling complex temporal dynamics and the spatial dependencies imposed by road topology. Supervised graph-based models achieve strong performance, but are often trained for a particular dataset and sensor graph, making deployment to new or evolving networks costly. Prior-Data Fitted Networks (PFNs) offer a zero-shot alternative by learning in-context inference from synthetic task priors, which provide an explicit mechanism for encoding domain-specific assumptions. Existing forecasting PFNs, however, do not explicitly represent the graph-structured dependencies governing traffic dynamics. To combine graph-aware traffic modeling with zero-shot adaptation, we introduce the Graph-Aware Spatiotemporal Prior-Data Fitted Network (GAS-PFN). GAS-PFN incorporates sampled road topology into its synthetic task prior through random-walk diffusion, teaching the model to learn graph-coupled dynamics during pretraining. Its co-designed inference architecture uses two mask-conditioned passes through a shared Transformer backbone to separately model sensor-specific temporal dynamics and spatiotemporal interactions among neighboring sensors before integrating their representations for prediction. This design enables GAS-PFN to use target-network structure and context without parameter updates. Across six benchmarks at the 90-minute horizon, GAS-PFN reduces MSE by 34.0% on average relative to TimePFN, its closest PFN-based predecessor. It also reduces MSE by 27.7% on average relative to four recent industry-developed general-purpose zero-shot forecasters. In this comparison, all models receive 90 minutes of contiguous recent history, and any additional context is drawn from each dataset's chronological training split. These results indicate that aligning PFN p",
+      "summary": "提出一种融合路网拓扑的零样本交通预测模型，无需重新训练即可适配新传感器网络，可用于快速部署的智能交通预测应用。"
+    },
+    {
+      "arxiv_id": "2610.37588v1",
+      "title": "Understanding the limits of latent world models",
+      "title_zh": "理解潜在世界模型的局限",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "authors": [
+        "Rodrigo Gonzalez Laiz",
+        "Steffen Schneider"
+      ],
+      "published": "2026-10-27T17:25:50Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37588v1",
+      "abstract": "World models are widely proposed as core components for enabling agents to reason over long temporal and spatial horizons. Yet current evaluations often emphasize task performance while providing limited insight into whether learned world models acquire predictive latent dynamics that reflect the underlying structure of the environment. Here we introduce the concept of faithful latent world models as an equivariance condition between the environment's transition map and the learned latent dynamics. We propose latent rollout consistency (LRC) as a metric to evaluate action-conditioned latent prediction. Strikingly, we find that across the studied state of the art latent world models, none solves the task by actually faithfully modeling the dynamics of the environment.",
+      "summary": "论文提出用等变性条件衡量世界模型是否真正学到环境的预测动态，并发现现有先进模型都没能忠实建模环境动态，这可用于开发更可靠的世界模型评估工具。"
+    },
+    {
+      "arxiv_id": "2610.37585v1",
+      "title": "Timestral",
+      "title_zh": "Timestral",
+      "categories": [
+        "cs.AI"
+      ],
+      "authors": [
+        "Adrien Petralia",
+        "Alexandre Gavaudan",
+        "Artjom Joosen",
+        "Etienne Goffinet",
+        "Richard Kurle",
+        "Yassine El Ouahidi",
+        "Yassir Bendou",
+        "Abdelaziz Bounhar",
+        "Abhijeet Somani",
+        "Aditi Kabra",
+        "Adrian Valente",
+        "Adrien Sadé"
+      ],
+      "published": "2026-10-27T17:25:43Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37585v1",
+      "abstract": "We introduce Timestral, a family of four time series foundation models for probabilistic forecasting, with 5M, 28M, 123M, and 209M parameters. Timestral sets a new state of the art on GIFT-Eval, TIME, and fev-bench, where Timestral-209M and Timestral-123M take the top two places on every metric. We achieve this with three ingredients: Decoupled Horizon Forecasting (DHF), which separates prediction tokens from the causally encoded context, so that longer horizons are trained without masking context and each observed value is both a forecast target and context for later forecasts; a covariate framework that natively supports known-future covariates within a causal architecture; and a two-stage pipeline that pretrains exclusively on a diverse, large-scale synthetic corpus before post-training on a mix of real and synthetic data with extended context. This report describes the model design and its benchmark results. Weights for all four models are available on Hugging Face and inference code on GitHub.",
+      "summary": "提出四个规模的时间序列基础模型，能对多变量序列做概率预测，可用来开发更准的销量、流量等未来走势预测应用。"
+    },
+    {
+      "arxiv_id": "2610.37584v1",
+      "title": "REGER: Modeling inter-item Relations with Semantic IDs for Generative Recommendation",
+      "title_zh": "REGER：利用语义ID建模物品间关系以用于生成式推荐",
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "authors": [
+        "Yuxi Huang",
+        "Silin Zhou",
+        "Chenhao Wang",
+        "Zihan Li",
+        "Gangming Guo",
+        "Pei Ke",
+        "Shen Gao",
+        "Shuo Shang"
+      ],
+      "published": "2026-10-27T17:25:12Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37584v1",
+      "abstract": "Personalized recommendation depends on learning semantic and collaborative relations among items from online content and user interactions. Generative recommendation (GR) offers a promising paradigm by autoregressively generating discrete semantic IDs (SIDs) of items. However, randomly initialized SID token embeddings and GR models trained from scratch do not directly inherit the semantic relations inherent in items, while inter-item collaborative relations are learned largely implicitly through token-level attention and next-token supervision. To address this limitation, we propose REGER, a unified framework that explicitly incorporates inter-item relations into semantic pretraining, history encoding, and SID generation. We pretrain the GR model through generative semantic retrieval, enabling it to inherit inter-item semantic similarity by learning to generate semantic neighbors' SIDs. We combine global attention with local attention aligned with SID boundaries to capture historical context and directed transitions between adjacent items. We further develop a theoretical framework for hierarchical preference decomposition over the SID prefix tree, proving an exact factorization of collaborative preference distributions and a weighted decomposition of item-level KL divergence into prefix-conditional KL divergences. Building on this analysis, we distill a discriminative teacher's full conditional distributions over all legal next tokens at ground-truth prefixes along the target SID path, jointly optimizing this objective with cross-entropy. Extensive experiments on real-world datasets demonstrate consistent improvements over existing GR baselines and support the effectiveness of the proposed preference distillation.",
+      "summary": "提出REGER框架，把物品间语义和协同关系显式融入生成式推荐，让模型更懂物品关联，可用于开发更精准的个性化推荐系统。"
+    },
+    {
+      "arxiv_id": "2610.37583v1",
+      "title": "Zero-Shot Multimodal Event Spotting in Soccer Broadcasts",
+      "title_zh": "足球转播中的零样本多模态事件识别",
+      "categories": [
+        "cs.CV",
+        "cs.LG",
+        "cs.MM"
+      ],
+      "authors": [
+        "Sadia Kamal",
+        "Mahmudul Hasan",
+        "Tony Braskich"
+      ],
+      "published": "2026-10-27T17:24:35Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37583v1",
+      "abstract": "Automatic soccer event spotting supports highlight generation, video indexing, and sports analytics, but existing methods depend on large annotated datasets and soccer-specific training. We present a zero-shot framework that detects, classifies, and temporally localizes events in full-length soccer broadcasts without task-specific parameter training. Each match is segmented into overlapping clips represented by a compact visual storyboard and the aligned commentary transcript, which a general-purpose multimodal model processes jointly. On three manually annotated matches containing 130 events, the best configuration achieves 72.0% F1@5s and outperforms SoccerNet-trained CALF and NetVLAD++ in a cross-dataset setting, while the storyboard representation reduces inference cost by 72% compared with individual frames. We further analyze the effects of model family, input representation, and prompt optimization, and introduce an evidence-grounded excitement-scoring stage that ranks detected events with natural-language explanations for highlight selection.",
+      "summary": "提出一种无需专门训练即可在整场足球转播中检测、分类并定位事件的方法，可用于自动生成集锦、视频索引和赛事分析。"
+    },
+    {
+      "arxiv_id": "2610.37582v1",
+      "title": "EgoThumb: A Vision-Driven Supernumerary Robotic Thumb for Autonomous Grasp and Holding Assistance",
+      "title_zh": "EgoThumb：视觉驱动的用于自主抓取与持握辅助的额外机器人拇指",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Jianyu Hou",
+        "Jiawei Fu",
+        "Weikang Wan",
+        "Minghui Jiang",
+        "Jiajun Li",
+        "Hao Su"
+      ],
+      "published": "2026-10-27T17:22:25Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37582v1",
+      "abstract": "Supernumerary robotic fingers augment human dexterity by enabling a single hand to perform complex \"hold-and-manipulate\" tasks that typically require bimanual coordination. However, existing devices are often hindered by bulky hardware that limits interaction to large objects and rely on explicit hand motion triggers that lack environmental context. To address these challenges, we present EgoThumb, a fully open-source, vision-driven supernumerary robotic thumb. EgoThumb features a compact, dual tendon-driven finger whose actuation is relocated to the forearm, reducing distal weight while enabling precise active joint control. The system utilizes a visual imitation learning policy that maps egocentric images from a palm-facing camera directly to continuous joint positions. By implicitly decoding human intent from visual cues capturing both the hand and the object of interest, EgoThumb achieves robust autonomous manipulation and strong generalization across diverse users and environments. All hardware designs and software implementations are fully open-sourced at https://ego-thumb.github.io.",
+      "summary": "针对现有额外机械指笨重且依赖手动触发的问题，提出一种开源视觉驱动机器人拇指，能自主抓取和持握物体，可用于单手辅助操作应用。"
+    },
+    {
+      "arxiv_id": "2610.37580v1",
+      "title": "Spectral Braids: A Topological Descriptor for Dynamic Directed Networks",
+      "title_zh": "谱辫：动态有向网络的拓扑描述符",
+      "categories": [
+        "cs.SI",
+        "cs.LG"
+      ],
+      "authors": [
+        "Mehmet Emin Aktas",
+        "Esra Akbas"
+      ],
+      "published": "2026-10-27T17:21:19Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37580v1",
+      "abstract": "Eigenvalues are a workhorse of graph machine learning: spectral clustering, spectral graph neural networks, and graph kernels all summarize a network by the eigenvalues of a matrix. These eigenvalues are almost always treated as a static list of numbers. When a graph changes, however, its eigenvalues move, and when the matrix is not symmetric, they move in the complex plane, where they can wind around each other. The pattern of this winding is a braid, a classical object from topology. We propose spectral braids, a methodology for dynamic directed networks: each snapshot is aggregated into a community-level transition matrix, its complex eigenvalues are tracked over time, and the braid they trace is read off as a word. The word is then mapped to a matrix by the Burau representation, which gives a fixed-size feature vector for any classifier. The braid has a concrete meaning: each eigenvalue describes how a group of communities behaves, and each crossing records one group overtaking another. We evaluate the method on dynamic network classification, using synthetic networks of online communities whose labels describe how the network evolved between the same starting and ending states. Our experimental results show that the proposed features reach 97.1% accuracy on four classes, against 44.5% for the best feature set that does not track eigenvalues, and that the Burau features also separate networks containing the same events in a different order, which simple counts of crossings cannot do. To the best of our knowledge, this is the first study that defines braids and braid monodromy on graph data and uses them as features for learning on dynamic networks.",
+      "summary": "把动态有向网络随时间的特征值变化轨迹记录成拓扑辫，再转成固定长度特征向量，可用于高精度分类网络演化过程。"
+    },
+    {
+      "arxiv_id": "2610.37579v1",
+      "title": "As the Story Unfolds: Watching a Film and Identifying Characters as a Human Does",
+      "title_zh": "随着故事展开：像人一样观看电影并识别角色",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Zhongrui Gui",
+        "Junyu Xie",
+        "Tengda Han",
+        "Weidi Xie",
+        "Andrew Zisserman"
+      ],
+      "published": "2026-10-27T17:20:44Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37579v1",
+      "abstract": "Films introduce characters incrementally as they progress. We study the problem of identifying principal characters and assigning their names directly from the movie itself, without using external cast lists, actor photographs, or pre-built character banks. We introduce the character naming task: given a name mentioned in dialogue and the associated video context, the model must determine which visible character bears that name. This task is challenging because name resolution often depends on cinematic cues such as shot-reverse-shot structure, self-introduction, direct address, third-party reference, gaze, and temporal continuity. We provide a dataset and annotations for evaluating character naming and first character appearances, develop a video-and-dialogue model for the task, and compare it with proprietary multimodal large language models. We further introduce a progressive framework for building a character bank as the film unfolds. Together, these contributions support online, human-like movie understanding in which character identities are inferred from the film itself.",
+      "summary": "让模型仅凭电影画面和对白就边看边认出角色并叫出名字，可用来开发能自动理解剧情和人物关系的观影应用。"
+    },
+    {
+      "arxiv_id": "2610.37576v1",
+      "title": "The Noise Plane: A Diffusion Bridge Across Exponent and Dispersion",
+      "title_zh": "噪声平面：跨越指数与离散度的扩散桥",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Xuran Hu",
+        "Yuru Jia",
+        "Tengxi Wang",
+        "Miloš Daković",
+        "Ljubiša Stanković",
+        "Wufan Zhao"
+      ],
+      "published": "2026-10-27T17:19:45Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37576v1",
+      "abstract": "Diffusion-based denoising commonly uses Gaussian perturbations, whereas sensor noise follows diverse signal-dependent statistical laws. In this paper, we propose $p$-Bridge, a unified measurement-indexed diffusion framework for Tweedie noise. The noise exponent $p$ describes the variance--intensity relation, while accumulated measurement $ν$ controls the noise level. Together, they define a noise plane that includes Gaussian, Poisson, and Gamma models. The stochastic bridge connects measurement distributions through independent increments, giving denoising a physical interpretation as progressive measurement accumulation. Both the starting and stopping indices can be specified, allowing restoration from an observed measurement level to a prescribed higher level. Measurement superposition yields a shared reverse-mean update, paired with a deviance-based objective for learning the required conditional mean. A latent compound Poisson--Gamma construction enables sampling at intermediate exponents. A single exponent-conditioned network adapts to different Tweedie noise models without separate training for each exponent. Experiments show that exponent conditioning improves cross-exponent robustness over fixed-exponent models. Using estimated exponents, the shared network achieves robustness comparable to an oracle-selected set of five specialist models. Experiments on synthetic images, FMD fluorescence microscopy, and multi-sensor SAR images further demonstrate its effectiveness across different signal-dependent noise regimes.",
+      "summary": "提出一种统一处理多种传感器噪声的扩散去噪框架，能用一个网络适应不同噪声类型，可用于显微镜和雷达图像等真实场景的降噪。"
+    },
+    {
+      "arxiv_id": "2610.37571v1",
+      "title": "TeamGym: A Gym for Team Decision-Making by AI Agents with Distributed Information",
+      "title_zh": "TeamGym：面向分布式信息AI智能体团队决策的训练场",
+      "categories": [
+        "cs.AI"
+      ],
+      "authors": [
+        "Chanwoo Park",
+        "Jaywoong Jeong",
+        "Zachary Wojtowicz",
+        "Yubin Kim",
+        "Taekyun Lee",
+        "Kaiqing Zhang",
+        "Asuman Ozdaglar"
+      ],
+      "published": "2026-10-27T17:15:54Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37571v1",
+      "abstract": "Many real-world decisions require teams to integrate information distributed across participants. Yet AI agents are still primarily trained and benchmarked in isolation. We introduce TeamGym, an environment for evaluating and training language model-based agents on team decision-making problems constructed from real-world legal, finance, medical, and software engineering corpora. TeamGym introduces a method to identify a minimal set of facts, each element of which is necessary and all of which are collectively sufficient for a correct final decision, which we call pivotal information. This enables TeamGym to both control the distribution of pivotal information and track how well agents identify and integrate pivotal information when making team decisions. Examining 8 language models on 12 source corpora, we find that current AI agents often fail to effectively share information: Distributing pivotal information across participants lowers success rate by 22.9 percentage points on average relative to giving the same information to a single model (a communication gap). We also document that participants do not effectively retrieve decision-relevant information on their own: A team's success rate is lowered by a further 19.9 points when participants must identify and extract pivotal information from source material rather than receiving it directly (a retrieval gap). To help remedy these deficits, we use TeamGym to train policies through reinforcement learning on team decision loss. Across two policy-training experiments, we find that training improves final-decision quality and induces emergent coordination in participation, speaker selection, and communication, even though the reward evaluates only the final decision.",
+      "summary": "论文提出TeamGym训练场，用于评估和训练AI智能体团队整合分散信息做决策，可用来开发更会协作沟通的团队决策应用。"
+    },
+    {
+      "arxiv_id": "2610.37570v1",
+      "title": "LCM-Promo: An LLM-Based Uplift Model for Promotion Allocation",
+      "title_zh": "LCM-Promo：基于大语言模型的促销分配增益模型",
+      "categories": [
+        "cs.LG",
+        "cs.IR"
+      ],
+      "authors": [
+        "Nesta Midavaine",
+        "Floris Fok",
+        "Paulo Mendes",
+        "Joao Silva",
+        "Önder Akaçık",
+        "Dimas Lima",
+        "Zülküf Genç"
+      ],
+      "published": "2026-10-27T17:15:15Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37570v1",
+      "abstract": "We present LCM-Promo, an LLM-based uplift model for promotion allocation. LCM-Promo is a task-specific Large Commerce Model (LCM): a finetuned LLM trained on transactional commerce data to predict user intent and promotion response. It learns monotonic promotion-response curves from production logs by interpreting single-token outputs as conversion-threshold probabilities, while conditioning on session context such as day and delivery shift. In a production A/B test on churn reactivation, LCM-Promo increased conversion by 1% and reduced promotion cost by 6% relative to the Segment-EMA production baseline.",
+      "summary": "提出一种基于大语言模型的促销分配增益模型，能预测用户对促销的响应，用于精准发放优惠、提升转化并降低成本。"
+    },
+    {
+      "arxiv_id": "2610.37567v1",
+      "title": "Gym-Anything-RT: Scaling Real-Time Environments for Vision-Language Agents",
+      "title_zh": "Gym-Anything-RT：面向视觉语言智能体的实时环境扩展",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "authors": [
+        "Pranjal Aggarwal",
+        "Sean Welleck"
+      ],
+      "published": "2026-10-27T17:13:05Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37567v1",
+      "abstract": "AI agents have made substantial progress in domains where they have a non-trivial amount of time to deliberate between actions, such as mathematics, software engineering, and performing tasks on desktop applications. It is less clear how such models fare in settings that demand real-time interaction, such as playing a video game or operating a physical device. In these settings, the environment state may evolve as the agent is reasoning, or even as the underlying model is performing a forward pass. To gain insight into the real-time interaction capabilities of vision-language agents, we introduce Gym-Anything-RT. Our key idea is to construct visual minigames that demand a portfolio of capabilities required for interactive real-time settings. Gym-Anything-RT uses an agentic pipeline to automatically generate such environments based on a taxonomy of six capabilities required for real-time interaction, including the ability to perceive the environment and act under an evolving environment state. A key feature of Gym-Anything-RT is that it allows for controlled comparison of real-time interaction capabilities: we can run the same minigame in real time, or pause or slow down the environment to relax the requirement for real-time actions. We use Gym-Anything-RT to construct 100 real-time minigames and evaluate AI agents on them. We find large capability gaps in real-time interaction. For example, GPT-6 Astra (xHigh) achieves a pass rate of only 9.0% on the real-time minigames, which rises to 75.0% when the environment is paused. We also identify intriguing behaviors by the most powerful frontier agents: for instance, when given the ability to write code, these agents write code that bypasses the need to perceive and act in real time. We publicly release Gym-Anything-RT and th",
+      "summary": "论文构建了可实时或暂停运行的视觉小游戏测试环境，用来评估视觉语言智能体在环境持续变化下的实时交互能力，可用于开发游戏操作或实体设备控制类智能体应用。"
+    },
+    {
+      "arxiv_id": "2610.37566v1",
+      "title": "ReferStream: Interactive Subject Injection for Streaming Video Generation",
+      "title_zh": "ReferStream：面向流式视频生成的交互式主体注入",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Shuolin Xu",
+        "Guanyuan Li",
+        "Boyu Li",
+        "Kelu Yao",
+        "Xiaogang Xu",
+        "Hongchuan Yu",
+        "Shuicheng Yan",
+        "Xiaobin Hu"
+      ],
+      "published": "2026-10-27T17:12:42Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37566v1",
+      "abstract": "Injecting new subjects naturally during streaming video generation requires integrating newly supplied visual references into the existing video while preserving established subjects and the scene. Encoding references independently of the current scene provides little guidance for this integration, while keeping their features in persistent memory can interfere with established context. We propose ReferStream, a framework that requires no additional training and combines reference construction using the current scene with transient cache injection. Joint Latent places reference latents in target regions of the latest scene latent, allowing reference features to be extracted in context. Cache Restoration uses these features to condition the injection chunk, then restores the overwritten global cache entries while retaining the newly generated history. This procedure incorporates new visual conditions without retraining the generator or revising emitted frames. We further introduce ReferStream Bench, a new benchmark with scheduled reference arrivals, evolving instructions, and explicit annotations of subject presence for InShot and MultiShot generation. Evaluation follows the event schedule and measures both the fidelity of new subjects and the preservation of established subjects, alongside video quality, text adherence, and count accuracy. Experiments on ReferStream Bench show higher scores for text adherence, subject similarity, and count accuracy than the compared baselines, including offline methods given all references in advance. Project page: https://xushuolin.github.io/ReferStream/.",
+      "summary": "提出一种无需额外训练的方法，能在视频生成过程中自然加入新主体，同时保持原有主体和场景不变，可用于开发交互式流式视频生成应用。"
+    },
+    {
+      "arxiv_id": "2610.37563v1",
+      "title": "Pneuma: A Large-Scale Real-World Time Series Benchmark for Commercial Aircraft Predictive Maintenance",
+      "title_zh": "Pneuma：面向商用飞机预测性维护的大规模真实世界时间序列基准",
+      "categories": [
+        "cs.LG"
+      ],
+      "authors": [
+        "Jiafeng Lin",
+        "Yutian Zhang",
+        "Huan Zhang",
+        "Yuxuan Wang",
+        "Jinyan Feng",
+        "Yuhui Liu",
+        "Zhongyi Pei",
+        "Jianmin Wang"
+      ],
+      "published": "2026-10-27T17:09:19Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37563v1",
+      "abstract": "Predictive maintenance is vital for commercial aviation, yet progress remains hindered by the lack of public, large-scale real-world datasets. As a result, most methods are developed and evaluated on proprietary data, limiting reproducibility. We introduce Pneuma, the first publicly available large-scale benchmark for predictive maintenance using onboard time series from in-service commercial aircraft. Built around bleed air systems, Pneuma contains over 920 million multivariate time steps across four aircraft types and 9 verified fault scenarios, directly aligned with real maintenance logs. The dataset exhibits key real-world challenges, including substantial class imbalance, subtle fault evolution patterns, and significant variance across aircraft configurations. We structure the benchmark around three tasks: multivariate forecasting, supervised fault classification, and unsupervised anomaly detection, with labels derived from actual maintenance records. Under unified settings, we evaluate over 25 models from four methodological families on 9 carefully curated subsets. The results reveal that even strong contemporary models struggle with subtle fault signatures. Further analyses show consistent gains from additional in-context examples and multivariate inference, while forecasting quality is strongly associated with anomaly detection performance. Together, these findings provide practical insights into effectively modeling complex real-world aviation time series. We hope Pneuma will serve as a rigorous and reproducible foundation for advancing data-driven predictive maintenance toward real-world deployment in commercial aviation.",
+      "summary": "论文发布了首个基于在役商用飞机机载时间序列的公开大规模预测性维护基准，可用来开发更贴近真实部署的飞机故障预测与异常检测应用。"
+    },
+    {
+      "arxiv_id": "2610.37561v1",
+      "title": "When uncertainty quantification fails: structural vulnerabilities and corrections for selective prediction under clinical class imbalance",
+      "title_zh": "当不确定性量化失效：临床类别不平衡下选择性预测的结构性脆弱性与修正方法",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "authors": [
+        "Walter Endrizzi",
+        "Flavio Ragni",
+        "Raffaele Marchesi",
+        "Stefano Bovo",
+        "Monica Moroni",
+        "Giuseppe Jurman",
+        "Venet Osmani"
+      ],
+      "published": "2026-10-27T17:08:31Z",
+      "pdf_url": "https://arxiv.org/abs/2610.37561v1",
+      "abstract": "Background. Selective prediction systems improve the safety of clinical artificial intelligence by deferring ambiguous cases to human experts while automating high-confidence decisions. However, this safety mechanism relies entirely on the premise that uncertainty scores accurately reflect clinical ambiguity. In prognostic tasks characterized by severe class imbalance, where the clinical outcome of interest is a minority, this assumption breaks down. Standard uncertainty measures cease to capture clinically aligned ambiguity; instead, they become a proxy for class membership, systematically penalizing minority patients regardless of their individual predictive clarity. Results. Across 56 synthetic conditions and three neurodegenerative cohorts spanning severe class imbalance to near-balanced conditions (multiple sclerosis, Parkinson's Disease, Alzheimer's Disease), our framework consistently maintained bounded, balanced risk across trajectories. In contrast, global metrics either collapsed minority Sensitivity or protected the minority at the expense of majority patients. Applying CCR with standard entropy fails to protect the minority because it breaks within-class monotonicity when tau=0.5. Combining CCR with threshold-aware metrics restores strict monotonicity, correctly identifies ambiguous patients, and safely mitigates minority exclusion. Conclusions. Under clinical class imbalance, standard uncertainty quantification measures dataset sparsity rather than clinical ambiguity, creating a systemic illusion of safety. This bias is a correctable structural flaw. Clinical pipelines deploying selective prediction under imbalance should adopt threshold-aligned uncertainty measures and class-stratified evaluation. This reduces class-specific risk imbalance, supporting safe",
+      "summary": "论文揭示了临床类别不平衡时不确定性评分会误把少数类患者当作模糊病例而系统性排除，并提出阈值对齐的修正方法，可用于开发更公平安全的选择性预测临床AI系统。"
+    }
+  ]
+}
