@@ -1,0 +1,752 @@
+{
+  "date": "2026-11-02",
+  "generated_at": "2026-11-02T11:06:15+08:00",
+  "schema_version": 1,
+  "total": 40,
+  "papers": [
+    {
+      "arxiv_id": "2610.41790v1",
+      "title": "Different Models, Shared Failures: Auditing Frozen-Encoder Pools for Medical Segmentation",
+      "title_zh": "不同模型，共同失败：面向医学分割的冻结编码器池审计",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "authors": [
+        "Eunseob Choi",
+        "Kyeonghun Kim",
+        "Hyuk-Jae Lee",
+        "Nam-Joon Kim"
+      ],
+      "published": "2026-10-30T14:21:52Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41790v1",
+      "abstract": "Average segmentation accuracy and model count do not reveal whether models fail on the same cases. We present CoFailMed, an audit of correlated failures in pretrained-encoder pools for medical segmentation. Across five 2D tasks, we evaluate 11 public pretrained encoders (a controlled sample, not a census) using frozen features and separately trained $1\\times 1$ readouts with four seeds per encoder. Shared-checkpoint pairs have the highest mean per-case Dice correlation. An expanded 17-encoder analysis shows that distinct checkpoints within the same encoder family remain more correlated than cross-family pairs. At the pooled 33rd-percentile Dice threshold, four-member pools drawn from distinct encoders have mean effective sizes of 1.56-2.92, estimated from failure correlations in pools with enough failures and passes per member. In the primary pool, richer readouts and fine-tuning narrow the Dice-correlation gap between pairs sharing a checkpoint (or the DINOv2-B/S release) and all other pairs. Yet dependence between different encoders can increase, and fine-tuning does not consistently increase effective pool size at 33rd-percentile thresholds recomputed for each training recipe. A smaller between-group gap can coexist with greater dependence. Pool evaluation should therefore report absolute dependence and threshold-specific effective size alongside accuracy and nominal pool size. The CoFailMed release provides aligned per-case traces, analysis scripts and study code to reproduce the central audit results.",
+      "summary": "论文审计了多个预训练医学分割编码器是否会在相同病例上一起出错，并给出可用来开发更可靠模型池评估工具的方法。"
+    },
+    {
+      "arxiv_id": "2610.41789v1",
+      "title": "Hard Sample-Conditioned Decorrelated Attention for Robust Face Recognition",
+      "title_zh": "难样本条件化解耦注意力用于鲁棒人脸识别",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Tahar Chettaoui",
+        "Guray Ozgur",
+        "Eduarda Caldeira",
+        "Naser Damer",
+        "Fadi Boutros"
+      ],
+      "published": "2026-10-30T14:21:43Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41789v1",
+      "abstract": "Multi-head attention in Vision Transformers (ViTs) allows independent attention patterns across heads, but without explicit regularization, heads may learn redundant patterns rather than complementary roles. Correlation-based penalties encourage head disentanglement, yet apply uniform regularization across all training samples. In face recognition (FR), hard samples whose embeddings lie close to competing identities are critical for optimization and generalization. Motivated by this, we propose ViT-HarDis, which conditions attention head disentanglement on sample difficulty: samples with high cosine similarity to negative class centers receive stronger head decorrelation, enforcing specialization where identity ambiguity is highest. Experiments show improvements over both the baseline and uniform disentanglement on most benchmarks. Our analysis shows that ViT-HarDis reduces the similarity of hard samples to competing class centers while decreasing inter-head attention similarity, and that applying disentanglement only to the final transformer layers outperforms regularizing the entire network. Trained on WebFace4M, ViT-HarDis achieves SOTA results among ViT-based methods on IJB-B, IJB-C, and TinyFace Rank-1, while achieving the best IJB-B and TinyFace results when trained on MS1MV3, improving FR without architectural modifications or additional inference cost. Code: https://github.com/TaharChettaoui/Hard-Sample-Conditioned-Attention-for-FR.",
+      "summary": "提出一种按样本难度调节注意力头解耦的方法，让难样本人脸获得更强区分力，可用于开发更准更稳的人脸识别系统。"
+    },
+    {
+      "arxiv_id": "2610.41772v1",
+      "title": "WorkIng: A Real-World and Synthetic Highway Work-Zone Benchmark Dataset for Autonomous Navigation",
+      "title_zh": "WorkIng：面向自动驾驶的高速公路施工区真实世界与合成基准数据集",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Xujun Xie",
+        "Dominik Rößle",
+        "Adithya Mohan",
+        "Daniel Cremers",
+        "Torsten Schön"
+      ],
+      "published": "2026-10-30T14:11:34Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41772v1",
+      "abstract": "Highway work zones are critical edge cases for autonomous vehicles (AVs), combining atypical geometries and jurisdiction-specific regulations that existing benchmarks fail to capture: real-world datasets lack 360° multi-modal, full-scene 3D work zone annotation, and no single recorded site can span the layouts and regulatory variants needed for generalizable models. We present WorkIng, a dual-domain benchmark and training resource. WorkIng-Highway provides a 360° multi-modal work zone benchmark with synchronized 128-channel LiDAR, six RGB cameras, and RTK-GPS across 32 km, yielding 12,000+ annotated frames and 227,399 tracked 3D bounding boxes. WorkIng-CARLA complements this with procedural simulation spanning 24 regulation-aware scenarios across six canonical topologies and six international traffic standards, populated by 100+ custom 3D assets. Benchmarking representative 3D detection and end-to-end planning architectures shows that real-world data remains the primary performance driver, and that scenario-stratified synthetic augmentation improves architectures across 2D recognition, 3D detection, and trajectory planning. Resources: https://github.com/cvims/WorkIng",
+      "summary": "构建了真实与仿真结合的高速公路施工区数据集，用于训练和评测自动驾驶车辆在特殊路况下的感知与规划能力。"
+    },
+    {
+      "arxiv_id": "2610.41768v1",
+      "title": "Visual-Inertial RGB-D SLAM with Encoders for a Differential Wheeled Robot",
+      "title_zh": "面向差速轮式机器人的带编码器视觉惯性RGB-D SLAM",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Zhanghao Zhu",
+        "Yutaka Kaizu",
+        "Kenichi Furuhashi",
+        "Kenji Imou"
+      ],
+      "published": "2026-10-30T14:09:58Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41768v1",
+      "abstract": "Recent years have seen multiple impressive results in visual-inertial odometry (VIO) techniques, by which accurate state estimation can be achieved via the extended Kalman filter (EKF) or nonlinear optimization. However, these approaches are rarely open source, and they tend to fail in real experiments due to the temporary lack of feature points and fast motion. Therefore, in this study, we used encoders to overcome the temporary failure of purely vision-based simultaneous localization and mapping (SLAM). Here, we propose a generative measurement model for encoders and derive an expression for the maximum a posteriori (MAP) estimate and necessary Jacobians for optimization. We use our theory to present a novel tightly coupled visual-inertial encoder RGB-Depth (RGB-D) SLAM system. Tests on our system on an in-house dataset confirmed that our modeling effort led to accurate (with a root mean squared error (RMSE) of approximately 2-7 cm) and robust state estimation in real time. The source code and our dataset containing the encoder information have been published for verification.",
+      "summary": "提出一种融合编码器的视觉惯性RGB-D SLAM方法，解决纯视觉在特征缺失和快速运动时易失效的问题，可开发实时鲁棒的机器人定位导航应用。"
+    },
+    {
+      "arxiv_id": "2610.41763v1",
+      "title": "Measuring What Matters: A Causal Reliance Score for Histopathology Image Segmentation",
+      "title_zh": "衡量真正重要的东西：面向组织病理图像分割的因果依赖评分",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Samuel Thomas",
+        "Daniel Tweneboah Anyimadu",
+        "Ahmed Karam Eldaly",
+        "Somaia Elsheikh",
+        "Mohammed M. Abdelsamea"
+      ],
+      "published": "2026-10-30T14:05:19Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41763v1",
+      "abstract": "Reliable histopathology segmentation requires models that rely on pathology-relevant structures rather than spurious background correlations. In this work, we argue that improving architectures alone is insufficient if models continue to rely on spurious correlations rather than pathology-relevant features. We introduce a causality-inspired evaluation framework based on controlled interventions that explicitly probes model sensitivity to foreground tissue structure and background/domain variation. Building on this, we propose the Causal Reliance Score (CRS), a metric that quantifies the relative sensitivity of model predictions to foreground perturbation versus background/domain variation under controlled interventions. To support this analysis, we design augmentation strategies that act as implicit counterfactual interventions during training, encouraging invariance to nuisance factors while preserving morphology. We demonstrate how these interventions reveal behavioural differences between models that are not captured by standard metrics such as Dice or IoU. While we instantiate our framework using a self-supervised transformer (CAUSE-ViT), the primary contribution of this work is not a new architecture, but a principled intervention-based methodology and evaluation metric for auditing model behaviour in medical image segmentation. Our results suggest that evaluating model behaviour through counterfactual interventions is essential for developing reliable and clinically robust medical image segmentation systems.",
+      "summary": "提出一种基于干预的评估方法和因果依赖评分，用来检测病理图像分割模型是否依赖虚假背景而非真实组织，可帮助开发更可靠的临床分割系统。"
+    },
+    {
+      "arxiv_id": "2610.41752v1",
+      "title": "Higher-Order Kinematic Derivatives for Aspect-Preserving Real-Time Numerical Inverse Kinematics",
+      "title_zh": "面向保态实时数值逆运动学的高阶运动学导数方法",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Steffan Lloyd"
+      ],
+      "published": "2026-10-30T13:55:16Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41752v1",
+      "abstract": "This paper leverages the higher-order kinematic derivatives of serial robots to achieve efficient, aspect-preserving real-time inverse kinematics. First, a family of higher-order solvers is derived, with a necessary orientation-error correction map, yielding the QuIK4 and QuIK5 methods with fourth- and fifth-order convergence. Second, an aspect-preserving step limiter extrapolates the Jacobian determinant along the step to predict and avoid singularities, shortening steps only when they head toward a singularity rather than when the current iterate is ill-conditioned. Third, a Hermite-interpolation certifier verifies the aspect of each answer, and a certified restart algorithm recovers failures from proven same-aspect seeds. The proposed methods are shown to outperform prior methods, reducing failures by up to four orders of magnitude and nearly eliminating aspect switching at tracking-level errors. A C++ library is released with ROS 2 integration.",
+      "summary": "论文利用高阶运动学导数实现高效且保持解形态的实时逆运动学，可开发成机器人控制库，大幅减少求解失败和解形态切换。"
+    },
+    {
+      "arxiv_id": "2610.41728v1",
+      "title": "SAR-TS-BERT: Physics-Guided Self-Supervised Pre-Training With Polarimetric Features for SAR Time-Series Crop Classification",
+      "title_zh": "SAR-TS-BERT：融合极化特征物理引导的自监督预训练SAR时间序列作物分类",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Jieqiu Wang",
+        "Yuhan Zhang",
+        "Bo Zheng",
+        "Shaoming Zhang"
+      ],
+      "published": "2026-10-30T13:37:27Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41728v1",
+      "abstract": "Multitemporal synthetic aperture radar (SAR) imagery provides continuous, cloud-free observations of crop phenology for agricultural monitoring in cloudy and rainy regions, yet high-accuracy classification typically requires extensive labeled samples. Although self-supervised pre-training mitigates label dependency in remote sensing, existing frameworks primarily target optical imagery or generic spatial SAR scenes, underutilizing temporal backscatter dynamics and polarimetric scattering mechanisms. We propose SAR-TS-BERT, a physics-guided BERT-style self-supervised pre-training framework for SAR time-series crop classification. SAR-TS-BERT integrates backscatter intensities and polarimetric ratio features (VV, VH, and VV/VH) with dual-polarimetric Cloude-Pottier decomposition parameters ($H/α/A$) into a six-band input representation through two core designs: 1) a physics-guided span masking strategy (SpanPhysics) that adaptively selects contiguous masked spans based on temporal backscatter change rates to prioritize key phenological transitions; and 2) a dual-branch cross-modal fusion encoder that models backscatter and polarimetric decomposition features through separate Transformer branches followed by bidirectional cross-attention fusion. On independent test sets in Estonia (EuroCropsML) and the USA (California CDL), SAR-TS-BERT achieves overall accuracies (OAs) of 96.78% and 87.29%, respectively, and attains a mean monthly OA of 99.37% on Chongming Island, Shanghai. On the Estonia benchmark, pre-training improves OA and Macro F1 by 1.17 and 1.59 percentage points over training from scratch under full supervision, and by 2.58 and 5.19 percentage points using only 1% labeled data. Incorporating SAR scattering physics into temporal self-supervised pre-training effecti",
+      "summary": "提出一种融合极化散射物理特征的自监督预训练方法，减少对标注样本的依赖，可开发高精度SAR时序作物分类应用。"
+    },
+    {
+      "arxiv_id": "2610.41724v1",
+      "title": "When Architectural Spaces Start to Act",
+      "title_zh": "当建筑空间开始行动",
+      "categories": [
+        "cs.RO",
+        "cs.HC"
+      ],
+      "authors": [
+        "Alex Binh Vinh Duc Nguyen"
+      ],
+      "published": "2026-10-30T13:34:30Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41724v1",
+      "abstract": "Architectural spaces are increasingly gaining robotic capabilities. Architectural robots such as robotic partitions, ceilings, furniture, facades, and other spatial components can autonomously move and reconfigure in response to occupants' needs and activities. Yet, when architectural robots start shaping the spatial conditions in which people continuously live, work, and interact, we may begin to experience the architectural space itself as robotic. What does this shift mean for how we inhabit such spaces? Drawing on our previous studies, I reflect on how architectural robots interact with people not only through their motions, but also through the spatial configurations that persist after those motions stop; how their actions may benefit some occupants while disadvantaging others; and how multiple robots may together make a whole architectural space appear to act. I argue that as computation gains the capacity to physically reconfigure our environments, interaction extends beyond the moment of computational action into the spatial conditions that people continue to inhabit. Understanding robotic architecture therefore requires us to look beyond short-term human-robot interaction and toward how people inhabit, negotiate, and maintain control over spaces that can autonomously reconfigure.",
+      "summary": "论文探讨可自主移动变形的建筑机器人如何持续改变人们所处的空间环境，为开发能按需重构、兼顾不同使用者利益的智能建筑与空间系统提供思路。"
+    },
+    {
+      "arxiv_id": "2610.41705v1",
+      "title": "Nereus: A Large-Scale Underwater Dataset for Fine-Grained Attribute Understanding and Grounded Counting Perception",
+      "title_zh": "Nereus：面向细粒度属性理解与定位计数感知的大规模水下数据集",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Jingtao Deng",
+        "Zihao Jin",
+        "Yuehe Chen",
+        "Feixiang He",
+        "Shuiwang Li",
+        "Dan Zeng"
+      ],
+      "published": "2026-10-30T13:08:23Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41705v1",
+      "abstract": "Underwater imagery records rich ecological information and supports applications such as science communication, fishery monitoring, ecological conservation, and oceanographic research. Beyond general scene understanding, these applications require models to recognize fine-grained biological traits and reason over spatially grounded evidence. However, existing underwater datasets often provide coarse category labels, generic captions, or total-count supervision, which limits their use for organism-level analysis and ecological reasoning. We introduce Nereus, a large-scale dataset for Underwater Fine-grained Perception that jointly supports Fine-Grained Object Attribute Understanding and Grounded Counting Perception. Nereus contains 88K images and 2.68M question-answer pairs, including annotations for 136K marine organism objects across 2,690 species and 1,515 genera, as well as 65K point annotations and 67K grounded counting QA pairs. Experiments with representative multimodal models show that Nereus improves downstream adaptation over existing underwater-domain data and provides a foundation for future research on fine-grained marine perception.",
+      "summary": "构建了大规模水下图像数据集，让模型能识别海洋生物精细特征并按位置计数，可用于生态监测与渔业管理应用。"
+    },
+    {
+      "arxiv_id": "2610.41702v1",
+      "title": "Flexibility-Aware Robotic Manipulation: Deformation Estimation, Kinematics, and Control via Distributed Inertial Measurement",
+      "title_zh": "柔顺感知的机器人操作：基于分布式惯性测量的形变估计、运动学与控制",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Amir Hossein Barjini",
+        "Sadeq Yaqubi",
+        "Pauli Mustalahti",
+        "Jouni Mattila"
+      ],
+      "published": "2026-10-30T13:06:54Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41702v1",
+      "abstract": "Flexible robot links challenge the rigid-body assumption, making joint measurements alone insufficient for accurate manipulation. This paper introduces a flexibility-aware manipulation framework that connects structural dynamics directly to sensing, kinematics, and control. Instead of prescribing a dense inertial measurement unit (IMU) network, the dominant vibration modes of each flexible link are first identified from response-convergence and excitation-bandwidth criteria. Under a full-rank modal observability condition, $m$ retained modes require only $m$ independent slope measurements and one reference IMU, defining the minimum observable IMU configuration. The resulting measurements are used to reconstruct the continuous link deformation, which is then incorporated into flexibility-aware forward kinematics and a deformation-informed partial differential equation-based controller. Experiments on hydraulic single- and double-link manipulators evaluate the framework. On the long-reach double-link platform, the proposed kinematics achieves end-effector root mean square errors of $0.0107$~m, $0.0194$~m, and $0.0102$~rad while using fewer sensors than the piecewise-rigid method. Closed-loop reaching experiments further demonstrate real-time integration of IMU-estimated joint states and reconstructed deformation into the proposed controller. The results show that dominant modal information can determine sensing requirements and enable real-time flexibility-aware robotic manipulation.",
+      "summary": "提出一种用少量惯性传感器估计柔性机械臂形变并实时控制的方法，可开发更精准的柔性臂机器人作业系统。"
+    },
+    {
+      "arxiv_id": "2610.41695v1",
+      "title": "Retrieval-Augmented Initialization with Dual-Guided Inversion for Flow-Based Inverse Problem Solvers",
+      "title_zh": "基于双引导反演的检索增强初始化用于基于流的逆问题求解器",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Hansam Cho",
+        "Seoung Bum Kim"
+      ],
+      "published": "2026-10-30T13:01:28Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41695v1",
+      "abstract": "Flow models have recently emerged as powerful generative priors for solving inverse problems. Despite their success, most existing flow-based inverse problem solvers initialize the reconstruction process with random Gaussian noise. However, recent studies in image generation have shown that the choice of initial noise can significantly influence generation outcomes. The role of initialization as a distinct design choice in flow-based inverse problem solving remains comparatively underexplored. In this work, we systematically evaluate noise initialization strategies while holding the downstream flow-based inverse solver fixed. We propose Retrieval-Augmented Initialization with Dual-Guided Inversion (RA-DGI), a method that constructs improved initial noise by leveraging retrieved proxy clean images and dual-guided inversion. Extensive experiments across multiple inverse problems demonstrate that the quality of the initial noise substantially affects reconstruction fidelity and perceptual performance. RA-DGI outperforms standard random initialization and achieves superior results compared to inference-time scaling strategies, while requiring less computational overhead. These findings highlight initialization as a critical yet previously overlooked factor in flow-based inverse problem solvers.",
+      "summary": "论文发现基于流的逆问题求解器初始噪声很关键，提出用检索相似清晰图像加双引导反演来构造更好初始噪声，能提升图像重建类应用的精度和观感且更省算力。"
+    },
+    {
+      "arxiv_id": "2610.41688v1",
+      "title": "When the Past Shapes Action: Understanding Embodied Memory",
+      "title_zh": "当过去塑造行动：理解具身记忆",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "authors": [
+        "Siqi Li",
+        "Ziyi Bai",
+        "Xinrun Xu",
+        "Tinglei Huang",
+        "Börje F. Karlsson"
+      ],
+      "published": "2026-10-30T12:52:37Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41688v1",
+      "abstract": "Recent advances in generative foundation models have expanded the capabilities of embodied AI, enabling increasingly general navigation, manipulation, and long-horizon task execution. However, effective interaction with dynamic environments requires more than only strong perception and reasoning: agents must act with partial knowledge and retain, retrieve, and update information from past observations, actions, and experiences. This survey examines embodied memory as a mechanism for preserving decision-relevant information beyond the current observation. We organize existing approaches along two complementary dimensions: six fundamental memory requirements, spanning world-state persistence, task progress, belief maintenance, and experiential learning; and eight architectural categories, including recurrent states, fast weights, visual and symbolic representations, spatial memory, and experience-based systems. We analyze their capabilities and limitations, and examine how existing benchmarks evaluate memory-dependent behavior, distinguishing genuine use of historical information from general task performance. Finally, we identify open challenges in selecting relevant experiences, maintaining consistent beliefs in changing environments, and consolidating knowledge across episodes. Our analysis provides a framework for understanding memory as an essential component of reliable, adaptive, and lifelong-horizon embodied intelligence.",
+      "summary": "这篇综述梳理了具身智能体如何保存和调用过去的观察与经验来弥补当前信息不足，为开发能在动态环境中长期自主导航和操作的机器人应用提供设计框架。"
+    },
+    {
+      "arxiv_id": "2610.41679v1",
+      "title": "Biomechanics do not predict perceptual and cognitive consequences of force augmentation",
+      "title_zh": "生物力学无法预测力量增强的知觉与认知后果",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Maria Molina-Sanchez",
+        "Francesco Missiroli",
+        "Viktorija Pavalkyte",
+        "Mabel Ziman",
+        "Julien Russ",
+        "Maggie Szymanska",
+        "Noham Wolpe",
+        "Rani Moran",
+        "Lorenzo Masia",
+        "Tamar R. Makin"
+      ],
+      "published": "2026-10-30T12:47:21Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41679v1",
+      "abstract": "Wearable force-augmentation technologies, including exoskeletons and soft exosuits, are being developed for occupational and rehabilitation settings to enhance performance by reducing the muscular demands of movements. Yet enhanced performance also requires users to perceive the environment accurately, adapt to changing conditions, and decide whether actions are worth their physical cost. We used an elbow-assisting exosuit to investigate the physiological, perceptual and cognitive consequences of force augmentation during lifting. We assessed weight perception, adaptation in a volatile environment, and effort-based decision-making with and without assistance. While assistance reduced muscle activity, its behavioural outcomes did not simply reflect this biomechanical change. Assistance reduced perceived weight, but this effect was strongly shaped by participants' initial experience. Assistance also selectively reduced adaptation to changing environmental contingencies. Finally, reducing the muscular demands of lifting did not translate straightforwardly into how demanding the action felt or whether participants chose to perform it: differences in effort-based decisions were shaped by initial experience rather than simply tracking reductions in muscle activity or perceived fatigue. Together, we show that the perceptual and cognitive consequences of force augmentation cannot be inferred from its biomechanical benefits alone. Effective augmentation therefore requires perceptual and cognitive outcomes to be evaluated alongside physical performance.",
+      "summary": "研究用肘部助力外骨骼测试发现，助力虽省力，却无法据此推断人的重量感知、环境适应和费力决策，开发助力设备需同时评估知觉与认知效果。"
+    },
+    {
+      "arxiv_id": "2610.41677v1",
+      "title": "OT-CAL: Optimal-Transport-Guided Adaptive Sample Selection for Efficient Visual Learning",
+      "title_zh": "OT-CAL：最优传输引导的自适应样本选择方法，用于高效视觉学习",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "authors": [
+        "Suryansh Talukdar",
+        "Jin Soung Yoo"
+      ],
+      "published": "2026-10-30T12:45:02Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41677v1",
+      "abstract": "Deep neural networks for image recognition are typically trained using mini-batches, with a forward pass to compute predictions and losses followed by a more computationally expensive backward pass to update model parameters. However, not all training samples contribute equally to learning, suggesting that computation can be reduced by performing backward passes only on informative samples. The challenge is that sample informativeness changes throughout training: difficult samples may be valuable early on, improving samples become important later, and class diversity becomes increasingly relevant toward the end. Existing methods often rely on fixed selection rules or computationally expensive per-sample gradient calculations. We propose OT-CAL, an adaptive data selection method that automatically adjusts its sampling preferences during training. OT-CAL represents each sample using five informativeness features, including difficulty, learnability, and uncertainty. A curriculum vector describes the currently preferred sample characteristics, and optimal-transport-based matching assigns selection weights according to how closely samples match this target. The curriculum vector is then updated using the selected samples, forming a feedback loop that adapts without a manually defined schedule. Experiments on three standard visual learning benchmarks show that, when selecting 50% of each mini-batch, OT-CAL improves performance by 1.3--2.1 points over AdaSelection while achieving 1.18--1.24 times faster training than full-data training.",
+      "summary": "提出一种能随训练进程自动调整选样偏好的方法，只对最有价值的样本做反向传播，既提升图像识别准确率又加快训练速度。"
+    },
+    {
+      "arxiv_id": "2610.41676v1",
+      "title": "Interaction-Aware Sampling-Based Motion Planning for Autonomous Surface Vessels in Urban Waterways",
+      "title_zh": "面向城市水道自主水面船舶的交互感知采样运动规划",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Elia Trevisan",
+        "Alejandro Gonzalez-Garcia",
+        "Jan Swevers",
+        "Javier Alonso-Mora"
+      ],
+      "published": "2026-10-30T12:44:27Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41676v1",
+      "abstract": "Autonomous surface vessels operating in urban waterways must coordinate with other vessels in confined spaces while complying with traffic regulations, often without knowing their intentions. We present a decentralized motion planner based on model predictive path integral control, a sampling-based model predictive control scheme. The planner jointly computes a trajectory for the ego vessel and a prediction of the trajectories of the other vessels, and therefore accounts for their interaction. Traffic regulations are encoded as discontinuous costs, which the sampling-based formulation admits without a smooth approximation. We evaluate the method in maps taken from real sections of Amsterdam's canals, in encounters between two vessels and in scenarios with four interacting vessels. Across 780 randomized runs the method reaches every goal without collisions or deadlocks, and outperforms an optimization-based planner designed for the same domain, as well as a version of the proposed planner that does not account for the interaction. We further validate the planner on two scaled vessel prototypes in an outdoor environment, where planning and localization run onboard at 10 Hz, and head-on and crossing encounters are resolved without collisions or rule violations.",
+      "summary": "提出一种考虑船舶间交互并遵守交通规则的规划方法，能让自主船在城市水道中安全避让、无碰撞无死锁地到达目标，可用于开发内河自主航行系统。"
+    },
+    {
+      "arxiv_id": "2610.41673v1",
+      "title": "A Self-Supervised Pose Estimation Approach for Construction Machines",
+      "title_zh": "一种面向工程机械的自监督姿态估计方法",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Alaa Alshubbak",
+        "Daniel Görges"
+      ],
+      "published": "2026-10-30T12:41:01Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41673v1",
+      "abstract": "Pose estimation is a computer vision task used to estimate a skeleton of dynamic systems to predict future movements. Most of the research in this direction is based on a supervised learning approach which requires a massive amount of labeled datasets. In this paper, a self-supervised three-stage model based on a contrastive learning approach is introduced for estimating a skeleton of dynamic construction machines; such as excavators without using any labeled images for the first stage. The whole model structure is divided into three stages: the pre-train stage using the SimCLR contrastive approach, and two fine-tuning stages for the transfer learning and the downstream task. The model can leverage the features and learn from a huge unlabeled dataset called ACID to two small datasets generated from NVIDIA Isaac and MATLAB Simscape simulators as well as transfer the knowledge to a smaller dataset with a ratio of 3.5% from the original ACID dataset. The results show that the proposed approach can improve the accuracy of pose estimation for heavy construction machines in real images by 11% and 13% in comparison to the normal self-supervised approach with two backbones ResNet-50 and HRNet-W32, respectively.",
+      "summary": "提出一种无需标注图像的自监督三阶段模型，能更准确地估计挖掘机等重型工程机械的骨架姿态，可用于开发施工机械动作预测与安全监控应用。"
+    },
+    {
+      "arxiv_id": "2610.41671v1",
+      "title": "OpenVIO: A Versatile Open-Source Visual-Inertial Odometry System",
+      "title_zh": "OpenVIO：一个多功能的开源视觉惯性里程计系统",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "authors": [
+        "Seungwon Choi"
+      ],
+      "published": "2026-10-30T12:40:10Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41671v1",
+      "abstract": "Visual-inertial odometry (VIO) is a fundamental topic in robotics research. Beyond research, VIO has been adopted in a wide range of products. In this manuscript, we present OpenVIO, an open-source VIO system for research and practical applications. It is released under the MIT license. OpenVIO supports pinhole and fisheye cameras and extends this support to stitched 360° images. We describe each part of the system together with its design considerations. We also report benchmark results with other open-source VIO systems on public datasets. OpenVIO is available as open source at https://github.com/93won/openvio.",
+      "summary": "提出开源视觉惯性里程计系统OpenVIO，支持多种相机并兼容360度图像，可用于机器人和产品定位导航应用开发。"
+    },
+    {
+      "arxiv_id": "2610.41667v1",
+      "title": "GPU-accelerated Incremental Euclidean Distance Transform for Online Motion Planning of Mobile Robots",
+      "title_zh": "面向移动机器人在线运动规划的GPU加速增量欧氏距离变换",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Yizhou Chen",
+        "Shupeng Lai",
+        "Jinqiang Cui",
+        "Biao Wang",
+        "Ben M. Chen"
+      ],
+      "published": "2026-10-30T12:35:49Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41667v1",
+      "abstract": "In this letter, we present a volumetric mapping system that effectively calculates Occupancy Grid Maps (OGMs) and Euclidean Distance Transforms (EDTs) with parallel computing. Unlike these mappers for high-precision structural reconstruction, our system incrementally constructs global EDT and outputs high-frequency local distance information for online robot motion planning. The proposed system constructs OGM with massive amount of data from multiple types of sensor inputs. Using GPU programming techniques, the system quickly computes EDT in parallel within local volume. The new observation is continuously integrated into the global EDT using the parallel wavefront algorithm while preserving the historical observations. Experiments with datasets have shown that our proposed approach outperforms existing state-of-the-art robot mapping systems and is particularly suitable for mapping unexplored areas. In its actual implementations on aerial and ground vehicles, the proposed system achieves real-time performance with limited onboard computational resources.",
+      "summary": "提出一种用GPU并行计算占用栅格地图和欧氏距离变换的建图系统，能实时输出局部距离信息，用于移动机器人在线运动规划。"
+    },
+    {
+      "arxiv_id": "2610.41663v1",
+      "title": "ResMerge: Residual Policy Learning and Merging for Continual Adaptation of Pre-trained Robot Policies",
+      "title_zh": "ResMerge：面向预训练机器人策略持续适应的残差策略学习与合并",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Kefei Zhu",
+        "Lingyun Xu",
+        "Yue Xin",
+        "Xiaoqi Li",
+        "Caixin Guo",
+        "Xincheng Du",
+        "Yuanpei Chen",
+        "Yaodong Yang",
+        "Hao Dong"
+      ],
+      "published": "2026-10-30T12:33:47Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41663v1",
+      "abstract": "Continual adaptation to new tasks is essential for robots deployed in the real world, but adapting pre-trained policies remains challenging due to parameter growth and the need for continual demonstration collection. Parameter-Efficient Continual Fine-Tuning (PECFT) isolates task-specific updates, but adapter-per-task designs require demonstrations and grow with the task set. We propose ResMerge, a two-stage framework that learns mergeable residual policies atop a frozen pre-trained policy: residual reinforcement learning (RL) acquires task-specific corrections without additional expert demonstrations during adaptation, and parameter-space merging consolidates compatible residuals to reduce stored parameters. We introduce Residual-Field Consistency (RFC), a simple, bounded, and interpretable metric that assesses compatibility in residual action-field space by comparing correction direction and magnitude. Experiments on LIBERO across two backbones and on a real-world Franka robot show improved continual learning performance over strong PECFT baselines, while selective merging reduces the residual-parameter footprint. Project website: https://resmerge.github.io/.",
+      "summary": "提出一种两阶段方法，让机器人在不额外收集专家示范的情况下学会新任务，并把兼容的任务修正合并起来减少参数占用，可用于开发能持续适应新任务的机器人控制策略。"
+    },
+    {
+      "arxiv_id": "2610.41654v1",
+      "title": "$\\nabla$Mimic: Ultra-Efficient Humanoid Control with Differentiable Simulation",
+      "title_zh": "∇Mimic：基于可微仿真的超高效人形机器人控制",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "authors": [
+        "Weyl Lu",
+        "Yubei Chen"
+      ],
+      "published": "2026-10-30T12:27:45Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41654v1",
+      "abstract": "Robot policy learning is dominated by zeroth-order methods such as PPO, which treat the simulator as a black box and pay for it with enormous sample counts. First-order policy learning differentiates through the dynamics, but on contact-rich whole-body control it has rarely worked: its gradients explode. A recent world-model method showed that derivative information can make humanoid motion tracking far more efficient, using surrogate gradients of a learned model. We show that exact gradients of the simulator itself do better, once two obstacles are removed. Exact gradients contain rare unbounded samples, because contact dynamics is not differentiable everywhere and its derivative diverges near some events; and they are expensive, because the simulator's adjoint has to replay the contact solve. $\\nabla$Mimic bounds these samples with median-relative per-sample gradient clipping at every step of the backward pass, and reuses each costly simulated window by multistep regression onto gradient-derived action targets, which bounds every action target independently of the gradient scale. NablaEngine, a differentiable GPU simulation engine for the Unitree G1, removes the cost: it computes MuJoCo's full contact dynamics with fused per-world kernels and the adjoint of a whole control step as a single megakernel, with analytic gradients that match float64 finite differences, $11.5\\times$ faster than the available MuJoCo Warp adjoint. On whole-body tracking of all 40 LAFAN1 clips with one policy on one GPU, $\\nabla$Mimic reaches the score reported by the state-of-the-art world-model method, 0.82, in 20 minutes instead of 1.2 h, and 0.874 in 1.8 h. SHAC, the standard first-order baseline, stops on exploding gradients within minutes. We release NablaEngine and $\\nabla$Mimic as open-",
+      "summary": "提出∇Mimic方法，利用可微仿真器的精确梯度实现高效人形机器人全身控制，可用于快速训练运动跟踪策略。"
+    },
+    {
+      "arxiv_id": "2610.41652v1",
+      "title": "Enhancing Medical Lesion Segmentation via Several Simple Modules",
+      "title_zh": "通过若干简单模块增强医学病灶分割",
+      "categories": [
+        "eess.IV",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "authors": [
+        "Ruichen Li",
+        "Zhao Yao"
+      ],
+      "published": "2026-10-30T12:26:57Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41652v1",
+      "abstract": "This work introduces three lightweight enhancement modules for medical lesion segmentation to improve clinical applicability, particularly under data-scarce and computationally constrained environments. Current mainstream methods struggle with the lack of high-quality annotations for rare pathologies, which often leads to severe morphological distortions during inference, despite achieving seemingly ideal DSC scores. Furthermore, the isolated development of individual segmentation tasks restricts cross-domain methodological innovation, underscoring the need for leveraging shared knowledge across different lesions within the same anatomical region. However, constrained access to historical data and annotations hinders efficient knowledge extraction and triggers catastrophic forgetting when adapting to new classes. To address these challenges, we first propose DT-Morph Combined Loss with continuous spatial pooling to optimize differentiable topological structures and boundary continuity. Second, we introduce 3D Group Prompt, which extracts domain-universal knowledge via curated volumetric image-mask alignment prompts together with text prompts built on SAT baseline. Finally, we replace conventional output layers with Many-to-One Conditional Segmentation Head equipped with synonym-resolved routing, which brings negligible computational cost and enables fast incremental learning for new categories without sacrificing performance on old tasks. Ablation studies on abdominal and extra-abdominal datasets covering both organ and lesion segmentation verify the efficacy of our modules.",
+      "summary": "提出三个轻量模块，解决医学病灶分割中标注稀缺、形态失真和增量学习遗忘问题，可用于开发低算力下的临床分割与快速新增病灶类别应用。"
+    },
+    {
+      "arxiv_id": "2610.41651v1",
+      "title": "When Depth Lies: Benchmarking Vision-Language Models on Mirror-Induced RGB-D Ambiguity",
+      "title_zh": "当深度说谎时：在镜子引发的RGB-D歧义上评测视觉语言模型",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Hao Yin",
+        "Tianchen Guo",
+        "Heming Du",
+        "Yan Ke",
+        "Yanbin Liu",
+        "Xin Yu"
+      ],
+      "published": "2026-10-30T12:25:32Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41651v1",
+      "abstract": "Vision-language models (VLMs) have made significant progress in spatial reasoning, particularly by integrating RGB images with depth data, which is often assumed to faithfully reflect physical distances. However, mirrors violate this assumption: they distort depth readings while reproducing object appearances, making reflections difficult to distinguish from real objects. As existing benchmarks rarely consider such reflective scenarios, VLM performance in mirror scenes remains largely unexplored. In this work, we introduce a mirror-centric RGB-D dataset from reflective scenes to evaluate the spatial reasoning capabilities of state-of-the-art VLMs in these scenarios. Specifically, we collect 1,011 RGB-D images from 525 real-world scenes, spanning diverse indoor and outdoor environments, six reflective surface types, and both daytime and nighttime conditions. All images are annotated with reflective surface region masks and mask annotations for both directly observed and mirror-reflected objects. Then, we curate a benchmark named MIRA-Bench (Mirror-Induced Reasoning Ambiguity Benchmark), comprising 14,140 QA pairs across eight sub-tasks organized into three cognitive levels: Reflection-aware Perception, Spatial Reasoning, and Scene-level Decision-making. We evaluate state-of-the-art VLMs on MIRA-Bench and find consistent failures across tasks: models misclassify whether objects are directly observed or reflected, fail to match reflected instances to their real-world counterparts, and produce erroneous spatial inferences. Remarkably, providing depth data actually degrades reasoning performance, implying that VLMs cannot identify incorrect depth in mirror scenes. The code and data are available at https://github.com/EvaYin-cloud/MIRA-Bench",
+      "summary": "论文构建了含镜面反射场景的RGB-D数据集与评测基准，揭示视觉语言模型分不清真实物体与镜中倒影、且深度信息反而拖累推理的问题，可用于开发更可靠的机器人导航与增强现实空间理解应用。"
+    },
+    {
+      "arxiv_id": "2610.41643v1",
+      "title": "Direct Action-Manifold Modeling for Efficient and Robust Bimanual Manipulation",
+      "title_zh": "面向高效鲁棒双臂操作的动作流形直接建模",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Hongren Wang",
+        "Mingyu You",
+        "Zihan Li",
+        "Zhipeng Wang",
+        "Shuo Jiang",
+        "Bin He"
+      ],
+      "published": "2026-10-30T12:17:46Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41643v1",
+      "abstract": "Diffusion and flow matching visuomotor policies require iterative denoising or numerical integration for multimodal action generation, introducing latency and execution mismatch. We instead consider a different formulation: conditioned on vision and proprioception, demonstrated bimanual action chunks concentrate in a structured observation-dependent region of joint-action space, making the action target more direct to model than the generative process. Based on this view, we propose the Direct Manifold Action Transformer (DMAT), which reformulates action generation as the direct modeling of clean, observation-conditioned joint-space action chunks from stochastic interpolants, thereby enabling single-step inference without relying on iterative generative inference or auxiliary trajectory-straightening procedures. Within DMAT, local 3D geometry anchors predictions to spatial structure, while State-Consistent Spectral-Time Refinement (STR) reconciles predicted chunks with proprioception and suppresses high-frequency residuals. Across 567 standard and out-of-distribution (OOD) trials per method, DMAT outperformed Improved 3D Diffusion Policy (IDP3) and DiTFlow3D in aggregate success rate, achieving relative improvements of 129.1% and 95.7%, respectively, while generating action chunks 2.06x and 1.34x faster and remaining robust under repeated 50 N interventions. These results pave the way for a novel generative paradigm for efficient and robust bimanual manipulation.",
+      "summary": "提出一种直接建模双臂动作流形的新方法，只需一步推理即可快速生成稳定动作，可用于开发高效鲁棒的双臂机器人操控应用。"
+    },
+    {
+      "arxiv_id": "2610.41642v1",
+      "title": "TADP: Dual-Branch Temporally Adaptive Differential Privacy for Expression-Aware Video Anonymization",
+      "title_zh": "TADP：面向表情感知视频匿名化的双分支时序自适应差分隐私",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Feng Xu",
+        "Xun Li",
+        "Lars Petersson",
+        "Yulei Sui",
+        "David Ahmedt-Aristizabal",
+        "Dadong Wang"
+      ],
+      "published": "2026-10-30T12:16:47Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41642v1",
+      "abstract": "We present TADP, a temporally adaptive differential privacy (DP) framework for inference-time privacy-preserving video generation under fixed-length clip-replacement adjacency. TADP uses a dual-branch design to extract identity and expression representations, clips and privatizes both branches with temporally adaptive Gaussian mechanisms whose noise scales depend only on preceding privatized releases within the same clip and are bounded below by history-uniform calibrated minima, and accounts for their joint release via adaptive Rényi Differential Privacy (RDP) composition. The clip-level RDP guarantee is converted to $(\\varepsilon,δ)$-differential privacy, while soft quantization and subsequent temporal processing are applied only after privatization as DP post-processing. Experiments on facial expression datasets show reduced identity leakage under evaluated attacks, usable perceptual quality and temporal stability, and high facial expression recognition utility relative to the evaluated privacy-preserving baselines. TADP formally satisfies clip-level DP and empirically provides a favorable privacy--utility trade-off under the evaluated threat models and datasets.",
+      "summary": "提出一种双分支时序自适应差分隐私方法，在保护视频人物身份的同时保留面部表情，可用于开发隐私安全的视频发布与表情识别应用。"
+    },
+    {
+      "arxiv_id": "2610.41629v1",
+      "title": "GRIT: Gradient Masking for Visually Misgrounded Tokens in Text-Rich Reasoning",
+      "title_zh": "GRIT：面向文本密集推理中视觉误锚定词元的梯度掩码",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "authors": [
+        "Chanseul Cho",
+        "Noori Bae",
+        "Dongheon Lee",
+        "Youngmin Ro"
+      ],
+      "published": "2026-10-30T12:05:54Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41629v1",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has recently been extended to vision-language models (VLMs), yet its effectiveness remains limited for text-rich reasoning tasks. We highlight a key factor contributing to this limitation: models frequently arrive at correct final answers despite misperceiving visual information during intermediate steps. We define this phenomenon as Correct-but-Visually-Misgrounded Reasoning (CVMR). Because standard RLVR rewards only final-answer correctness, it fails to differentiate between properly grounded and misgrounded reasoning, reinforcing both equally. Through token-level analysis, we reveal that CVMR tokens exhibit distinct attention patterns that differ systematically from well-grounded ones. Based on this observation, we propose GRIT, a training framework that incorporates visual grounding into RLVR to mitigate the impact of CVMR. Furthermore, to address the lack of text-rich reasoning benchmarks that allow for systematic evaluation across text length and reasoning depth, we introduce GRIT-Bench. Experiments demonstrate that GRIT significantly improves both reasoning accuracy and grounding fidelity over existing RLVR methods.",
+      "summary": "针对视觉语言模型在文本密集推理中答案正确却看错图的问题，提出梯度掩码训练方法，可开发更可靠的图文推理应用。"
+    },
+    {
+      "arxiv_id": "2610.41625v1",
+      "title": "RTPolicy: Real-Time (32.9 Hz) Multi-View Visuomotor Policy for Robotic Manipulation on Edge Devices",
+      "title_zh": "RTPolicy：面向边缘设备机器人操作的实时（32.9 Hz）多视角视觉运动策略",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Xianbao Hou",
+        "Zehao Ni",
+        "Yonghao He",
+        "Lingfeng Qian",
+        "Xin Shi",
+        "Hu Su",
+        "Wei Sui",
+        "Cong Yang"
+      ],
+      "published": "2026-10-30T12:01:49Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41625v1",
+      "abstract": "Low inference latency is critical for closed-loop robotic manipulation, especially under asynchronous inference, where action chunks must be updated promptly to correct accumulated deviations. However, existing visuomotor policies rely on computationally expensive visual backbones, resulting in high inference latency and deployment overhead. In this paper, we propose RTPolicy, a multi-view visuomotor policy that attains accurate manipulation with high inference efficiency. Its core design combines view-aware feature fusion with visual compression to aggregate complementary information across camera views into a compact token representation. The representation conditions a flow-matching action generator with the robot state and flow time, reducing the cost of action generation. Extensive experiments demonstrate that this design reduces the computational cost of visual representation and action generation while preserving visual information required for manipulation. On the RoboTwin~2.0 single-task clean evaluation across 50 tasks, RTPolicy attains a mean success rate of 52.26\\%, outperforming the strongest leaderboard baseline $π_0$ (46.4\\%). We further evaluate RTPolicy under asynchronous streaming inference on a real bimanual platform, where RTPolicy attains a mean success rate of 72.0\\% and sustains real-time inference at 30.35 ms (32.9 Hz) on the RDK S600 and 149.72 ms (6.7 Hz) on the RDK S100, both in INT16. Project Page: https://d-robotics-ai-lab.github.io/RTPolicy.project.",
+      "summary": "提出一种多视角视觉运动策略，通过视角感知特征融合与视觉压缩降低计算开销，让机器人在边缘设备上实现实时高精度操作。"
+    },
+    {
+      "arxiv_id": "2610.41618v1",
+      "title": "Attention Maps Know When to Think: Training-Free Difficulty-Aware Chain-of-Thought for Reasoning Segmentation",
+      "title_zh": "注意力图知道何时思考：面向推理分割的免训练难度感知思维链",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "authors": [
+        "Chanseul Cho",
+        "Jaesung Jun",
+        "Dongheon Lee",
+        "Youngmin Ro"
+      ],
+      "published": "2026-10-30T11:56:54Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41618v1",
+      "abstract": "Chain-of-Thought (CoT) prompting has become a standard reasoning strategy in Multi-modal Large Language Models (MLLMs), showing strong performance in complex vision-language tasks such as reasoning segmentation. However, our analysis reveals that indiscriminate CoT usage can lead to degraded performance by inducing unnecessary reasoning, a phenomenon we term overthinking. In reasoning segmentation, overthinking often leads to misalignment between the query's intent and visual grounding. To address this, we propose Difficulty-Aware Chain-of-Thought (DA-CoT), a training-free adaptive framework that selectively triggers CoT based on the input's intrinsic difficulty. We find that the entropy of the model's attention maps reliably reflects task difficulty: low entropy indicates confident, localized grounding, while high entropy suggests uncertainty and potential benefit from CoT. DA-CoT uses this entropy signal to determine whether to apply CoT prompting. Additionally, we introduce a Bidirectional Rethinking mechanism that enables the model to automatically flip its reasoning decision when the initial output fails, enhancing robustness by recovering from failures induced by overthinking and underthinking. DA-CoT demonstrates its effectiveness by achieving state-of-the-art performance on the Reasoning Segmentation benchmarks while significantly improving inference efficiency.",
+      "summary": "论文发现并非所有问题都该用思维链，提出用注意力图熵判断题目难易、按需触发推理，能开发更准更省算力的图像推理分割应用。"
+    },
+    {
+      "arxiv_id": "2610.41609v1",
+      "title": "VLA Policies Do Not Know When Not to Act: Unintended Task Execution and Start Suppression",
+      "title_zh": "VLA策略不知道何时不该行动：非预期任务执行与启动抑制",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "authors": [
+        "Minsu Jang",
+        "Jae-Woo Choi",
+        "Youngwoo Yoon",
+        "Dohyung Kim"
+      ],
+      "published": "2026-10-30T11:45:50Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41609v1",
+      "abstract": "A robot should act only on an instruction from a person or on an intent that the robot explicitly represents and generates. Unintended actions taken without such an instruction can cause risk or inconvenience to people and the environment. We examine how recent vision-language-action (VLA) policies respond when the instruction is missing or meaningless. We apply a paired protocol with empty, neutral, nonsense, infeasible, and wrong-task instructions to six model checkpoints in LIBERO-Goal simulation. Holding the initial state fixed and varying only the instruction, we ask three questions: whether the robot starts to move, which task it completes, and what the instruction determines. Even when the instruction was empty, the robot started moving in every episode with all six checkpoints, and with five of them it often completed a task that the instruction had not specified. On two GR00T checkpoints, the instruction determined which task was executed but not whether the robot started moving; the robot moved even on infeasible instructions. We then tested three methods for suppressing the start: prepending \"if no task is given do not move\" to the instruction; a gate that holds the robot when the first action chunk for the given instruction nearly equals that for an empty instruction; and fine-tuning the policy to hold still on non-task inputs. The prefix stopped the robot in none of the six checkpoints, and the gate held it on non-task inputs in five of the six checkpoints. The fine-tuned policy never completed a task on non-task inputs, but it did not reliably keep the robot still, and it failed to suppress the start on infeasible instructions.",
+      "summary": "研究发现视觉语言动作模型在指令缺失或无意义时仍会擅自启动并执行任务，并测试了三种抑制方法，可用于开发更安全的机器人控制系统。"
+    },
+    {
+      "arxiv_id": "2610.41602v1",
+      "title": "DrawSplat: Atlanta World-Guided Implicit Gaussian SLAM for Indoor Reconstruction",
+      "title_zh": "DrawSplat：亚特兰大世界引导的隐式高斯SLAM室内重建",
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "authors": [
+        "Fan Zhu",
+        "Zhisong Xu",
+        "Ziyu Chen",
+        "Zhenjun Zhao",
+        "Takayuki Okatani"
+      ],
+      "published": "2026-10-30T11:35:14Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41602v1",
+      "abstract": "RGB-D SLAM requires accurate online tracking, high-quality rendering, and geometrically consistent reconstruction. Existing Gaussian SLAM methods mainly optimize Gaussian primitives with photometric, depth, or local frame-to-model constraints, which are often insufficient in indoor scenes with weak textures, large planar structures, noisy depth, and long trajectories. The resulting maps may suffer from pose drift, surface thickness artifacts, noisy normals, and blurred structural boundaries. We propose DrawSplat, an Atlanta World-guided implicit Gaussian SLAM framework for indoor reconstruction. DrawSplat follows a drawing-like process: explicit point-line geometry first sketches the structural layout, and implicit neural Gaussians then fill in high-fidelity appearance and continuous geometric details. It estimates camera poses, sparse geometry, and gravity direction through point-line joint tracking, infers structural planes from tracked lines using the shared-gravity component of the Atlanta World prior, and converts them into differentiable regularization terms on Gaussian centers and normals. To improve compactness and efficiency, DrawSplat further combines an anchor-based implicit neural Gaussian representation with adaptive structural sampling, which allocates Gaussian capacity to structurally informative regions. Experiments on multiple datasets show that DrawSplat achieves robust tracking, high-fidelity rendering, and strong geometric reconstruction among Gaussian-based SLAM systems, while maintaining a practical balance among quality, efficiency, and model size.",
+      "summary": "提出一种室内三维重建方法，先勾勒建筑结构再填充细节，解决了弱纹理场景下定位漂移和表面粗糙问题，可用于开发室内扫描与建模应用。"
+    },
+    {
+      "arxiv_id": "2610.41598v1",
+      "title": "Scout-Refine-Correct: Teaching Flow Models to Refine Their Own Samples",
+      "title_zh": "侦察-精炼-校正：教流模型自我精炼其生成的样本",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Sergey Karpukhin",
+        "Aibek Alanov"
+      ],
+      "published": "2026-10-30T11:33:05Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41598v1",
+      "abstract": "The quality of image generation models trained with diffusion or flow matching is largely fixed by the training budget: at inference, the only available lever is the number of sampling steps, and additional steps improve quality only up to a point. We present a training recipe, Scout-Refine-Correct (SRC), that instead gives a flow-matching generator a genuine inference-time refinement capability. At each sampling step the model takes a scout rollout -- $K$ steps ahead along its own trajectory -- extrapolates a full-sample estimate, and feeds that estimate back to itself as a self-conditioning signal before taking the real step. This can be repeated for $R$ refinement rounds. Two correction losses, applied during training at states the model's own rollouts actually reach rather than only on the ground-truth path, teach the model to use this signal to reach new samples instead of collapsing to a suboptimal one. On ImageNet-256, SRC improves LightningDiT-B from FID~14.5 to FID~7.26 at NFE~550, matching a privileged best-of-$N$ baseline that uses an oracle FID verifier to choose among samples. SRC uses no external verifier, no reward signal, and, after ablation, almost no extra parameters over the base architecture. Combining SRC with best-of-$N$ improves the result further, to FID~3.81 at NFE~4400, showing that the two axes are complementary. We ablate the main design choices -- the architectural pathway for the scout signal, the scout horizon, each correction loss, and the training schedule to demonstrate key working components of training.",
+      "summary": "提出一种训练方法，让流匹配生成模型在采样时能自我侦察、精炼并校正样本，从而在不增加外部验证器的情况下大幅提升图像生成质量，可用于开发更高质量的图像生成应用。"
+    },
+    {
+      "arxiv_id": "2610.41558v1",
+      "title": "A complete analytical characterization of optimal collision-free motion for two robots",
+      "title_zh": "两个机器人最优无碰撞运动的完整解析刻画",
+      "categories": [
+        "cs.RO",
+        "eess.SY",
+        "math.OC"
+      ],
+      "authors": [
+        "Jan Kamm",
+        "Antonio Terpin",
+        "Raffaello D'Andrea"
+      ],
+      "published": "2026-10-30T10:53:31Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41558v1",
+      "abstract": "Collision-free motion planning for multi-agent robotic systems remains an active research area because of the complexity of coordinating robot trajectories, with applications ranging from coordinated drone shows to autonomous operations on land, in the air, and on water. Importantly, the analytical difficulty of nonconvex collision-avoidance constraints has so far driven the development of exclusively numerical methods. We derive a complete analytical characterization of the optimal trajectories for two robots that start and end at rest, under double-integrator dynamics and a squared-acceleration objective. We prove that these trajectories belong to eight distinct contact families and determine which family applies for each configuration of initial and final positions. We analyze the geometrical properties of the optimal trajectories, provide a numerical algorithm for computing them, and discuss how these insights may improve the performance of existing numerical trajectory optimizers.",
+      "summary": "论文用解析方法完整刻画了两个机器人从静止到静止的最优无碰撞轨迹，可用于开发更高效的无人机编队和自动驾驶轨迹规划算法。"
+    },
+    {
+      "arxiv_id": "2610.41556v1",
+      "title": "TopoHyperClinicalGraph: A Geometry and Topology-Aware Multimodal Framework for Cancer Survival Prediction",
+      "title_zh": "TopoHyperClinicalGraph：一种用于癌症生存预测的几何与拓扑感知多模态框架",
+      "categories": [
+        "eess.IV",
+        "cs.CV"
+      ],
+      "authors": [
+        "Noaman Khan",
+        "Zubair Shah"
+      ],
+      "published": "2026-10-30T10:51:52Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41556v1",
+      "abstract": "We developed TopoHyperClinicalGraph, a multimodal framework combining hyperbolic tissue geometry, persistent topology and clinical graph learning for cancer survival prediction. Pre-extracted UNI2-h features are reduced from 1,536 to 1,024 dimensions using training-fold PCA. A pathology backbone combines hyperbolic neighborhoods with Lorentz-centroid attention pooling. Once frozen, its survival logits are adjusted using persistence descriptors from up to 64 landmarks per slide and sampling controls. A five-node clinical graph then learns a further correction from age, sex, stage, T and N. Five-fold patient-level evaluation covered eight TCGA and CPTAC cohorts with 2,364 patients. Mean validation-selected C-indices for TopoHyperClinicalGraph versus pathology-only spatial PatchGCN were 0.7563 versus 0.7386 in COADREAD, 0.6220 versus 0.5998 in HNSC, 0.6755 versus 0.6535 in BRCA and 0.6409 versus 0.6176 in STAD. CPTAC scores were 0.5984 in HNSC, 0.6060 in PDA, 0.8055 in CCRCC and 0.7192 in LUAD. CPTAC-HNSC used TCGA-initialized adaptation; other CPTAC backbones were trained within their cohorts. Geometry accounted for most pathology-only gains, with smaller persistence effects. Clinical graph fusion exceeded its matched node-wise control in five cohorts, tied in one and scored lower in two; clinical-only prediction exceeded fusion in three CPTAC cohorts. The framework supports separate evaluation of geometric, topological and clinical contributions. All scores were validation-selected; independent testing is needed to establish generalizability.",
+      "summary": "该研究构建了一个融合组织几何、拓扑特征与临床图学习的多模态框架来预测癌症患者生存期，可用来开发更精准的癌症预后评估工具。"
+    },
+    {
+      "arxiv_id": "2610.41548v1",
+      "title": "Contact-based optimization for collision-free motion planning for a million robots",
+      "title_zh": "基于接触优化的百万机器人无碰撞运动规划",
+      "categories": [
+        "cs.RO",
+        "eess.SY"
+      ],
+      "authors": [
+        "Jan Kamm",
+        "Antonio Terpin",
+        "Raffaello D'Andrea"
+      ],
+      "published": "2026-10-30T10:46:26Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41548v1",
+      "abstract": "Multi-agent robotic systems have attracted growing interest in recent years, with applications ranging from coordinated drone shows to autonomous operations on land, in the air, and on water. At the planning level, robot motion is often modeled using double-integrator dynamics (with low-level controllers handling the physical dynamics during execution) with a minimum-energy objective subject to collision-avoidance constraints and limits on position, velocity, and acceleration. The complexity of the problem resides in the constraints, which couple the trajectories and make the optimization problem nonconvex. Existing numerical approaches typically discretize and optimize entire trajectories, which becomes expensive for large fleets. We exploit the structure of optimal trajectories by organizing optimization around contacts, at which robots reach the minimum allowed separation. We formulate a coupled algebraic system in contact variables and reconstruct trajectories analytically between contacts. Our algorithm, sequential contact insertion (SCI), starts from unconstrained trajectories, inserts contacts at separation violations, and jointly adjusts their times and states. Numerical experiments demonstrate planning for one million robots in minutes and thousands of robots in fractions of a second. On problems feasible for a fixed-grid sequential convex programming baseline, SCI achieves median speedups of several orders of magnitude at matching solution accuracy.",
+      "summary": "这篇论文提出一种围绕接触点组织优化的新方法，能快速为大规模机器人集群规划出无碰撞、省能量的运动轨迹，可用于无人机编队表演和空地水多场景的自主协同作业。"
+    },
+    {
+      "arxiv_id": "2610.41540v1",
+      "title": "FOCUS: First-Order Control Using Optimal Transport Supervision for Imitation from Observations",
+      "title_zh": "FOCUS：利用最优传输监督的一阶控制方法，用于从观测中模仿学习",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "authors": [
+        "João A. Cândido Ramos",
+        "Lionel Blondé",
+        "Hugues Vinzant",
+        "Jacopo Castellini",
+        "Alexandros Kalousis"
+      ],
+      "published": "2026-10-30T10:37:43Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41540v1",
+      "abstract": "Imitation learning from observations must recover behavior from state-only demonstrations without known temporal correspondence. Differentiable simulators provide pathwise policy gradients, but differentiating through long, contact-rich trajectories can make optimization unstable. We introduce FOCUS, which combines local optimal-transport alignment with short-horizon differentiable actor-critic learning. FOCUS matches agent rollout windows to multiple sampled expert segments using a soft best-of-$K$ objective that emphasizes locally compatible matches. The resulting transport-based costs provide differentiable imitation rewards, while a learned critic bootstraps value beyond the rollout horizon. FOCUS requires neither temporally aligned trajectories nor expert-aligned initialization or teacher forcing. Across contact-rich locomotion tasks in DFlex, including a musculoskeletal humanoid controlled by 152 muscle activations, FOCUS improves sample efficiency and training stability over adversarial imitation-from-observation methods and prior differentiable imitation baselines.",
+      "summary": "提出一种从仅有状态、无时间对齐的示范中学习行为的方法，通过局部最优传输匹配和短时域可微强化学习，稳定高效地训练机器人完成接触丰富的运动任务。"
+    },
+    {
+      "arxiv_id": "2610.41520v1",
+      "title": "TACO: Trajectory-Aware Curvature Observation for Memorization Localization and Mitigation in Diffusion Models",
+      "title_zh": "TACO：面向扩散模型记忆定位与缓解的轨迹感知曲率观测",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Ruxi Gu",
+        "Zilei Wang",
+        "Wei Wang"
+      ],
+      "published": "2026-10-30T10:10:50Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41520v1",
+      "abstract": "Text-to-image diffusion models can reproduce memorized training content within localized image regions, making precise localization essential for targeted mitigation. However, curvature observations at a single denoising state can contain transient responses, while spatially uniform mitigation may disrupt prompt-relevant content. We present Trajectory-Aware Curvature Observation (TACO), a unified framework for local memorization detection and mitigation in diffusion models. Our empirical analysis reveals that memorization-related curvature becomes pronounced during late-stage denoising and persists at consistent spatial locations across neighboring states. Motivated by these observations, TACO aggregates prompt-dependent curvature responses along the late denoising trajectory and applies latent-guided spatial refinement to improve spatial coherence. The resulting memorization map serves both as a localization signal and as a spatial control signal for mitigation. Specifically, TACO uses this map to steer existing inference-time interventions toward memorization-related regions through spatial reweighting and localized guidance correction. Extensive experiments demonstrate that TACO consistently outperforms competing localization methods, and improves the Pareto trade-off between memorization suppression, semantic alignment, and perceptual quality. These results establish trajectory-aware spatial analysis as an effective link between memorization localization and targeted mitigation.",
+      "summary": "提出TACO方法，通过追踪去噪后期轨迹上的曲率变化精准定位扩散模型复现训练图像的区域，并据此定向抑制记忆内容，可用于开发更安全的图像生成应用。"
+    },
+    {
+      "arxiv_id": "2610.41512v1",
+      "title": "Parameter-Efficient Fine-Tuning of Transformer Encoders for Audio-Image-Symbolic Music Retrieval",
+      "title_zh": "面向音频-图像-符号音乐检索的Transformer编码器参数高效微调",
+      "categories": [
+        "cs.CV",
+        "cs.SD",
+        "eess.AS"
+      ],
+      "authors": [
+        "Eliseo Fuentes-Martinez",
+        "Antonio Hidalgo-Centeno",
+        "Jorge Calvo-Zaragoza",
+        "Antonio Javier Gallego"
+      ],
+      "published": "2026-10-30T10:02:14Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41512v1",
+      "abstract": "Score-based multimodal music retrieval requires representations that are both discriminative within each modality and compatible across audio recordings, sheet music images, and symbolic scores. This paper investigates the effectiveness of parameter-efficient fine-tuning (PEFT) for adapting pretrained music encoders and examines whether modality-specific improvements translate into better multimodal representations. We compare full fine-tuning, LoRA, and QLoRA across nine pretrained audio, image, and symbolic score encoders on TriScore and the Musical Theme Dataset. Encoders are first evaluated and selected through supervised unimodal classification, using frozen-encoder linear probing as a reference. We then introduce a controlled 2x2 design crossing encoder adaptation with task-specific shared projection, comparing frozen and adapted representations before and after projection. LoRA or QLoRA is selected in 14 of 18 modality-target combinations, frequently matching or outperforming full fine-tuning while optimizing substantially fewer parameters. However, these unimodal gains do not transfer uniformly to multimodal classification. Adaptation and projection are complementary for composer classification on TriScore, largely redundant for TriScore instrument and the Musical Theme Dataset instrument and ensemble tasks, and partially interfering for composer classification on the Musical Theme Dataset. The final adapted-and-projected title representation on TriScore supports piece-level retrieval, reaching average Top-5 and Top-10 accuracies of 55.32 and 64.68, respectively. Cross-modal exclusion and neighborhood analyses further reveal strong modality-specific local structure in the projected spaces. Overall, PEFT provides an effective and computationally efficient alterna",
+      "summary": "论文研究用LoRA等参数高效微调方法改造预训练音乐编码器，以更少算力实现音频、乐谱图像和符号乐谱之间的跨模态乐曲检索。"
+    },
+    {
+      "arxiv_id": "2610.41501v1",
+      "title": "VoxLution: Evolving Voxels for High-Fidelity 3D Scene Generation",
+      "title_zh": "VoxLution：演化体素实现高保真三维场景生成",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Daoyi Gao",
+        "Xinyi Zhang",
+        "Alexey Bokhovkin",
+        "Lei Li",
+        "Angela Dai"
+      ],
+      "published": "2026-10-30T09:55:52Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41501v1",
+      "abstract": "High-resolution 3D indoor scene generation is crucial for immersive applications such as virtual reality, spatial computing, and robotics simulation. We introduce VoxLution, a coarse-to-fine transformer-based approach that generates high-fidelity indoor scenes with rich details, overcoming the overly smooth geometry typical of existing generative models. First, we generate a low-resolution spatial layout; then, based on this structural information, we progressively refine the scene geometry locally in chunks. Key to our approach is formulating 3D super-resolution as a sequence modeling problem over multi-resolution sparse voxel grids. To achieve this, we introduce a training-free, resolution-invariant tokenization scheme that compactly encodes the geometric information of eight octants into a single decimal number. We formulate the transformer sequence to include multiple resolutions, allowing the coarse layout to guide the generation of fine local details. To ensure coherence across local chunks, we incorporate adjacent chunk boundary information directly into the transformer sequencing. VoxLution achieves scene generation at a finer voxel resolution than existing baselines, demonstrating state-of-the-art performance on standard benchmarks with 59.6% lower FPD and 51.1% lower FID on 3D-FRONT, and 70.5% lower FPD and 73.8% lower FID on Scannet++.",
+      "summary": "提出一种由粗到细的体素生成方法，能生成细节丰富的高保真三维室内场景，可用于虚拟现实、空间计算和机器人仿真等应用。"
+    },
+    {
+      "arxiv_id": "2610.41494v1",
+      "title": "VariaFlow: Uncertainty-Aware Flow Matching for Unsupervised Anomaly Detection",
+      "title_zh": "VariaFlow：面向无监督异常检测的不确定性感知流匹配方法",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Arnela Hadzic",
+        "Martin Urschler",
+        "Cosmin I. Bercea"
+      ],
+      "published": "2026-10-30T09:48:49Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41494v1",
+      "abstract": "Reconstruction-based anomaly detection no longer fails at reconstruction. Generative models produce high-quality pseudo-healthy reconstructions, and the remaining difficulty is the step of scoring residuals. The residual between a scan and its reconstruction has two indistinguishable sources, genuine pathology and the anatomical variation that separates one healthy brain from another. Scoring against a single reconstruction treats both as anomalous, inflating false positives where healthy anatomy varies most while small or subtle lesions are lost in the surrounding reconstruction error. We identify the missing quantity as the predictive variance, how much a healthy reconstruction can vary at each location. We introduce VariaFlow, which estimates this variance from an ensemble of mask-guided restorations under an unconditional flow matching prior, each started from a different noise initialization, and which normalizes the residual by the resulting standard deviation. Few-step flow matching keeps the ensemble computationally affordable, and restoring at two spatial scales captures lesions of different size. Across three brain MRI datasets spanning stroke and tumor, VariaFlow is trained once on healthy anatomy and generalizes across all three, attaining the highest AUROC (0.94, 0.80, 0.78) on each and the highest AUPRC on both cross-domain datasets, exceeding the strongest baseline by 37% and 50%. Under domain shift, the same baseline drops by up to 52% in AUPRC, whereas VariaFlow stays more stable and achieves the best small-lesion Dice on all three datasets.",
+      "summary": "提出一种从健康脑影像估计重建不确定性的方法，把病灶与正常解剖差异区分开，可用于开发更少误报的脑部异常检测与病灶定位应用。"
+    },
+    {
+      "arxiv_id": "2610.41485v1",
+      "title": "BDNet: Fast-slow thinking is all you need",
+      "title_zh": "BDNet：快慢思考就是你所需的一切",
+      "categories": [
+        "cs.CV"
+      ],
+      "authors": [
+        "Chenzhi Zheng",
+        "Zhuoran Zheng"
+      ],
+      "published": "2026-10-30T09:41:01Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41485v1",
+      "abstract": "We present BDNet, a hierarchical image-classification backbone built around fast image features and slow statistical references. Its baseline deformation operator (BDO) transforms the deviation of a feature from a stage-specific reference through a low-rank projection and a learned channel scale. Rather than computing pairwise token similarity, the branch operates directly on baseline-relative residuals with complexity linear in the token count. Each of four reference buffers accumulates detached stage statistics during training and remains frozen at inference. A four-stage pyramid with depths $(2,2,6,2)$ and widths $(96,192,384,768)$ yields a 20.70M-parameter classifier at $224\\times224$ resolution. We organize an ImageNet-1K study around clean classification, eight controlled ablations, and Gaussian-noise, contrast, and brightness perturbations. The central hypothesis is that a slow reference can improve the robustness of a compact representation while retaining a simple tensor implementation. We distinguish this training-time statistical mechanism from input-dependent attention and make its linear inference behavior explicit.",
+      "summary": "提出一种快慢结合的分层图像分类骨干网络，用慢速统计参考提升紧凑模型的鲁棒性，可用于开发高效图像分类应用。"
+    },
+    {
+      "arxiv_id": "2610.41477v1",
+      "title": "AC-SMPC: Differentiable Actor--Critic MPC with State Constraints for Safe and Fast Robot Navigation",
+      "title_zh": "AC-SMPC：带状态约束的可微演员-评论家模型预测控制，用于安全快速的机器人导航",
+      "categories": [
+        "cs.RO"
+      ],
+      "authors": [
+        "Chaoran Wu",
+        "Jiayu Fan",
+        "Qichen Tan",
+        "Yuyi Liu",
+        "Jin Wang"
+      ],
+      "published": "2026-10-30T09:28:23Z",
+      "pdf_url": "https://arxiv.org/abs/2610.41477v1",
+      "abstract": "Achieving safe navigation in confined dynamic environments remains a challenging problem, as robots must balance navigation efficiency with safety. Existing actor--critic MPC architectures typically employ differentiable MPC layers, but this way cannot readily accommodate explicit state constraints, making it intractable to involve collision avoidance within learning-based planning. To address this issue, we propose an actor--critic model predictive control framework with state constraints. We first use vertices to represent the robot and obstacles, and half-spaces to represent the workspace. Based on these, the nonlinear robot dynamics is locally linearized and the hyperplane-based collision avoidance constraints are convexified into the differentiable MPC layer, and then the actor exploits closed-loop feedback to adjust the MPC objective parameters that shape local motion behavior, while the critic evaluates long-term task performance. We further relax the convexified constraints with bounded and penalized slack variables to form an elastic quadratic program, accommodating cases where the local constraint approximations cannot be satisfied simultaneously. Simulation tests and experiments, involving dynamic collision avoidance for multi-robot in narrow cases, illustrate the advantages of the proposed framework in adaptively adjusting the learned policy and improving navigation efficiency over existing approaches while maintaining the motion safety.",
+      "summary": "提出一种带状态约束的可微演员-评论家模型预测控制方法，让机器人在狭窄动态环境中兼顾避障安全与导航效率，可用于多机器人快速安全导航。"
+    }
+  ]
+}
