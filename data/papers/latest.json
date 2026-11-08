@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-07",
-  "generated_at": "2026-11-07T11:34:27+08:00",
+  "date": "2026-11-08",
+  "generated_at": "2026-11-08T11:03:14+08:00",
   "schema_version": 1,
   "total": 40,
   "papers": [
@@ -31,7 +31,7 @@
     {
       "arxiv_id": "2611.08486v1",
       "title": "Do You Miss the Nights We Spent Crafting Figures? Rethinking Teaser and Framework Figures in the Age of Generative AI",
-      "title_zh": "你还怀念我们一起熬夜画图的那些夜晚吗？生成式AI时代下对预告图与框架图的再思考",
+      "title_zh": "你还怀念我们一起绘制图表的夜晚吗？生成式AI时代下对预告图与框架图的再思考",
       "categories": [
         "cs.CV"
       ],
@@ -43,7 +43,7 @@
       "published": "2026-11-05T18:59:33Z",
       "pdf_url": "https://arxiv.org/abs/2611.08486v1",
       "abstract": "Scientific figures give research ideas a visual form through choices of abstraction, composition, and emphasis. Generative AI offers new ways to realize these choices, raising questions about explanatory clarity and purposeful visual expression. We examine these questions through a visual retrospective of 371 motivation and framework figures from 200 papers. The corpus comprises a quota-based main sample of 160 papers spanning four temporal periods and a separate purposive style-contrast sample of 40 papers. A single multimodal judge evaluates six dimensions of communication and design, with three repeated judgments per figure. We attempt source-constrained revisions of all 371 figures, of which 369 pass the recorded fidelity checks. Original-figure ratings show no uniform decline across periods. Revisions increase mean clarity ratings by 0.428 points and decrease aesthetic coherence ratings by 0.111 points on a five-point scale. Gains in the six-dimension average are larger for main-sample motivation figures than for frameworks. Case analyses show that added explanation can clarify comparisons while leaving typographic hierarchy and visual economy unresolved. These model-based findings support researcher-led design, with AI assisting exploration and authors retaining responsibility for explanatory purpose, composition, and scientific relationships. The accompanying atlas and evaluation records are available at https://ntu-ai4x.github.io/Rethinking_Figures/index_en.html.",
-      "summary": "通过回顾200篇论文的371幅动机图与框架图并用AI做保真改写，发现改写能提升清晰度却略损美感，说明AI可辅助探索但解释意图仍须作者把关。"
+      "summary": "通过回顾200篇论文的371幅动机图与框架图并用AI做改写评估，发现AI能提升图表清晰度但会削弱美感，可用于开发辅助科研绘图的设计工具。"
     },
     {
       "arxiv_id": "2611.08485v1",
@@ -64,12 +64,12 @@
       "published": "2026-11-05T18:59:32Z",
       "pdf_url": "https://arxiv.org/abs/2611.08485v1",
       "abstract": "Grounded reasoning, where a model outputs text coordinates of relevant locations in chain-of-thought reasoning, is a common strategy for solving complex visual reasoning problems. However, the benefits and limitations of grounded reasoning are understudied. We study where and why grounded reasoning is most useful. To do so, we introduce a chain-of-thought analysis method to measure how much a model uses its outputted grounding in its thinking trace and perform a detailed ablation study of a grounded reasoning training recipe. We find that grounded reasoning improves counting but shows no significant gain over baselines without coordinate grounding across a wide range of spatial reasoning and perception benchmarks. Using several synthetic tasks, we show that grounded reasoning is most useful when a task requires undescribable references, which are visual concepts that are difficult to describe in language. However, we observe that many existing visual reasoning benchmarks are solvable with only describable text references. To close this gap, we introduce BrickVision, a new benchmark that requires undescribable visual references to solve.",
-      "summary": "研究发现接地推理只在需要难以用语言描述的视觉指代时才有明显优势，并据此推出一个专门考察这类能力的新基准，可用于开发更强的视觉推理模型。"
+      "summary": "研究发现接地推理只在需要难以用语言描述的视觉参照时才有明显帮助，并据此推出一个专门考察这类能力的新基准，可用于开发更强的视觉推理模型。"
     },
     {
       "arxiv_id": "2611.08483v1",
       "title": "SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization",
-      "title_zh": "SwarmEvolve：用于进化发现与优化的潜在智能体集群",
+      "title_zh": "SwarmEvolve：面向进化发现与优化的潜在智能体集群",
       "categories": [
         "cs.AI",
         "cs.NE"
@@ -81,7 +81,7 @@
       "published": "2026-11-05T18:59:29Z",
       "pdf_url": "https://arxiv.org/abs/2611.08483v1",
       "abstract": "LLM-guided evolutionary search uses AI agents to improve programs for mathematical and computational problems by iteratively refining solutions and combining high-scoring methods. However, the process is often slow because the LLM generates a long textual chain of thought for each round and must repeat this generation many times to maintain population diversity. We present SwarmEvolve, a framework in which hundreds of low-cost agents per round work in swarms, reason in latent space without decoding to text, and share information by passing KV caches. Each swarm studies the problem from a different angle. A novelty filter keeps the most distinct agent ideas by directly measuring the distances between the agents' hidden state vectors. Crossover of ideas happens naturally in latent space, as a summarizer agent receives the combined KV caches of all swarm members. On 21 problems in mathematical discovery and scientific computing, SwarmEvolve gets the highest average score and needs a median of only 3 to 8 minutes to reach the best scores that other state-of-the-art frameworks reach in 60 minutes. On several problems, SwarmEvolve with Qwen3 8B improves on the solutions that AlphaEvolve first found with frontier LLMs. Our work shows that agent swarms that communicate in latent space offer a fast, low-cost approach to program search for scientific problems.",
-      "summary": "提出一种让大量低成本智能体在隐空间协作进化的框架，能更快更低成本地为数学与科学计算问题搜索程序，可用于开发高效的自动程序优化工具。"
+      "summary": "提出一种让大量低成本智能体在潜在空间协作进化的框架，能快速低成本地搜索数学与科学计算程序，几分钟内达到其他方法一小时的效果。"
     },
     {
       "arxiv_id": "2611.08478v1",
@@ -100,7 +100,7 @@
       "published": "2026-11-05T18:58:17Z",
       "pdf_url": "https://arxiv.org/abs/2611.08478v1",
       "abstract": "AI-Scientists arrived, but a world for them to grow in did not. Human scientists take theirs for granted $-$ centuries of open problems and shared ideas, waiting in the scientific literature. To AI-Scientists, that world is readable but not runnable, so we build Scientist World for them: every research paper becomes an executable environment. Our autonomous pipeline extracts each paper's open-ended research question and reproduces its proposed method as the baseline; an AI-Scientist entering the environment is evaluated against what the human authors achieved. We release the first 1,000 verified environments. With the world as an evaluation, we found that frontier AI-Scientists can already surpass the human researchers 74% of the time. As a record of how AI does science, it contains 6,400 hours of research traces, with every idea, experiment, failure, and success. As a training ground, we are able to raise (+158%) a small model to match frontier models in research ideation. At last, AI-Scientists' own world has arrived, grown from and growing with science itself.",
-      "summary": "把每篇论文变成可运行的研究环境，让AI科学家在千余个真实课题上做研究并接受评估，既能衡量其能力也可用于训练提升。"
+      "summary": "把每篇论文变成可运行的研究环境，让AI科学家在1000个真实问题上做研究并接受评估，还能用来训练模型提升科研构思能力。"
     },
     {
       "arxiv_id": "2611.08477v1",
@@ -121,7 +121,7 @@
       "published": "2026-11-05T18:58:13Z",
       "pdf_url": "https://arxiv.org/abs/2611.08477v1",
       "abstract": "Modern video models possess strong visual priors, yet do not natively represent human action in metric 3D space. We present EgoGeneralist, which adapts pretrained video generators to unify action-conditioned egocentric video generation, pose estimation, and joint action-video generation. Our role-adaptive action renderer provides video-native representations for multidirectional action-video learning, making metric motion usable as both a spatial control signal and a recoverable generation target. Cross-stream action-video coupling establishes close correspondence between metric motion and visual dynamics through lightweight adaptation while preserving the pretrained visual prior. Together, these designs establish a generalist framework spanning five action-video tasks. Despite adaptation only on controlled laboratory recordings, EgoGeneralist generalizes to diverse unseen scenes and interactions with effective action control and visual quality, bridging pretrained visual knowledge and metric 3D human motion.",
-      "summary": "提出一种通用框架，把预训练视频生成模型改造成能同时生成第一人称动作视频、估计人体姿态并联合生成动作与视频，可用于开发更懂三维人体动作的智能视频生成应用。"
+      "summary": "提出一种通用框架，让预训练视频模型统一处理第一人称视频生成、姿态估计和动作-视频联合生成，可用于开发动作可控的第一人称视频生成与人体动作捕捉应用。"
     },
     {
       "arxiv_id": "2611.08472v1",
@@ -140,7 +140,7 @@
       "published": "2026-11-05T18:55:54Z",
       "pdf_url": "https://arxiv.org/abs/2611.08472v1",
       "abstract": "ML code should run where researchers choose, not where it was first written. Today, machine learning code mainly lives in two ecosystems, PyTorch on NVIDIA GPUs and JAX on Google TPUs. Migrating repositories between them means building and testing across frameworks and hardware. This migration is (1) a practical need, since it unlocks different hardware for researchers, and (2) a natural benchmark: it involves different frameworks and hardware, covers whole repositories, and is long-horizon and challenging. We introduce XStack, a benchmark that evaluates agents on migrating ML repositories between these two ecosystems. Each agent receives a PyTorch repository and a clean TPU machine and must deliver a JAX repository. Its output passes if it meets our grading criteria, based on the source repository's published result, authenticated and calibrated by us. Migration by agents remains unreliable: Claude Opus 5 passes 75%, GPT-5.6-sol 45%, and every other agent at most 40%. XStack is a step toward freeing ML code from its ecosystem. We release XStack to make progress toward reliable migration across frameworks and hardware measurable.",
-      "summary": "论文提出XStack基准，用来评测智能体把PyTorch代码库迁移到JAX和TPU上的能力，可用来开发跨框架、跨硬件的自动迁移工具。"
+      "summary": "论文提出XStack基准，用于评测智能体把PyTorch代码库迁移到JAX和TPU环境的能力，可用来开发跨框架、跨硬件的自动代码迁移工具。"
     },
     {
       "arxiv_id": "2611.08469v1",
@@ -158,12 +158,12 @@
       "published": "2026-11-05T18:55:31Z",
       "pdf_url": "https://arxiv.org/abs/2611.08469v1",
       "abstract": "Interpretability, AI auditing and assessments of machine consciousness increasingly rest on mechanism-level quantities: functionals of a system's causal transition law that describe how it computes, not what it outputs. Experiments see that law only through finite, partial and noisy interventions. We ask when such a quantity is identifiable from an experiment's access, continuous in the mechanism and certifiable from finite data, and answer exactly for a deliberately demanding case - the integrated information $\\varphi$ of integrated information theory - in stochastic networks of four and five units with known ground truth. Behavior can be silent: a recurrent and a feed-forward network with identical input-output laws at their response delay carry 0.28 and 0 bits, yet internal recordings separate them within 4-53 trials. Partial access can be just as blind: in our examples, units left out of a one-step recording impose precision floors of 0.30-1.02 bits that no sample size lowers, and in all-but-self parity networks, recordings of any length see several hidden units only through the product of their fidelities - a symmetry that one intervention broke in exact checks. The measure has sharp edges: because $\\varphi$ selects a partition, and the cause and effect it specifies, by one criterion and reports another, infinitesimal changes of mechanism that cross an edge change it by 25-100% at 99% of the edges we found in random networks, and about 1% of surrogate models that fit interventional data almost perfectly misreport it by more than 20%. One-sided claims survive: the same data certify a lower bound on both sides of an edge, and we prove $\\varphi>1.004$ bits throughout a 64-dimensional region of mechanisms and certify it from about $10^7$ controlled transitions with fal",
-      "summary": "论文揭示了相同输入输出行为背后机制可能完全不同，并给出用有限干预数据可靠认证整合信息量及其下界的方法，可用于AI审计与机器意识评估。"
+      "summary": "论文研究有限干预实验能否可靠识别系统的因果机制量，并以整合信息φ为例给出可证明的界限，可用于开发AI审计与机器意识评估工具。"
     },
     {
       "arxiv_id": "2611.08465v1",
       "title": "Towards interpreting any residual stream direction by scaling activation inversion",
-      "title_zh": "通过扩展激活反演来解读任意残差流方向",
+      "title_zh": "通过缩放激活反演来解读任意残差流方向",
       "categories": [
         "cs.LG",
         "cs.AI"
@@ -180,7 +180,7 @@
       "published": "2026-11-05T18:54:40Z",
       "pdf_url": "https://arxiv.org/abs/2611.08465v1",
       "abstract": "To interpret a direction in a language model's residual stream, we can look for text that strongly activates it. But when such text is found by scanning a corpus, it is limited to what that corpus contains. We develop Maximally-Activating Example Metamodels (MAEMs), language models which map residual stream directions from a subject model to text exemplars that strongly activate those directions. Our objective is to maximise the cosine similarity of a supplied residual stream direction with the activations of the text generated by the MAEM. This label-free RL objective helps to scale MAEMs on diverse sources of residual stream directions. Empirically, we find the resultant metamodel produces informative exemplars: a Qwen3.6-27B MAEM inverts held-out activations better than corpus search or a natural-language autoencoder (NLA), beats corpus search (at 10M tokens) on a majority of held-out languages/domains, and activates 89% of held-out SAE features. It also identifies concepts behind steering vectors about as well as NLAs, recovers the payloads of LoRA backdoors more often than corpus search, and can even verbalise some model workspace inner monologue. Unlike explanations produced by other metamodels (e.g. NLAs), MAEM exemplars can be verified with a forward pass on the subject model, making the MAEM objective a grounded alternative for scaling the training of metamodels.",
-      "summary": "提出一种元模型，能把语言模型残差流中的任意方向反演成能强烈激活该方向的文本示例，可用于解读模型内部概念、识别引导向量含义和检测后门。"
+      "summary": "提出一种元模型，能把语言模型残差流中的任意方向翻译成能强烈激活该方向的文本示例，可用于解释模型内部概念、检测后门和读取模型思维。"
     },
     {
       "arxiv_id": "2611.08462v1",
@@ -201,7 +201,7 @@
       "published": "2026-11-05T18:53:16Z",
       "pdf_url": "https://arxiv.org/abs/2611.08462v1",
       "abstract": "Vision-Language-Action (VLA) models can perform a wide range of robotic manipulation tasks, but often fail during deployment. Teaching them to recover from these failures requires substantial corrective data: existing approaches learn to recover from failures by directly associating corrective actions with the observations in which they were demonstrated. For instance, DAgger-like fine-tuning can require tens to hundreds of interactions, yet the resulting policy may still fail to generalize the learned corrections beyond the demonstrated scenarios. We hypothesize that semantics can capture the underlying reasons for failures and their corrections, enabling policies to learn from only a handful of corrective demonstrations and generalize those corrections to novel objects, and scene variations. We propose OopsieRecover, a framework that uses abduction to infer the intent behind a small set of corrective demonstrations and encodes the inferred knowledge as dense spatial representations and conditional costs. These costs capture when a behavior is undesirable and steer the policy toward more desirable action regions. We experiment across 6 tasks and variations in object poses, scenes, and related tasks, and find that only a handful of corrective demonstrations can enable a VLA to overcome failures across a broad range of novel situations, without requiring new corrective data for each variation. Please refer to https://robin-lab.cs.utexas.edu/oopsierecover for videos.",
-      "summary": "该研究让机器人视觉-语言-动作模型只需少量纠错示范就能从失败中恢复，并把学到的纠错能力迁移到新物体和新场景，可用于开发更稳健的机器人操作应用。"
+      "summary": "该研究让机器人视觉-语言-动作模型只需少量纠错示范就能学会从失败中恢复，并把纠错能力泛化到新物体和新场景，可用于开发更稳健的机器人操作应用。"
     },
     {
       "arxiv_id": "2611.08458v1",
@@ -221,7 +221,7 @@
       "published": "2026-11-05T18:50:06Z",
       "pdf_url": "https://arxiv.org/abs/2611.08458v1",
       "abstract": "Learning dexterous manipulation from limited visual demonstrations is challenging because policies must acquire both perceptual grounding and precise control, while reinforcement learning (RL) in simulation can acquire rich control behaviors from large-scale interaction with privileged information. We introduce \\textbf{Latent RL Prior}, a two-stage framework that reuses this control knowledge for data-efficient visual policy learning. During privileged pretraining, we distill large-scale RL rollouts into a flow-matching action decoder conditioned on proprioception and latent task context. During visual adaptation, we freeze the decoder and learn a visual interface that maps images to its latent context using action supervision alone, without privileged labels or latent targets. The same decoder can further be shared across arms by learning coordinated visual contexts for bimanual manipulation. Across three simulated tasks, our method outperforms full-parameter fine-tuning of $π_{0.5}$ and GR00T N1.7 in the low-data regime; on door lifting and bimanual assembly, it surpasses full-data baselines using $10\\times$ and $5\\times$ fewer demonstrations, respectively. Further analysis shows that direct visual-to-latent conditioning improves adaptation performance and training stability over routing visual predictions through the pretrained state encoder. Robustness to unseen mass variation and greater linear accessibility of contact-force information in decoder representations further provide evidence of retained RL-acquired control knowledge. Project website: https://yixiaowang7.github.io/latent-rl-prior-page/.",
-      "summary": "提出一种两阶段框架，把仿真中强化学习学到的控制知识蒸馏成冻结的动作解码器，仅用少量视觉示范就能学会灵巧操作，可用于开发数据高效的机器人操作应用。"
+      "summary": "该研究让机器人先在大规模仿真中通过强化学习掌握控制技能，再仅用少量视觉示范学会灵巧操作，可用于开发数据高效的机械臂抓取与双手装配应用。"
     },
     {
       "arxiv_id": "2611.08457v1",
@@ -238,7 +238,7 @@
       "published": "2026-11-05T18:48:50Z",
       "pdf_url": "https://arxiv.org/abs/2611.08457v1",
       "abstract": "Adversarial Training (AT) is an important method for improving model robustness. We study the dynamics of deterministic Gradient Descent (GD) in AT. Most existing works in this direction focus on the small or vanishing step sizes regime, where GD resembles a continuous-time flow. However, such step sizes can make training inefficient and are rarely used in practice. In this paper, we study the AT dynamics of GD with large constant step sizes. We first study GD in adversarial linear logistic regression, focusing on two aspects: where the model parameters converge (implicit bias) and how quickly the losses decrease (optimization). We then turn to neural networks training and study how the sharpness of losses evolve during AT. Our results advance the understanding of the behaviors of GD with large step sizes in AT and highlight three key differences from its behavior in Standard Training (ST): (i) the implicit bias gap between AT and ST, previously established only for small step sizes, persists for arbitrarily large constant step sizes, (ii) different from ST, there is no uniform rate of convergence for the optimization error in AT, and (iii) sharpness can exhibit two-stage dynamics that differ from the Edge-of-Stability behavior observed in ST.",
-      "summary": "论文研究了大步长对抗训练中梯度下降的收敛偏向、优化速度与损失锐度变化，可用于开发更高效且鲁棒的模型训练方法。"
+      "summary": "研究大步长对抗训练中梯度下降的收敛偏好与优化速度，揭示其与标准训练的三大差异，可用于开发更高效鲁棒的模型训练方法。"
     },
     {
       "arxiv_id": "2611.08456v1",
@@ -253,12 +253,12 @@
       "published": "2026-11-05T18:48:06Z",
       "pdf_url": "https://arxiv.org/abs/2611.08456v1",
       "abstract": "Generative AI and agentic coding are accelerating software development, leading to concerns about technical debt. But two less visible forms of debt, cognitive debt and intent debt, are emerging as key risks to software health. Cognitive debt is the absence or erosion of a team's shared understanding where no one can confidently explain how a system works or predict the impact of a change. Intent debt is the lack of clearly articulated goals, constraints, and rationale that explain what the system is for and guide how it should evolve. This paper presents Cognitive Tours, a tool designed to mitigate and repair cognitive and intent debt. Cognitive Tours is a web-based prototype for creating and following curated paths connecting user needs, design decisions, code, tests, and open questions. AI-assisted skills help audit existing waypoints and tours for possible problems or staleness and suggest candidates for new ones; humans decide what matters, verify relationships, and construct the narrative. This division of work deliberately preserves productive friction: the sensemaking involved in selecting, explaining, and revising a tour, which is intended to foster and share understanding. Our demonstration uses a tour of Cognitive Tours itself to introduce the tool and illustrate its design decisions and interaction mechanisms. A proposed evaluation agenda concludes the paper. A demo is available at https://cognitive-tours-demo.vercel.app/",
-      "summary": "论文提出认知之旅工具，用AI辅助梳理需求、设计、代码与测试之间的关联路径，帮团队修复共享理解缺失和意图不清的问题，可用于开发AI辅助编程中的知识管理与协作应用。"
+      "summary": "论文提出认知之旅工具，用AI辅助梳理需求、设计、代码和测试之间的关联路径，帮助团队修复共享理解缺失和意图不清的问题，可用于开发AI辅助软件项目中的知识管理与协作应用。"
     },
     {
       "arxiv_id": "2611.08453v1",
       "title": "Unpacking the Compute Efficiency of Strong-to-Weak OPD against GRPO",
-      "title_zh": "解析强到弱在线策略蒸馏相比GRPO的计算效率",
+      "title_zh": "解析强到弱在线策略蒸馏与GRPO的计算效率对比",
       "categories": [
         "cs.LG",
         "cs.CL"
@@ -278,7 +278,7 @@
       "published": "2026-11-05T18:47:05Z",
       "pdf_url": "https://arxiv.org/abs/2611.08453v1",
       "abstract": "On-policy distillation (OPD) trains a student on its own rollouts under a frozen teacher's per-token supervision. Does this dense signal reduce the training FLOPs needed to reach a target accuracy compared with reinforcement learning? We systematically compare vanilla reverse-KL OPD with Group Relative Policy Optimization (GRPO) across task difficulty, student and teacher size, domain, and optimization choices, measuring held-out accuracy against training FLOPs. With an external post-trained teacher, OPD generally loses to GRPO in accuracy per training FLOP at matched settings, even when the teacher is further trained with GRPO, and often suffers response-length inflation. Yet a different teacher changes the picture: when the teacher is the student's own GRPO checkpoint, OPD recovers that checkpoint's accuracy on math with $50\\times$ fewer distillation FLOPs than GRPO needs to reach the same accuracy. Following the same teacher setting, we consistently observe this high efficiency with a larger student, on code, and in a second model family. On a single domain, however, the GRPO checkpoint is already the desired model, so distilling it adds to total compute. Across domains, separate GRPO checkpoints hold different capabilities, and no single checkpoint serves every domain. Multi-teacher OPD (DeepSeek-AI, 2026) consolidates per-domain GRPO experts into a single student that matches each expert's accuracy, with the distillation stage costing only 5.2% (on 2 domains) and 8.0% (on 4 domains) of the specialist training FLOPs. Counting specialist training and distillation together, this pipeline reaches joint GRPO's performance on the 2-domain mix with 42.0% fewer total FLOPs.",
-      "summary": "系统比较在线策略蒸馏与强化学习训练大模型的计算效率，发现用学生自身GRPO检查点当教师可省50倍算力，多教师蒸馏还能把多个领域专家整合成一个模型并大幅降低总计算量。"
+      "summary": "系统比较在线策略蒸馏与强化学习的训练计算效率，发现用学生自身的GRPO检查点作教师可大幅节省算力，并据此开发出多教师蒸馏管线，以更少总计算量整合多个领域专家能力。"
     },
     {
       "arxiv_id": "2611.08452v1",
@@ -297,12 +297,12 @@
       "published": "2026-11-05T18:45:36Z",
       "pdf_url": "https://arxiv.org/abs/2611.08452v1",
       "abstract": "Reproducing machine learning experiments requires reconstructing procedures from information scattered across papers, released code, and supporting artifacts. For coding agents, reproduction success can therefore depend on their ability to fill in missing details, rather than on the released artifacts alone. We ask whether preserving recovered procedures and decisions improves subsequent independent reproduction. We define a standardized artifact design comprising a refined codebase, environment setup, experiment launchers, and a reproduction guide, and introduce ReproBridge, an agent workflow for constructing these refined reproducible artifacts. ReproBridge-Bench provides 1,029 tasks from 387 experiments across 36 papers, anchored by five human-verified reference scores per task. Agents attempt tasks in fresh sessions with raw code or refined artifacts; a separate Auditor checks execution evidence. Across four evaluated models, refined artifacts raise mean reproduction success from 76.4% to 92.6% and reduce downstream API spending by 19.7% on average. The cross-model success-rate spread narrows from 21.6 to 3.9 percentage points, with all four models achieving mean success rates above 90%. Removing any component reduces success in the ablation study, with the largest losses from code and environment removal. These results suggest that preserving execution knowledge helps even models with lower raw-code success reproduce experiments more reliably and at lower API cost.",
-      "summary": "提出一套标准化可复现工件和智能体工作流，把论文实验的执行细节保存下来，让不同模型都能更可靠、更省钱地复现机器学习实验。"
+      "summary": "提出一套标准化可复现工件和智能体工作流，帮研究者从论文和代码中还原实验流程，让机器学习实验复现成功率从76.4%提升到92.6%，可用于开发更可靠的实验复现工具。"
     },
     {
       "arxiv_id": "2611.08449v1",
       "title": "VFlash: Fast, Accurate Visual Planning via Flash Primitive Decoding",
-      "title_zh": "VFlash：通过快速基元解码实现快速准确的视觉规划",
+      "title_zh": "VFlash：通过Flash图元解码实现快速准确的视觉规划",
       "categories": [
         "cs.RO",
         "cs.CV"
@@ -324,7 +324,7 @@
       "published": "2026-11-05T18:44:43Z",
       "pdf_url": "https://arxiv.org/abs/2611.08449v1",
       "abstract": "Models for physical AI tasks, such as robotics and autonomous driving, need not reason solely in language. They can use visual plans--points, bounding boxes, and trajectories--to represent spatial goals and anticipate motion. However, autoregressive vision-language models generate these plans one coordinate token at a time, making richer predictions increasingly costly. We introduce VFlash, a method for fast, accurate visual planning through Flash Primitive Decoding. VFlash exploits the known structure of visual primitives to predict their coordinates jointly, using a lightweight drafter that generates an entire primitive in one forward pass. The layout adapts to the primitive's type, dimensionality, and length, supporting compact boxes and long, variable-length trajectories. Crucially, spatial accuracy need not require reproducing an autoregressive model's exact token sequence. VFlash therefore trains on annotated primitives and directly accepts structurally valid predictions without target-token agreement. Across the evaluated 2D and 3D robot trajectory tasks, VFlash consistently reduces prediction errors relative to autoregressive decoding. Preliminary single-rollout measurements indicate approximately 25x faster generation for 3D point motion forecasting. A world action model conditioned on VFlash plans achieves 70.2% average success across four MolmoSpaces task suites, compared with 62.6% for the baseline.",
-      "summary": "提出一种让视觉语言模型一次性预测完整视觉基元坐标的方法，大幅加快机器人轨迹规划并提升精度，可用于开发更快的机器人导航与自动驾驶系统。"
+      "summary": "提出一种联合预测视觉图元坐标的快速解码方法，可让机器人更准更快地规划运动轨迹，用于开发视觉规划驱动的机器人控制应用。"
     },
     {
       "arxiv_id": "2611.08445v1",
@@ -344,12 +344,12 @@
       "published": "2026-11-05T18:37:07Z",
       "pdf_url": "https://arxiv.org/abs/2611.08445v1",
       "abstract": "A defender anticipating an attacker needs a probability distribution over the attacker's next action from information available before that action occurs. Two structures complicate this: the attacker's behavioral regime persists and can switch within an episode, and each action combines an operation with state-dependent arguments whose feasible values change over time. We capture both with a hidden Markov model whose latent state is the active regime and whose regime-conditioned action law is defined on a feasibility-masked tree of executable actions. The same likelihood forms the next-action distribution and updates the regime belief once the action is seen, and a partially observed prefix contributes its resolved local factors. Estimation separates into convex logistic fits that Baum-Welch reuses when regimes are unlabeled. We derive a reach-weighted nodewise KL expression for regime information, a sequence-wise log-loss bound for switching regime paths, and a uniform fallback guarantee. On the CAGE 2 cyber defense benchmark the filtered latent state is worth 0.8 nats per step, and after a controller switch the loss begins to fall in three steps against ten for a recurrent baseline.",
-      "summary": "提出一种隐马尔可夫偏好模型，能在线预测攻击者下一步动作，可用于开发网络防御中提前预警和主动防御的应用。"
+      "summary": "提出一种隐马尔可夫偏好模型，能根据历史信息预测攻击者下一步动作，可用于开发网络防御中提前预警和主动防御的应用。"
     },
     {
       "arxiv_id": "2611.08442v1",
       "title": "SoK: Post-Quantum Cryptography (PQC) Integration in Software Development: Approaches, Gaps, and Future Directions",
-      "title_zh": "系统性知识梳理：软件开发中的后量子密码集成——方法、差距与未来方向",
+      "title_zh": "系统性知识梳理：后量子密码学在软件开发中的集成——方法、差距与未来方向",
       "categories": [
         "cs.SE",
         "cs.CR"
@@ -362,12 +362,12 @@
       "published": "2026-11-05T18:34:08Z",
       "pdf_url": "https://arxiv.org/abs/2611.08442v1",
       "abstract": "Standardised post-quantum cryptography (PQC) is critical for protecting software systems against future quantum threats, but standardised algorithms alone do not provide a pathway for their secure integration into software. This paper presents a Systematisation of Knowledge (SoK) of PQC integration in software development, synthesising existing approaches across implementation, migration, and developer education. We analyse these approaches against NIST PQC standards and PQC migration guidance, software development lifecycle coverage, cybersecurity practices, deployment maturity, and testing and evaluation evidence. Our analysis shows that existing work establishes important technical and organisational foundations but provides disconnected support across the software development lifecycle, with limited coordination between preparation, implementation, migration, deployment, maintenance, and developer practices. Evaluation evidence also remains concentrated in controlled or early-stage settings, providing stronger evidence of technical feasibility than operational readiness. We identify cross-cutting gaps and research directions for developing lifecycle-oriented, empirically validated approaches that connect technical, developer, and organisational requirements for secure PQC integration.",
-      "summary": "这篇论文系统梳理了把后量子密码安全集成进软件开发的各种现有做法，指出各环节支持割裂、评估多停留在早期阶段，为开发贯穿软件全生命周期的后量子迁移方案和工具指明了方向。"
+      "summary": "本文系统梳理了后量子密码学融入软件开发各环节的现有做法与不足，可用来指导开发更安全、覆盖全生命周期的抗量子软件迁移方案。"
     },
     {
       "arxiv_id": "2611.08441v1",
       "title": "Edge-Assisted Crowdsensing for Explainable Cyclist Safety Perception",
-      "title_zh": "边缘辅助众包感知的可解释骑行者安全感知",
+      "title_zh": "边缘辅助众包感知：可解释的骑行者安全感知",
       "categories": [
         "cs.CV",
         "eess.IV"
@@ -382,7 +382,7 @@
       "published": "2026-11-05T18:33:58Z",
       "pdf_url": "https://arxiv.org/abs/2611.08441v1",
       "abstract": "Cyclist fatality rates remain high despite policy support for active travel, and autonomous vehicles add complexity to mixed traffic. Neither crash statistics nor multi-model detection pipelines scale to continuous monitoring of perceived safety along a route. We present an edge-assisted crowdsensing system: handlebar cameras supply street-level frames, a vision-language model (VLM) turns each frame into structured traffic attributes through a single prompt, and an explainable boosting machine (EBM) combines them with OpenStreetMap road infrastructure and on-bike kinematics to predict a crowdsourced 1-9 safety score. Extraction belongs at the network edge: the fastest self-hosted model needs 2.49 s per frame and scoring takes 0.4 ms on a CPU. On 1,362 annotated frames from two London routes, the EBM regressor reaches 72.2 percent binary accuracy and a mean absolute error of 1.011 under five-fold cross-validation. It is within one accuracy point of black-box ensembles. Its per-feature shape functions give exact attribution: physical lane separation is worth +0.97 rating points, a painted lane +0.70 and a construction site -0.65. Planners can therefore price an infrastructure change in rating points, and the results enter cost-benefit analysis directly. We also report inter-annotator agreement (alpha = 0.4695), an attribute audit, and a sensitivity analysis linking attribute error to accuracy. With re-encoding, a 20 s sampling interval serves 1,000 riders at 54 Mbit/s at a cost of 1.4 accuracy points, making continuous monitoring practical.",
-      "summary": "用自行车摄像头和边缘AI把街景转成可解释的安全评分，帮规划者量化评估道路设施改造对骑行安全的影响。"
+      "summary": "用行车记录仪画面和路网数据预测骑行者安全评分并解释原因，可开发能评估道路设施改造效果的安全感知监测应用。"
     },
     {
       "arxiv_id": "2611.08439v1",
@@ -399,7 +399,7 @@
       "published": "2026-11-05T18:31:24Z",
       "pdf_url": "https://arxiv.org/abs/2611.08439v1",
       "abstract": "Typed-decision models score options that the caller supplies at request time, so their accuracy depends on label wording that the model's developer does not control. We compare two releases of a 307M-parameter multilingual cross-encoder, Ru-Jev, trained on thirteen Russian-language tasks; the later release adds an augmentation that presents labels in several surface forms. Holding questions fixed and varying only how eighteen routing labels are worded, we evaluate ten label vocabularies, produced by three separate processes and checked for overlap with the training data, with five candidates per question and, for eight of them, also with eighteen. On held-out vocabularies made of ordinary or borrowed words (English-derived jargon, office slang, department names), the augmented release is more accurate in every setting, by up to 0.24. Eleven of these fourteen gains survive a Holm correction (slang with eighteen candidates and descriptive sentences with five do not), and for jargon on all labels the label-level interval excludes zero in both settings. On abbreviations and opaque codes it gives no usable gain: on abbreviations it is not better, and worse on the clean slice, and on opaque codes both releases stay at or below chance once labels related to training options are removed. In most cells where accuracy rises, the risk-coverage area falls, but with eighteen candidates confident errors rise on jargon and slang. On two datasets neither release saw, accuracy moves by -8.4 and +5.6 points. We also report four evaluation hazards from comparing the two releases.",
-      "summary": "给决策模型换用多种说法表述标签后，模型对生词和俚语的识别更准，可用来开发更懂用户口语的选项匹配应用，但对缩写和代码无效。"
+      "summary": "论文比较了两种标签措辞增强的多语言决策模型版本，发现增强能提升模型对普通词和外来词的选项判断准确率，可用于开发更稳健的选项评分应用。"
     },
     {
       "arxiv_id": "2611.08438v1",
@@ -427,7 +427,7 @@
       "published": "2026-11-05T18:30:54Z",
       "pdf_url": "https://arxiv.org/abs/2611.08438v1",
       "abstract": "Neural networks are likely to be among the most consequential artefacts in human history. As these systems become more capable and autonomous, their potential to cause societal harm also grows, making AI safety one of the defining challenges of our time. Yet we continue to build increasingly powerful systems without fully understanding how they work, how they will behave in unfamiliar situations, or how to reliably control them. Mechanistic interpretability offers a path towards understanding these systems by studying their internal representations and computations, with the aim of evaluating, predicting, and controlling behaviour. We survey mechanistic interpretability for AI safety in order to answer the question: Does understanding how models work actually make them safer? We place mechanistic interpretability in the broader context of interpretability research and compare its mechanistic evidence with behavioural evaluation. We introduce the foundations of mechanistic interpretability, including features, polysemanticity, transformer computation, and circuits, and survey methods for feature extraction and analysis, circuit discovery and causal verification, explaining intermediate representations in natural language, learning dynamics, and training-data attribution. Beyond surveying existing methods, we propose a unified framework for evaluating mechanistic interpretability claims and characterise six research orientations by their goals, assumptions, and trade-offs. Finally, we examine how mechanistic understanding can support AI safety, including knowledge editing, steering, and monitoring, and assess its limitations, failure modes, open problems, and relationship to behavioural safety measures. We also release a repository of code notebooks with worked examples t",
-      "summary": "这篇综述系统梳理了通过研究模型内部表示和计算来理解AI的机制可解释性方法，可用于开发模型行为预测、知识编辑、引导和监控等AI安全应用。"
+      "summary": "这篇综述梳理了通过研究神经网络内部表示与计算来理解模型的方法，可用于开发评估、预测和控制AI行为的安全工具。"
     },
     {
       "arxiv_id": "2611.08436v1",
@@ -444,7 +444,7 @@
       "published": "2026-11-05T18:28:38Z",
       "pdf_url": "https://arxiv.org/abs/2611.08436v1",
       "abstract": "We introduce SM4RT, a multi-task cascade feed-forward model for dynamic scene reconstruction from RGB videos. While existing feed-forward approaches typically address geometry reconstruction and motion estimation separately--and often predict motions in a single coordinate frame that must account for camera movement--SM4RT solves these tasks sequentially by first reconstructing 3D geometry and then bootstrapping motion estimation from the predicted structure. By expressing each pixel's 3D motion in its corresponding camera frame, SM4RT reduces ambiguity arising from camera motion. To address the sparsity of real-world motion labels, SM4RT further incorporates a weakly supervised loss that regularizes unlabeled point motions using labeled point positions at the other time step. We evaluate motion estimation on three dynamic-scene datasets--Kubric, Waymo, and Point Odyssey--and SM4RT achieves the best performance on most metrics compared with prior baselines. We additionally benchmark geometry reconstruction on five dynamic scene datasets and show that SM4RT achieves competitive performance with state-of-the-art methods. Overall, our unified framework demonstrates that combining geometry reconstruction and motion estimation in a cascade not only avoids performance trade-offs but also enhances motion estimation through improved geometric reasoning.",
-      "summary": "提出一种从RGB视频重建动态场景的级联前馈模型，先重建三维几何再估计运动，可用于开发视频三维动态建模应用。"
+      "summary": "提出一种从RGB视频重建动态场景的级联前馈模型，先重建三维几何再据此估计运动，可用于开发视频三维动态重建应用。"
     },
     {
       "arxiv_id": "2611.08433v1",
@@ -464,12 +464,12 @@
       "published": "2026-11-05T18:27:20Z",
       "pdf_url": "https://arxiv.org/abs/2611.08433v1",
       "abstract": "LLM-based medical assistants that follow a patient across visits need a memory that keeps the patient's clinical state correct as it changes. We examine the errors of five memory systems on longitudinal medical dialogue and find three recurring causes: the retrieved evidence gives an outdated state, includes another person's health facts, or lacks a safety fact the answer depends on. We present MedGraph, a graph memory built for these three cases. Construction extracts dated facts from each session, attributes each fact to the person it describes, and links medication, diagnosis, and measurement records into chains that keep earlier states. Retrieval ranks the patient's chains as units, reads each chain at the time the question asks about, and adds the original dialogue text; a patient profile lists every recorded safety fact with every question. On MedMemoryBench, MedGraph has the highest overall accuracy with both a GPT and a Qwen backbone, 10.5 and 10.4 points above the strongest of five baselines, with efficient memory construction and answering in the GPT setting.",
-      "summary": "针对长期医疗对话中记忆系统易用过时信息、混淆他人病史或遗漏安全事实的问题，提出图记忆方法，可开发跨就诊追踪患者状态、准确回答医疗问题的智能助手。"
+      "summary": "针对长期医疗对话中记忆系统常出现状态过时、混淆他人信息或遗漏安全事实的问题，提出图记忆方法，可开发更可靠的跨就诊医疗助手。"
     },
     {
       "arxiv_id": "2611.08428v1",
       "title": "The Power of Meta Access in the Software of the Future --- Demonstrated on LLM Chat UIs and Chat AI",
-      "title_zh": "未来软件中的元访问能力——以LLM聊天界面与聊天AI为例",
+      "title_zh": "未来软件中元访问的力量——以LLM聊天界面与聊天AI为例",
       "categories": [
         "cs.AI"
       ],
@@ -480,12 +480,12 @@
       "published": "2026-11-05T18:22:24Z",
       "pdf_url": "https://arxiv.org/abs/2611.08428v1",
       "abstract": "Chat remains the default surface for many large language model (LLM) tasks, even as agentic tools such as OpenCode excel at coding and automation. Yet the model sees the current dialogue but not the workspace around it. We explore meta access---giving the assistant a structured, permissioned view of the interface itself and propose a ladder of levels: feature tutoring; metadata, settings, and preference access; retrieval over summaries and messages, confirmed mutation, and full orchestration. Meta access can turn a chat client from many screens into one entry point for finding, navigating, organising, and operating it, while raising risks around grounding, privacy, prompt injection, and trust. General-purpose agentic harnesses are runtimes; because they can change their own settings, meta access becomes reflexive and needs a separate control-plane boundary. We ground this in the Meta Chat prototype of the Chat AI client. It builds bounded context from, e.g., summaries, settings, and relevant messages; links references to conversations, topics, and personas; supports confirmed, reversible changes; offers a browsable tutorial library; and recommends personas as user-started conversations. By exposing application state in structured form, meta access can extend screen readers from widget descriptions to semantic workspace operations. Meta access thus turns chat from a window onto one conversation into a control layer for the whole workspace, extending chat toward agentic capability without surrendering user control. As assistants become embedded in IDEs, dashboards, office suites, and operating systems, AI-era interfaces should expose a structured, permissioned model of their state and capabilities, ideally by opening their existing metamodels through a debugger-like inter",
-      "summary": "论文提出让AI助手获得界面自身的结构化权限视图，从而把聊天窗口变成能查找、导航和管理整个工作区的控制入口，可用于开发更安全可控的智能聊天客户端。"
+      "summary": "论文提出让AI助手获得界面自身的结构化权限视图，从而把聊天窗口变成能查找、导航、整理和操作整个工作区的统一入口，可用于开发更安全可控的智能聊天客户端。"
     },
     {
       "arxiv_id": "2611.08425v1",
       "title": "Failure Prediction and Classification in Vision-Language-Action Models Via Calibrated Latent Probing",
-      "title_zh": "通过校准潜在探针实现视觉-语言-动作模型的故障预测与分类",
+      "title_zh": "通过校准潜在探测实现视觉-语言-动作模型的失败预测与分类",
       "categories": [
         "cs.RO",
         "cs.AI"
@@ -504,12 +504,12 @@
       "published": "2026-11-05T18:21:07Z",
       "pdf_url": "https://arxiv.org/abs/2611.08425v1",
       "abstract": "Vision-Language-Action models (VLAs) enable general-purpose embodied intelligence, but their performance is brittle under distribution shift, where unanticipated failures can damage equipment or endanger people. Deploying VLAs in real-world systems therefore requires a runtime monitor that is timely, calibrated, and informative while being efficient enough to run on the edge. Existing methods fail to fulfill these requirements. We present VLA-Tug, a lightweight probe over the latent layers of a VLA backbone that improves early failure detection and bounds the missed-detection and false-alarm rates, with minimal inference overhead. We show that supervising on the pre-failure segment of a trajectory increases early failure detection at matched false-positive rates by up to 30% over the strongest learned baseline. Under shift to unseen tasks, the bounds on missed-detection and false-alarm rates remain valid in up to 86% of runs, versus at most 21% for baselines. Unlike existing methods, VLA-Tug predicts the failure mode to enable corrective actions, raising top-3 accuracy on unseen tasks by up to 44% over a majority baseline. VLA-Tug enables real-time monitoring where the well-timed and informative probe supports lightweight steering that improves task success. We release a dataset of 3,180 annotated manipulation episodes to support future work on latent failure detection in VLAs at https://vla-tug.github.io.",
-      "summary": "提出一种轻量探针VLA-Tug，能在边缘设备上实时监测视觉-语言-动作模型，提前发现并分类故障，用于开发更安全的机器人操控系统。"
+      "summary": "提出一种轻量运行时监测器，能在边缘设备上提前发现并分类视觉-语言-动作模型的失败，用于机器人实时监控与纠偏以提升任务成功率。"
     },
     {
       "arxiv_id": "2611.08421v1",
       "title": "Data-driven discovery of intrinsic Lie point symmetries of differential equation systems",
-      "title_zh": "数据驱动的微分方程系统内蕴李点对称性发现",
+      "title_zh": "数据驱动的微分方程系统内在李点对称性发现",
       "categories": [
         "cs.LG",
         "math.DG",
@@ -525,7 +525,7 @@
       "published": "2026-11-05T18:19:28Z",
       "pdf_url": "https://arxiv.org/abs/2611.08421v1",
       "abstract": "Discovering continuous symmetries directly from differential-equation data can reveal geometric structure for model reduction and scientific machine learning without symbolic determining equations or a closed-form representation of the governing system. We formulate intrinsic Lie point-symmetry discovery as an operator-theoretic problem on sampled jet-space data. Admissible generators are identified from a sampled determining operator and separated from redundant, solution-dependent, and geometrically trivial directions. The framework combines prolongation, sequential subspace restrictions, and a fixed nonlinear dictionary linear in trainable coefficients. A rank-stabilization preflight test diagnoses systems whose represented intrinsic symmetry algebra does not stabilize under dictionary refinement. On a controlled differential-equation benchmark with an analytically known 11-dimensional represented intrinsic symmetry algebra, the method recovers the complete represented generator set, reproduces its Lie-bracket structure to numerical precision, and approximates a known generator beyond the training domain. Here we show that explicit intrinsic continuous-symmetry generators can be recovered from data obtained from exact or approximate differential systems.",
-      "summary": "提出一种仅凭微分方程采样数据就能自动找出其内蕴连续对称性的方法，可用于模型降维和科学机器学习中的结构发现。"
+      "summary": "提出一种直接从微分方程数据中自动找出内在连续对称性的方法，无需方程符号形式，可用于模型降维和科学机器学习。"
     },
     {
       "arxiv_id": "2611.08420v1",
@@ -542,12 +542,12 @@
       "published": "2026-11-05T18:19:19Z",
       "pdf_url": "https://arxiv.org/abs/2611.08420v1",
       "abstract": "Molecular representations such as fingerprints and learned embeddings play a central role in cheminformatics and small-molecule machine learning. They serve as the primary input for a diverse array of tasks, including clustering, dataset splitting, and virtual screening, yet their evaluation is often limited to downstream model performance on narrow benchmark tasks. We carried out a systematic investigation of the quality of molecular representations, finding that none of the state-of-the-art molecular embedding models capture graph structure, 3D shape, or ADMET endpoint similarity better than fingerprints or physicochemical descriptors. However, classical fingerprints also revealed their own material limitations. For example, we show that depending on the representation, between 225M and $\\sim$4B molecules have non-unique representations in the 10.8B Enamine REAL database, with implications for virtual screening. Our findings provide an insight into the current limitations of molecular representations, outlining future research directions for the development of more robust encodings of small molecules.",
-      "summary": "系统评估发现现有分子表示在刻画结构、形状和性质相似性上并不优于传统指纹，且大规模数据库中存在大量重复表示，为开发更可靠的分子编码和虚拟筛选工具指明方向。"
+      "summary": "系统评估发现现有分子表示模型在捕捉结构、形状和性质相似性上并不优于传统指纹，且大规模数据库中大量分子表示不唯一，为虚拟筛选等应用敲响警钟。"
     },
     {
       "arxiv_id": "2611.08417v1",
       "title": "Benchmarks as Software: Terminal-Bench and the Case for Continuous Benchmarks",
-      "title_zh": "基准即软件：Terminal-Bench与持续基准测试的必要性",
+      "title_zh": "基准即软件：Terminal-Bench与持续基准评测的必要性",
       "categories": [
         "cs.AI"
       ],
@@ -560,7 +560,7 @@
       "published": "2026-11-05T18:18:39Z",
       "pdf_url": "https://arxiv.org/abs/2611.08417v1",
       "abstract": "Coding agents are among the most economically consequential deployments of LLMs to date, making reliable evaluation increasingly important. Yet even benchmarks that are carefully validated at release can become stale. As models improve, they can discover valid solutions that existing verifiers reject, while changes to evaluation infrastructure can invalidate assumptions embedded in tasks and tests. We call the resulting accumulation of defects benchmark maintenance debt: a growing gap between benchmark scores and the capabilities they are intended to measure. We introduce a continuous-validation workflow for agentic benchmarks that combines community reports, task artifacts, agent traces, automated oracle checks, and human-gated repairs. We apply this workflow to Terminal-Bench 2.0, a benchmark that underwent extensive human and LM-assisted review and red-teaming before release. Our audit identifies issues in roughly 30% of the benchmark, and we release the resulting repairs as Terminal-Bench 2.1. These repairs change evaluation results: accuracy increased by over 10 percentage points and leaderboard positions move by up to three ranks, even as the overall ranking remains highly correlated (Spearman rho = 0.958). We evaluate how resource allocation shapes benchmark conclusions. We show that fixed wall-clock can materially change agent performance: For example, extending the time limit closes a 20pp harness gap on GPT 5.4 and shrinks a 30 pp gap on GPT 5.4 mini to 5 pp. Benchmark maintenance is therefore not only about repairing task artifacts: resource budgets are part of the measurement specification and must be validated alongside the tasks themselves. More broadly, benchmark maintenance debt is not just accumulated implementation bugs: our results show that as models",
-      "summary": "论文指出基准测试会随模型进步而过时失效，提出持续校验流程修复了Terminal-Bench约三成问题，可用于开发更可靠的编程智能体评测系统。"
+      "summary": "论文指出基准测试会随模型进步而失效，提出持续校验流程修复缺陷，并据此发布Terminal-Bench 2.1，可用于开发更可靠的编程智能体评测工具。"
     },
     {
       "arxiv_id": "2611.08414v1",
@@ -579,7 +579,7 @@
       "published": "2026-11-05T18:17:39Z",
       "pdf_url": "https://arxiv.org/abs/2611.08414v1",
       "abstract": "Low-rank adaptation (LoRA) is commonly used in both supervised fine-tuning (SFT) and reinforcement learning (RL), often under similar optimizer settings. Yet, how the different dynamics of the two stages manifest in the low-rank increment that LoRA optimizes remains unclear. Tracking the singular spectrum and subspaces of LoRA updates on mathematical reasoning tasks, we find that RL concentrates the spectrum at every learning rate, while SFT expands it at moderate learning rates; moreover, RL rotates the singular subspaces much faster than SFT at small learning rates. Interpolating between SFT and RL one ingredient at a time, we pinpoint group-mean baseline subtraction as the source of both contrasts. A quadratic multi-index model updated via LoRA unveils the underlying mechanism: group-mean baseline subtraction tilts the balance between two competing forces, coherent fitting and gradient noise, toward spectral concentration and faster subspace rotation, while forcing the risk-favorable learning rate to be low. Guided by these dynamics, we tailor LoRA updates to each stage: in SFT, we flatten the spectrum of the full update to spread adaptation across singular directions, whereas in RL, we flatten the part of the update outside the current LoRA increment span to promote subspace rotation. Experiments on mathematical reasoning tasks across multiple models show that the respective configurations for SFT and RL yield the best performance among the compared methods in most evaluated settings.",
-      "summary": "论文发现强化学习与监督微调会让LoRA更新呈现不同的奇异谱和子空间变化规律，并据此为两个阶段分别定制更新方式，用于提升数学推理任务的模型表现。"
+      "summary": "论文发现强化学习会让LoRA更新的奇异值更集中、子空间旋转更快，并据此为监督微调和强化学习分别设计更新方式，用于提升数学推理任务的模型表现。"
     },
     {
       "arxiv_id": "2611.08413v1",
@@ -602,12 +602,12 @@
       "published": "2026-11-05T18:17:29Z",
       "pdf_url": "https://arxiv.org/abs/2611.08413v1",
       "abstract": "Vision-Language-Action (VLA) models enable end-to-end robot control, but inference is increasingly expensive. Each decision processes hundreds of visual tokens, often across multiple cameras, leading to substantial computation while allowing irrelevant background content to distract action prediction under distribution shift. We argue that these issues stem from two complementary forms of redundancy: many visual tokens are spatially irrelevant, while attention over the remaining tokens is often misallocated. Based on this observation, we propose T3R, a Training-Free Two-Stage Token Refinement framework. In the first stage, segmentation-guided token pruning removes irrelevant visual patches to reduce computation and eliminate distracting context. In the second stage, saliency-guided attention biasing reallocates attention toward action-critical visual regions and language instructions within the retained tokens. Together, pruning produces a cleaner candidate set, while attention biasing further emphasizes the most decision-relevant evidence, yielding a better accuracy-efficiency frontier than either stage alone. On LIBERO-Spatial, T3R removes 85% of scene-camera visual tokens while essentially matching the unpruned success rate, and improves success by up to 7 percentage points under out-of-distribution object-placement perturbations. The timing comparison attributes 7.8 ms per inference call to pruning and attention-bias application. As input resolution increases, LLM-forward profiling shows up to a 3.3x speedup over the unpruned baseline. Evaluations across LIBERO, SIMPLER, and RoboTwin with three VLA backbones show the strongest accuracy-efficiency benefits in multi-camera settings. These results demonstrate that training-free token refinement is a practical approach ",
-      "summary": "提出免训练的两阶段视觉词元精炼方法，先剪除无关画面再聚焦关键区域，让机器人视觉-语言-动作模型在减少计算的同时更准更稳。"
+      "summary": "提出免训练的两阶段视觉词元精炼方法，先剪除无关画面再聚焦关键区域，让机器人视觉-语言-动作模型在减少计算的同时更准确抗干扰，可用于开发更省算力、更稳的机器人控制应用。"
     },
     {
       "arxiv_id": "2611.08412v1",
       "title": "The Gold Rush in AI4Math, II: What are signatures of AI-assisted Proofs?",
-      "title_zh": "AI4Math淘金热II：AI辅助证明的特征是什么？",
+      "title_zh": "AI4Math淘金热之二：AI辅助证明的特征是什么？",
       "categories": [
         "cs.AI",
         "stat.AP"
@@ -639,12 +639,12 @@
       "published": "2026-11-05T18:15:42Z",
       "pdf_url": "https://arxiv.org/abs/2611.08409v1",
       "abstract": "Uncertainty quantification is crucial in scientific machine learning, where models inform safety-critical tasks such as flood forecasting, financial risk management, and thermal control in machines. Conformal prediction provides distribution-free coverage guarantees, but in time-dependent settings common to physics and engineering, these guarantees can break down, leading to systematic undercoverage. We study this problem in the context of surrogate models for time-dependent physical systems described by partial differential equations. We prove that in a function space setting, distributions at arbitrarily close times can be mutually singular, making exact coverage guarantees impossible. We further show that in discretized settings, the total variation distance between distributions often saturates exponentially fast with the grid resolution, mandating restrictions on the spatial discretization to ensure coverage. Finally, for certain settings, we show how to use principled weighted conformal prediction to obtain finite-sample coverage guarantees over growing time horizons.",
-      "summary": "论文揭示了共形预测在时间相关偏微分方程场景下覆盖率失效的根源，并提出加权共形预测方法，可用于开发洪水预报、热控等安全关键系统的可靠不确定性量化工具。"
+      "summary": "论文揭示了共形预测在时间相关偏微分方程场景下覆盖率失效的原因，并提出加权共形预测方法，可为洪水预报、热控等安全关键应用开发可靠的不确定性量化模型。"
     },
     {
       "arxiv_id": "2611.08407v1",
       "title": "Social Humanoid: Socially Responsive Human-Humanoid Interaction",
-      "title_zh": "社交人形机器人：社交响应式人-人形交互",
+      "title_zh": "社交人形机器人：社交响应式人-人形机器人交互",
       "categories": [
         "cs.RO",
         "cs.CV",
@@ -665,7 +665,7 @@
       "published": "2026-11-05T18:14:06Z",
       "pdf_url": "https://arxiv.org/abs/2611.08407v1",
       "abstract": "Humanoid robots are typically trained as solitary agents, leaving them unable to coordinate physically with human partners who naturally anticipate and adjust to one another. To bridge this gap, we present Social Humanoid, a hierarchical system that generates and executes socially responsive whole-body motion on a 29-DoF Unitree G1 conditioned on a human partner's motion. Its high-level policy performs flexible sequence modeling of human and humanoid motion through a shared tokenized representation, generating reactive humanoid motion and anticipating the partner's motion when they are occluded, while a low-level whole-body tracking controller executes the generated motion on the robot. To train the system, we introduce a two-phase adaptive retargeting procedure that retargets one interaction partner to the robot while morphing the other partner to preserve contact dynamics, reachability, and relative body scale. We apply this procedure across five motion-capture datasets to produce a new Human-Humanoid Interaction (HHI) benchmark of 260 hours of human-humanoid interactions. Our results demonstrate that Social Humanoid produces coordinated, human-aligned behavior across diverse interaction types in simulation and the real world. Project page: https://von31.github.io/social-humanoid/",
-      "summary": "提出一套分层系统，让人形机器人能根据人类伙伴的动作实时生成并执行全身协调动作，可用于开发能与人类自然配合的交互机器人。"
+      "summary": "提出一种分层系统，让人形机器人能根据人类伙伴的动作实时生成并执行全身协调动作，可用于开发能与人类自然配合的交互机器人。"
     },
     {
       "arxiv_id": "2611.08403v1",
@@ -683,7 +683,7 @@
       "published": "2026-11-05T18:12:49Z",
       "pdf_url": "https://arxiv.org/abs/2611.08403v1",
       "abstract": "Self-consistency (SC) is a widely used decoding strategy for improving chain-of-thought reasoning, but it requires sampling many complete reasoning trajectories with a preset budget. Its efficient variants reduce the cost mainly by stopping full-trajectory sampling early or distributing the number of samples across questions. In this paper, we propose StepBack, a step-level error-localized resampling method for efficient test-time reasoning. Given a small set of draft trajectories, StepBack localizes likely first error positions using lightweight signals and then resamples the detected error step and its suffix, followed by majority answer voting. Empirically, StepBack matches the accuracy of SC on average across seven mathematical reasoning and multi-hop QA benchmarks, while reducing token usage by up to 41.26%. In addition, by nature, StepBack can be combined with adaptive inference methods such as Adaptive Consistency, further improving their inference-time efficiency.",
-      "summary": "提出一种在推理链中定位首个出错步骤并只重采样该步及后续内容的方法，能在保持准确率的同时大幅减少计算开销，可用于开发更省算力的大模型推理应用。"
+      "summary": "提出一种在推理链中定位首个出错步骤并只重采样该步及后续内容的方法，能在保持准确率的同时大幅减少计算量，可用于开发更省算力的推理模型解码方案。"
     },
     {
       "arxiv_id": "2611.08398v1",
@@ -702,12 +702,12 @@
       "published": "2026-11-05T18:10:25Z",
       "pdf_url": "https://arxiv.org/abs/2611.08398v1",
       "abstract": "Haptic interactions, such as touching an object in virtual reality, involve detecting a plethora of sensations through the skin. Whilst tactile displays exist to simulate and manipulate all of these cues individually, little progress has been made constructing devices that can control multiple cues simultaneously. This paper presents a tactile display technology that offers both softness and temperature change. A prototype display, based on particle jamming and the thermal transfer of heated and cooled water, is evaluated in terms of its ability to change both stiffness and temperature. Mechanical evaluations demonstrate controllable stiffness increase of 300%, whilst thermal characterisation showed strong surface uniformity and a range of achievable temperatures from 10°C up to 50°C, with closed-loop control maintaining a 0.2°C error from a setpoint. This work advances the design of multimodal tactile displays with applications to perceptual research, medical simulation, and affective haptics.",
-      "summary": "论文开发出一种能同时改变物体软硬和温度的触觉显示装置，可让虚拟现实中的触摸更真实，用于感知研究、医疗模拟和情感触觉应用。"
+      "summary": "发明了一种能同时改变物体软硬和温度的触觉显示装置，可让虚拟现实中的触摸更真实，用于感知研究、医疗模拟和情感触觉应用。"
     },
     {
       "arxiv_id": "2611.08394v1",
       "title": "Synthesis of Ovarian Cancer Multi-Omics Datasets: A Biology-Informed Evaluation Framework",
-      "title_zh": "卵巢癌多组学数据集的合成：一种基于生物学的评估框架",
+      "title_zh": "卵巢癌多组学数据集的合成：一个基于生物学的评估框架",
       "categories": [
         "cs.LG"
       ],
@@ -721,7 +721,7 @@
       "published": "2026-11-05T18:07:06Z",
       "pdf_url": "https://arxiv.org/abs/2611.08394v1",
       "abstract": "Paired multi-omic cancer cohorts are costly to assemble and difficult to share, motivating synthetic cohorts as a complementary resource. As generative model development accelerates, we shift the focus from proposing yet another architecture to defining evaluation criteria that determine whether synthetic data preserve biologically relevant structure. We introduce a biology-informed and patient-disjoint framework for evaluating the generation of paired RNA expression and copy-number variation (CNV) profiles, and apply it to the longitudinal DECIDER high-grade serous ovarian cancer cohort. The framework assesses modality-specific fidelity and coherence between RNA and CNV pairs using agreement between real training and held-out data as a reference, alongside complementary training-data proximity diagnostics. We adapt three multi-omic integration architectures based on variational autoencoders to generate paired profiles. The model leading several fidelity and coherence measures also shows the strongest training-data proximity. The protocol and case study offer the community a reference for comparing future multi-omic generators.",
-      "summary": "提出一套基于生物学、患者不重叠的评估框架，用来判断生成模型合成的卵巢癌RNA与拷贝数配对数据是否保留真实生物结构，可指导开发更可靠的多组学数据生成工具。"
+      "summary": "提出一套基于生物学、患者不重叠的评估框架，用来判断生成的配对RNA与拷贝数数据是否保留真实生物结构，可指导开发更可靠的多组学合成数据生成工具。"
     },
     {
       "arxiv_id": "2611.08393v1",
@@ -739,12 +739,12 @@
       "published": "2026-11-05T18:06:59Z",
       "pdf_url": "https://arxiv.org/abs/2611.08393v1",
       "abstract": "Road anomaly detection systems on autonomous vehicles must function reliably under degraded visual conditions including darkness, rain, and Harmattan dust haze. This paper benchmarks four object detection architectures, YOLOv8n, YOLOv12n, RT-DETR, and Faster R-CNN, under physically grounded lighting and weather degradation, and shows that uniform application of the SCI low-light enhancement network is actively harmful at dusk-level lighting (-16.1% to -30.7% mAP@50). We propose a lightweight, training-free luminance-adaptive router that selects between no enhancement, moderate SCI, and denoising plus strong SCI based on per-frame Rec. 601 luminance, recovering most of the dusk penalty while preserving low-light gains, and we validate the full pipeline on NVIDIA Jetson Nano edge hardware.",
-      "summary": "论文发现统一使用低光照增强在黄昏场景反而降低检测精度，提出一种无需训练、按画面亮度自动选择增强强度的轻量方法，在边缘设备上兼顾黄昏与暗光下的道路异常检测。"
+      "summary": "论文发现统一使用低光照增强反而会损害黄昏场景的检测效果，于是提出一种无需训练、按画面亮度自动选择增强强度的轻量方法，并在边缘设备上验证，可用于开发自动驾驶在夜间和恶劣天气下的道路异常检测系统。"
     },
     {
       "arxiv_id": "2611.08392v1",
       "title": "Learning a patient world model for health system simulation in intensive care",
-      "title_zh": "学习用于重症监护健康系统模拟的患者世界模型",
+      "title_zh": "面向重症监护健康系统仿真的患者世界模型学习",
       "categories": [
         "cs.AI"
       ],
@@ -799,7 +799,7 @@
       "published": "2026-11-05T18:04:26Z",
       "pdf_url": "https://arxiv.org/abs/2611.08386v1",
       "abstract": "Landing-phase safety-event prediction requires the detection of rare abnormal approaches within strongly imbalanced multivariate flight data. Capturing coupled temporal behavior while distinguishing event-specific signatures across airport operating contexts remains a central modeling challenge. This study proposes an interpretable hybrid feature-fusion framework for multiclass landing-phase safety-event prediction. A long short-term memory (LSTM) autoencoder trained on nominal flight windows characterizes deviations from routine approach behavior. Its continuous reconstruction-error descriptor is fused with parameter-specific statistical flight-history features and supplied to a class-weighted XGBoost classifier to distinguish Normal, Speed High, Path High, and Flaps Late windows. The framework is evaluated using 53,750 NASA DASHlink approach windows from three arrival airports. Pooled and airport-specific learning strategies are compared alongside component-level benchmarks, repeated pipeline retraining, and feature-attribution analysis. The results demonstrate strong class-balanced detection, with mean macro recall above 0.90 across all airports under repeated partitioning and retraining. Component comparisons establish the importance of class weighting and show that continuous feature fusion outperforms reconstruction-error-only and hard-gate alternatives. Airport-level comparisons reveal benefits from local specialization at the two airports with larger datasets and from pooled training at the airport with the smallest dataset. Feature attributions associate predictions with operationally relevant vertical-path, configuration, speed, and approach-context variables. The framework provides an interpretable approach to rare-event detection and practical guidance for a",
-      "summary": "该研究用混合机器学习从飞行数据中预测着陆阶段的罕见安全事件，可开发成帮助飞行员提前发现异常进近的智能预警系统。"
+      "summary": "提出一种融合LSTM自编码器与XGBoost的混合框架，能从高度不平衡的飞行数据中识别着陆阶段的罕见异常，可用于开发机场着陆安全预警系统。"
     }
   ]
 }
